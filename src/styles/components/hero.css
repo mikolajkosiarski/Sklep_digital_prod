@@ -1,0 +1,108 @@
+.hero-shell {
+  width: calc(100% - 3rem);
+  margin-inline: auto;
+}
+.framed-hero {
+  padding-top: 0.75rem;
+}
+.frame-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 18rem;
+  max-height: 28rem;
+  aspect-ratio: 1;
+  margin-inline: auto;
+}
+.hero-ornaments {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.56;
+}
+.hero-ornament {
+  position: absolute;
+  display: block;
+  width: min(40%, 16rem);
+  height: auto;
+}
+.hero-ornament--top-left {
+  top: 0;
+  left: 0;
+}
+.hero-ornament--bottom-right {
+  bottom: 0;
+  right: 0;
+}
+.frame-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  text-align: center;
+}
+.frame-logo-heading {
+  width: 63%;
+  max-width: 32rem;
+  margin: 0;
+}
+.frame-description {
+  margin: 1.25rem 0 0.5rem;
+  color: var(--soft);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.frame-content .frame-cta {
+  justify-content: center;
+}
+.frame-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (min-width: 48rem) {
+  .hero-shell {
+    width: calc(100% - clamp(5rem, 12vw, 20rem));
+  }
+  .framed-hero {
+    padding-top: 1.5rem;
+  }
+  .frame-stage {
+    min-height: 22rem;
+    max-height: min(42rem, calc(100svh - 8rem));
+    aspect-ratio: 3584/1952;
+  }
+  .hero-ornament {
+    width: min(32%, 28rem);
+  }
+  .frame-content {
+    width: 65%;
+  }
+  .frame-logo-heading {
+    width: 72%;
+  }
+  .frame-description {
+    margin-top: 1.5rem;
+  }
+}
+@media (orientation: landscape) and (max-height: 30rem) and (min-width: 35rem) {
+  .framed-hero {
+    padding-top: 0;
+  }
+  .frame-stage {
+    min-height: 12rem;
+    max-height: calc(100svh - 5.5rem);
+    aspect-ratio: 2.3;
+  }
+  .hero-ornament {
+    width: 27%;
+  }
+  .frame-logo-heading {
+    max-width: 20.25rem;
+  }
+  .frame-description {
+    margin-top: 0.75rem;
+  }
+}

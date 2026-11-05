@@ -1,0 +1,41 @@
+---
+import { asset } from '../../lib/paths';
+import TerminalButton from '../ui/TerminalButton.astro';
+---
+
+<div class="hero-shell">
+  <section class="framed-hero" id="single-hero" aria-labelledby="framed-title">
+    <div class="frame-stage">
+      <div class="hero-ornaments" aria-hidden="true">
+        <img
+          class="hero-ornament hero-ornament--top-left"
+          src={asset('assets/frames/parts/128/top-left.svg')}
+          width="2229"
+          height="2397"
+          alt=""
+        />
+        <img
+          class="hero-ornament hero-ornament--bottom-right"
+          src={asset('assets/frames/parts/128/bottom-right.svg')}
+          width="2226"
+          height="2399"
+          alt=""
+        />
+      </div>
+      <div class="frame-content">
+        <h1 class="frame-logo-heading" id="framed-title">
+          <img
+            class="frame-logo"
+            src={asset('assets/visamore-tag.png')}
+            width="1752"
+            height="192"
+            alt="Visamore"
+            fetchpriority="high"
+          />
+        </h1>
+        <p class="frame-description">Digital artwork &amp; apparel.</p>
+        <TerminalButton href="#collections" label="Explore collections" class="frame-cta" />
+      </div>
+    </div>
+  </section>
+</div>

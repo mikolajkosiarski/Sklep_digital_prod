@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TerminalButton from '../components/ui/TerminalButton.astro';
+import { url } from '../lib/paths';
+---
+
+<BaseLayout
+  title="Page not found — Visamore"
+  description="This page could not be found. Explore the Visamore collections or return home."
+  section="help"
+  noindex
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Page not found — Visamore',
+    description: 'This page could not be found. Explore the Visamore collections or return home.',
+  }}
+>
+  <main id="main-content" class="vm-container missing-page">
+    <p class="missing-code">404</p>
+    <h1 class="page-title">Nothing here.</h1>
+    <p>The page may have moved, or the address may be incomplete.</p>
+    <div class="missing-actions">
+      <TerminalButton label="Back to home" href={url('/')} />
+      <a class="missing-help" href={url('/contact/')}>
+        Contact Visamore
+      </a>
+    </div>
+  </main>
+</BaseLayout>
+<style>
+  .missing-page {
+    padding-block: clamp(3rem, 9vw, 8rem);
+    min-height: 55svh;
+  }
+  .missing-code {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+  .missing-page h1 + p {
+    max-width: 45ch;
+    margin: 1.5rem 0 2rem;
+    font-size: 1rem;
+  }
+  .missing-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 2rem;
+  }
+  .missing-help {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+</style>

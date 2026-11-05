@@ -1,0 +1,47 @@
+/* Shared text action: the original pixel mark is the only ornament. */
+.terminal-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  width: fit-content;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 3rem;
+  padding: 0.625rem 0.125rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font: 500 1rem / 1.5 var(--mono);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+.terminal-button__label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.terminal-button__mark {
+  flex: 0 0 1rem;
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.18s;
+  pointer-events: none;
+}
+.terminal-button:hover .terminal-button__mark {
+  transform: rotate(90deg);
+}
+.terminal-button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 5px;
+}
+.terminal-button:disabled {
+  cursor: default;
+  color: var(--soft);
+}
+@media (prefers-reduced-motion: reduce) {
+  .terminal-button__mark {
+    transition: none;
+  }
+}

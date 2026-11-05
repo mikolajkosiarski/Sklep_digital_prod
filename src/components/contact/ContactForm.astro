@@ -1,0 +1,116 @@
+---
+import TerminalButton from '../ui/TerminalButton.astro';
+
+interface Props {
+  idPrefix: string;
+}
+const { idPrefix } = Astro.props;
+const id = (field: string) => `${idPrefix}-${field}`;
+---
+
+<div class="contact-form-panel">
+  <form
+    class="contact-form"
+    action="#contact"
+    method="post"
+    aria-label="Contact Visamore"
+    data-contact-form
+  >
+    <p class="contact-required">All fields are required.</p>
+    <div class="contact-form-row">
+      <div class="contact-field">
+        <label for={id('name')}>Your name</label>
+        <input
+          id={id('name')}
+          name="name"
+          type="text"
+          autocomplete="name"
+          required
+          maxlength="80"
+          aria-describedby={id('name-error')}
+        />
+        <p class="contact-error" id={id('name-error')} data-contact-error="name" hidden></p>
+      </div>
+      <div class="contact-field">
+        <label for={id('email')}>Email</label>
+        <input
+          id={id('email')}
+          name="email"
+          type="email"
+          autocomplete="email"
+          required
+          maxlength="254"
+          placeholder="you@example.com"
+          aria-describedby={id('email-error')}
+        />
+        <p class="contact-error" id={id('email-error')} data-contact-error="email" hidden></p>
+      </div>
+    </div>
+    <div class="contact-field">
+      <label for={id('topic')}>What is it about?</label>
+      <select id={id('topic')} name="topic" required aria-describedby={id('topic-error')}>
+        <option value="">Choose a topic</option>
+        <option value="digital">Digital artwork & files</option>
+        <option value="physical">Apparel & physical pieces</option>
+        <option value="order">An existing Etsy order</option>
+        <option value="collaboration">Collaboration & licensing</option>
+        <option value="other">Something else</option>
+      </select>
+      <p class="contact-error" id={id('topic-error')} data-contact-error="topic" hidden></p>
+    </div>
+    <div class="contact-field">
+      <label for={id('message')}>Your message</label>
+      <textarea
+        id={id('message')}
+        name="message"
+        rows="6"
+        required
+        minlength="20"
+        maxlength="3000"
+        aria-describedby={`${id('message-hint')} ${id('message-error')}`}
+      ></textarea>
+      <p class="contact-field-hint" id={id('message-hint')}>
+        20–3,000 characters. Include the collection name if it helps.
+      </p>
+      <p class="contact-error" id={id('message-error')} data-contact-error="message" hidden></p>
+    </div>
+    <div class="contact-form-actions">
+      <TerminalButton label="Preview message" type="submit" disabled />
+      <button class="contact-reset" type="reset">
+        Clear form
+      </button>
+    </div>
+    <p class="contact-status" role="status" data-contact-status></p>
+    <noscript>
+      <p class="contact-field-hint">Enable JavaScript to preview your message.</p>
+    </noscript>
+    <section
+      class="contact-message-preview"
+      aria-labelledby={id('preview-title')}
+      data-contact-preview
+      tabindex="-1"
+      hidden
+    >
+      <h3 id={id('preview-title')}>Your message preview</h3>
+      <dl>
+        <div>
+          <dt>Name</dt>
+          <dd data-contact-output="name"></dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd data-contact-output="email"></dd>
+        </div>
+        <div>
+          <dt>Topic</dt>
+          <dd data-contact-output="topic"></dd>
+        </div>
+      </dl>
+      <p class="contact-preview-body" data-contact-output="message"></p>
+    </section>
+  </form>
+</div>
+
+<script>
+  import '../../scripts/contact';
+</script>

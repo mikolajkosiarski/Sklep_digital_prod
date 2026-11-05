@@ -1,0 +1,39 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactSection from '../components/contact/ContactSection.astro';
+import { url } from '../lib/paths';
+
+const entry = await getEntry('information', 'contact');
+if (!entry) throw new Error('Missing contact information content.');
+const { title, description, status } = entry.data;
+---
+
+<BaseLayout
+  title={`${title} — Visamore`}
+  description={description}
+  section="help"
+  noindex={status === 'draft'}
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contact Visamore',
+    description,
+  }}
+>
+  <main id="main-content" class="vm-container contact-page">
+    <nav class="contact-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li>
+          <a href={url('/')}>Home</a>
+        </li>
+        <li aria-current="page">Contact</li>
+      </ol>
+    </nav>
+    <header class="contact-page-header">
+      <h1 class="page-title">Contact.</h1>
+      <p>{description}</p>
+    </header>
+    <ContactSection standalone />
+  </main>
+</BaseLayout>

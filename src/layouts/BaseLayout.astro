@@ -1,0 +1,74 @@
+---
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import MaterialBackground from '../components/layout/MaterialBackground.astro';
+import { asset } from '../lib/paths';
+import '../styles/global.css';
+interface Props {
+  title: string;
+  description: string;
+  section?: 'digital' | 'physical' | 'journal' | 'about' | 'help' | 'cart';
+  noindex?: boolean;
+  home?: boolean;
+  schema?: Record<string, unknown>;
+  ogImage?: string;
+  ogAlt?: string;
+}
+const {
+  title,
+  description,
+  section,
+  noindex = false,
+  home = false,
+  schema,
+  ogImage = 'assets/digital/pack-121-3.png',
+  ogAlt = 'A branching floral and thorn design by Visamore',
+} = Astro.props;
+const image = Astro.site ? new URL(asset(ogImage), Astro.site).href : asset(ogImage);
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const data = schema ?? {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Visamore',
+  description: 'Digital design collections exploring gothic, tribal and cybersigilism forms.',
+  logo: Astro.site
+    ? new URL(asset('assets/visamore-tag.png'), Astro.site).href
+    : asset('assets/visamore-tag.png'),
+};
+// Escape '<' so authored text cannot close the JSON-LD script element.
+const jsonLd = JSON.stringify(data).replace(/</g, '\\u003c');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f7f7" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:alt" content={ogAlt} />
+    <meta property="og:type" content={data['@type'] === 'Article' ? 'article' : 'website'} />
+    <meta property="og:site_name" content="Visamore" />
+    {canonical && (
+      <>
+        <link rel="canonical" href={canonical} />
+        <meta property="og:url" content={canonical} />
+      </>
+    )}
+    <script is:inline type="application/ld+json" set:html={jsonLd} />
+  </head>
+  <body class:list={['visamore-site', home ? 'home-page' : `${section ?? 'information'}-page`]}>
+    <MaterialBackground />
+    <a class="skip-link" href="#main-content">
+      Skip to content
+    </a>
+    <Header current={home ? 'home' : section} />
+    <slot />
+    <Footer />
+  </body>
+</html>

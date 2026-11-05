@@ -1,0 +1,27 @@
+---
+import { url } from '../../lib/paths';
+
+interface Props {
+  href?: string;
+  label: string;
+  class?: string;
+  cartKey?: string;
+  type?: 'button' | 'submit';
+  disabled?: boolean;
+}
+const { href, label, class: className, cartKey, type = 'button', disabled = false } = Astro.props;
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  class:list={['terminal-button', className]}
+  href={href ? url(href) : undefined}
+  type={href ? undefined : type}
+  data-cart-add={cartKey}
+  disabled={cartKey || disabled ? true : undefined}
+>
+  <span class="terminal-button__label">{label}</span>
+  <svg class="terminal-button__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M10 2H14V8H16V10H22V14H16V16H14V22H10V16H8V14H2V10H8V8H10Z" fill="currentColor" />
+  </svg>
+</Tag>

@@ -1,0 +1,29 @@
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import './base.css' layer(base);
+@import './components/typography.css' layer(components);
+@import './components/surface.css' layer(components);
+@import './components/navigation.css' layer(components);
+@import './components/buttons.css' layer(components);
+@import './components/hero.css' layer(components);
+@import './components/contact.css' layer(components);
+@import 'tailwindcss/utilities.css' layer(utilities) source(none);
+
+@source '../';
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 36rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 62rem;
+  --breakpoint-xl: 75rem;
+  --font-mono: Plex, 'Courier New', monospace;
+  --text-caption: 0.875rem;
+  --text-copy: 0.9375rem;
+  --font-display: 'Pinyon Script', cursive;
+  --color-paper: #f7f7f7;
+  --color-ink: #282828;
+  --color-muted: #484848;
+  --color-line: #cecece;
+}

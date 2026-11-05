@@ -1,0 +1,45 @@
+---
+import { navigation } from '../../data/navigation';
+import { asset, url } from '../../lib/paths';
+interface Props {
+  current?: string;
+}
+const { current } = Astro.props;
+---
+
+<header class="vm-navbar" id="top">
+  <div class="vm-container">
+    <button
+      class="vm-menu-toggle"
+      type="button"
+      aria-controls="site-menu"
+      aria-expanded="false"
+      hidden
+    >
+      Menu
+    </button>
+    <a class="vm-brand" href={url('/')} aria-label="Visamore — home">
+      <img src={asset('assets/visamore-tag.png')} width="1752" height="192" alt="Visamore" />
+    </a>
+    <nav class="vm-navigation" id="site-menu" aria-label="Main navigation">
+      <ul class="vm-nav-links">
+        {navigation.map(({ key, label, href }) => (
+          <li>
+            <a
+              class="vm-nav-link"
+              href={url(href)}
+              aria-current={
+                current === key ? (Astro.url.pathname === url(href) ? 'page' : 'true') : undefined
+              }
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+<script>
+  import '../../scripts/menu';
+</script>

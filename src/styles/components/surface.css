@@ -1,0 +1,91 @@
+/* Paper surface, reading width and footer. */
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 30;
+  transform: translateY(-200%);
+  background: var(--ink);
+  color: var(--paper-base);
+  padding: 0.75rem;
+}
+.skip-link:focus {
+  transform: none;
+}
+.material-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  isolation: isolate;
+  background: var(--paper-base);
+}
+.material-background > div {
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat;
+  filter: grayscale(1);
+}
+.material-clouds {
+  background-image: url('/textures/clouds.svg');
+  background-size: 64rem 64rem;
+  opacity: 0.065;
+  mix-blend-mode: multiply;
+}
+.material-grain {
+  background-image: url('/textures/grain.svg');
+  background-size: 12rem 12rem;
+  opacity: 0.13;
+  mix-blend-mode: soft-light;
+}
+.material-fibres {
+  background-image: url('/textures/fibres.svg');
+  background-size: 32rem 32rem;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+}
+.material-pattern {
+  background-image: url('/textures/serpent.svg');
+  background-size: 34.65rem 36.75rem;
+  opacity: 0.3;
+  mix-blend-mode: multiply;
+}
+.vm-container {
+  width: calc(100% - 3rem);
+  max-width: 72.5rem;
+  padding-inline: 0;
+  margin-inline: auto;
+}
+.vm-footer {
+  margin-top: 6rem;
+  padding-block: 2rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font: var(--text-caption) / 1.8 var(--mono);
+  color: var(--soft);
+}
+.vm-footer a {
+  min-width: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+}
+.vm-footer .footer-brand {
+  letter-spacing: 0.04em;
+}
+.vm-footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+@media (min-width: 48rem) {
+  .vm-container {
+    width: calc(100% - 5.5rem);
+  }
+  .vm-footer {
+    margin-top: 8rem;
+  }
+}
+@media (min-width: 62rem) {
+  .vm-container {
+    width: calc(100% - 9rem);
+  }
+}

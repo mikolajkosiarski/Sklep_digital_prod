@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <filter id="clouds" filterUnits="userSpaceOnUse" x="0" y="0" width="1024" height="1024" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.008 0.011" numOctaves="3" seed="8" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer>
+      <feFuncR type="linear" slope="0.35" intercept="0.65"/>
+      <feFuncG type="linear" slope="0.35" intercept="0.65"/>
+      <feFuncB type="linear" slope="0.35" intercept="0.65"/>
+      <feFuncA type="identity"/>
+    </feComponentTransfer>
+  </filter>
+  <rect width="1024" height="1024" filter="url(#clouds)"/>
+</svg>

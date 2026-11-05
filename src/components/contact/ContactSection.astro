@@ -1,0 +1,42 @@
+---
+import { getEntry, render } from 'astro:content';
+import ContactForm from './ContactForm.astro';
+import TerminalButton from '../ui/TerminalButton.astro';
+import { url } from '../../lib/paths';
+
+interface Props {
+  standalone?: boolean;
+}
+const { standalone = false } = Astro.props;
+const entry = await getEntry('information', 'contact');
+if (!entry) throw new Error('Missing contact information content.');
+const { Content } = await render(entry);
+const prefix = standalone ? 'page-contact' : 'home-contact';
+---
+
+<section
+  class:list={[
+    'contact-section',
+    { 'vm-container': !standalone, 'contact-section--standalone': standalone },
+  ]}
+  id="contact"
+  aria-labelledby={`${prefix}-title`}
+>
+  <header class="contact-section-header">
+    <div>
+      <h2 id={`${prefix}-title`} class={standalone ? 'contact-section-title' : 'section-heading'}>
+        {standalone ? 'Write to Visamore.' : 'Let’s talk.'}
+      </h2>
+      {!standalone && <p>{entry.data.description}</p>}
+    </div>
+    {!standalone && <TerminalButton href={url('/contact/')} label="Contact page" />}
+  </header>
+  <div class="contact-layout">
+    <ContactForm idPrefix={prefix} />
+    <aside class="contact-information" aria-label="Contact information">
+      <div class="contact-prose">
+        <Content />
+      </div>
+    </aside>
+  </div>
+</section>
