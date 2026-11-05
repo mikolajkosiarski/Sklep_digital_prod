@@ -5,6 +5,8 @@ import FeaturedCollections from '../components/home/FeaturedCollections.astro';
 import PhysicalFeature from '../components/home/PhysicalFeature.astro';
 import JournalSection from '../components/journal/JournalSection.astro';
 import ContactSection from '../components/contact/ContactSection.astro';
+import Reviews from '../components/community/Reviews.astro';
+import Social from '../components/community/Social.astro';
 ---
 
 <BaseLayout
@@ -15,8 +17,10 @@ import ContactSection from '../components/contact/ContactSection.astro';
   <main id="main-content">
     <Hero />
     <FeaturedCollections />
+    <Reviews />
     <PhysicalFeature />
     <JournalSection />
     <ContactSection />
+    <Social />
   </main>
 </BaseLayout>

@@ -1,7 +1,20 @@
 ---
 import { navigation } from '../../data/navigation';
+import { getInformationEntries, informationPath } from '../../lib/information';
 import { url } from '../../lib/paths';
-const groups = [{ title: 'Explore', links: navigation }];
+const entries = await getInformationEntries();
+const groups = [
+  { title: 'Explore', links: navigation.filter((item) => item.key !== 'help') },
+  ...(['support', 'policies'] as const).map((group) => ({
+    title: group === 'support' ? 'Help' : 'Policies',
+    links: entries
+      .filter((entry) => entry.data.group === group)
+      .map((entry) => ({
+        label: entry.data.title,
+        href: informationPath(entry),
+      })),
+  })),
+];
 ---
 
 <footer class="vm-footer vm-container">

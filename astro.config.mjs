@@ -10,6 +10,7 @@ const redirects = {
   '/shop.html': '/digital/',
   '/physical.html': '/physical/',
   '/journal.html': '/journal/',
+  '/about.html': '/about/',
   ...Object.fromEntries(
     catalog.digital.map(({ id }) => [`/digital-${id}.html`, `/digital/${id}/`]),
   ),

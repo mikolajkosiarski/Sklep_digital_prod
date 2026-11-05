@@ -12,5 +12,6 @@ export const navigation = [
     description: 'Apparel concepts in development',
   },
   { key: 'journal', label: 'Journal', href: '/journal/', description: '' },
-  { key: 'contact', label: 'Contact', href: '/contact/', description: '' },
+  { key: 'about', label: 'About', href: '/about/', description: '' },
+  { key: 'help', label: 'Help', href: '/help/', description: '' },
 ] as const;

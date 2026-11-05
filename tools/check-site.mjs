@@ -258,34 +258,24 @@ async function htmlFiles(directory) {
 }
 
 async function expectedRoutes() {
+  const catalog = JSON.parse(await read(path.join(project, 'src/data/shop-content.json')));
+  const posts = (await readdir(path.join(project, 'src/content/journal'))).filter((name) =>
+    name.endsWith('.md'),
+  );
   return [
     '/',
-    '/contact/',
-    '/404.html',
-    '/journal/',
-    '/journal/page/2/',
-    '/journal/a-study-in-worn-textures/',
-    '/journal/check-the-final-size/',
-    '/journal/give-the-frame-room/',
-    '/journal/keep-a-pale-background-readable/',
-    '/journal/keep-the-working-file-editable/',
-    '/journal/one-focal-point/',
-    '/journal/png-or-brushset/',
-    '/journal/working-with-digital-ornaments/',
     '/digital/',
-    '/physical/',
     '/cart/',
-    '/digital/100/',
-    '/digital/121/',
-    '/digital/300/',
-    '/digital/200/',
-    '/digital/55/',
-    '/digital/25/',
-    '/physical/bat-skeleton/',
-    '/physical/crown-wings/',
-    '/physical/angel-wings/',
-    '/physical/open-mouth/',
-    '/physical/mercy/',
+    '/physical/',
+    '/journal/',
+    '/about/',
+    '/404.html',
+    ...(await readdir(path.join(project, 'src/content/information')))
+      .filter((name) => name.endsWith('.md'))
+      .map((name) => `/${name.slice(0, -3)}/`),
+    ...catalog.digital.map(({ id }) => `/digital/${id}/`),
+    ...catalog.physical.map(({ slug }) => `/physical/${slug}/`),
+    ...posts.map((name) => `/journal/${name.slice(0, -3)}/`),
   ];
 }
 

@@ -11,6 +11,7 @@
 @import './components/product-card.css' layer(components);
 @import './components/journal.css' layer(components);
 @import './components/contact.css' layer(components);
+@import './components/community.css' layer(components);
 @import './components/catalog.css' layer(components);
 @import './components/editorial.css' layer(components);
 @import './components/catalog-browser.css' layer(components);

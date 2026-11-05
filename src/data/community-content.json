@@ -1,0 +1,75 @@
+{
+  "reviews": {
+    "sourceLabel": "Etsy",
+    "sourceUrl": null,
+    "verifiedOn": "2026-11-05",
+    "items": [
+      {
+        "quote": "these are so high quality and unique!",
+        "author": "Shannon",
+        "sourceUrl": null,
+        "rating": 5,
+        "date": "2026-06-17",
+        "product": "300x Ultimate Cybersigilism Pack",
+        "evidence": {
+          "file": "shannon-2026-06-17.png",
+          "capturedOn": "2026-11-05"
+        }
+      },
+      {
+        "quote": "Just as described. Lots of designs",
+        "author": "Edie",
+        "sourceUrl": null,
+        "rating": 5,
+        "date": "2026-08-01",
+        "product": "300x Ultimate Cybersigilism Pack",
+        "evidence": {
+          "file": "edie-2026-08-01.png",
+          "capturedOn": "2026-11-05"
+        }
+      },
+      {
+        "quote": "Rad designs, && such great inspo!",
+        "author": "Steven",
+        "sourceUrl": null,
+        "rating": 5,
+        "date": "2026-08-10",
+        "product": "110x Dark Art Tattoo Flash",
+        "evidence": {
+          "file": "steven-2026-08-10.png",
+          "capturedOn": "2026-11-05"
+        }
+      },
+      {
+        "quote": "Thank you so much for that beautiful work!",
+        "author": "Tae",
+        "sourceUrl": null,
+        "rating": 5,
+        "date": "2026-07-31",
+        "product": null,
+        "evidence": {
+          "file": "tae-2026-07-31.png",
+          "capturedOn": "2026-11-05"
+        }
+      }
+    ]
+  },
+  "socialProfiles": [
+    {
+      "platform": "Instagram",
+      "handle": null,
+      "url": null
+    },
+    {
+      "platform": "Pinterest",
+      "handle": null,
+      "url": null
+    },
+    {
+      "platform": "TikTok",
+      "handle": null,
+      "url": null
+    }
+  ],
+  "editorNote": "Four Etsy reviews transcribed verbatim from screenshots supplied by the owner on 2026-11-05. Original screenshots retained under docs/sources/etsy-reviews. No source URLs supplied. Social profiles remain unconnected as previously requested."
+}

@@ -1,0 +1,56 @@
+---
+import TerminalButton from '../ui/TerminalButton.astro';
+import { community, formatReviewDate } from '../../lib/community';
+
+const { reviews } = community;
+const source = reviews.sourceUrl ?? reviews.items.find((item) => item.sourceUrl)?.sourceUrl;
+---
+
+{reviews.items.length > 0 && (
+  <section class="reviews-section vm-container" id="reviews" aria-labelledby="reviews-title">
+    <div class="community-heading flex flex-col md:flex-row justify-between md:items-end">
+      <div>
+        <h2 class="section-heading" id="reviews-title">
+          Kind words.
+        </h2>
+        <p class="community-intro">A few words from customers on {reviews.sourceLabel}.</p>
+      </div>
+      {source && <TerminalButton label={`Read reviews on ${reviews.sourceLabel}`} href={source} />}
+    </div>
+    <div class="reviews-grid">
+      {reviews.items.map((item) => (
+        <figure class="vm-review">
+          {item.rating != null && (
+            <div class="review-stars" role="img" aria-label={`${item.rating} out of 5 stars`}>
+              {Array.from({ length: 5 }, (_, index) => (
+                <span aria-hidden="true" data-empty={index >= item.rating! || undefined}>
+                  {index >= item.rating! ? '☆' : '★'}
+                </span>
+              ))}
+            </div>
+          )}
+          <blockquote cite={item.sourceUrl ?? undefined}>
+            <p>{item.quote}</p>
+          </blockquote>
+          <figcaption>
+            <span class="review-author">{item.author}</span>
+            <span class="review-meta">
+              <span>{reviews.sourceLabel}</span>
+              {item.date && (
+                <>
+                  <span aria-hidden="true">·</span>
+                  <time datetime={item.date}>{formatReviewDate(item.date)}</time>
+                </>
+              )}
+            </span>
+            {item.sourceUrl && (
+              <a class="review-source-link" href={item.sourceUrl}>
+                Read on {reviews.sourceLabel}
+              </a>
+            )}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+)}

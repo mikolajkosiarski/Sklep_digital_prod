@@ -1,5 +1,6 @@
 ---
 import TerminalButton from '../ui/TerminalButton.astro';
+import { url } from '../../lib/paths';
 
 interface Props {
   idPrefix: string;
@@ -74,6 +75,9 @@ const id = (field: string) => `${idPrefix}-${field}`;
       </p>
       <p class="contact-error" id={id('message-error')} data-contact-error="message" hidden></p>
     </div>
+    <p class="contact-privacy">
+      <a href={url('/privacy/')}>Privacy & cookies</a>
+    </p>
     <div class="contact-form-actions">
       <TerminalButton label="Preview message" type="submit" disabled />
       <button class="contact-reset" type="reset">

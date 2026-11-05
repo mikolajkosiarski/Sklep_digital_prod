@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NextSection from '../components/catalog/NextSection.astro';
+import { digitalProducts, digitalPath, hasSales, sales, salesSourceNote } from '../lib/catalog';
+import { asset, url } from '../lib/paths';
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About Visamore',
+  about: {
+    '@type': 'Organization',
+    name: 'Visamore',
+    description:
+      'Digital design collections and apparel concepts exploring gothic forms, ornaments and textures.',
+  },
+};
+---
+
+<BaseLayout
+  title="About — Visamore"
+  description="Explore the visual direction behind Visamore, its digital collections, apparel concepts and their sales history on Etsy."
+  section="about"
+  schema={schema}
+  ogImage="assets/digital/pack-100-3.png"
+  ogAlt="About — Visamore"
+>
+  <main id="main-content" class="vm-container">
+    <header class="about-header grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-6 items-center">
+      <div class="min-w-0 col-span-full md:col-span-7">
+        <h1 class="page-title">About Visamore.</h1>
+        <p class="page-intro">
+          Gothic forms, intricate lines
+          <br />
+          and a darker imagination.
+        </p>
+      </div>
+      <div class="about-mark min-w-0 col-span-full md:col-span-5" aria-hidden="true">
+        <img src={asset('assets/digital/pack-100-3.png')} width="4096" height="2048" alt="" />
+      </div>
+    </header>
+    <section
+      class="about-story grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-6"
+      aria-labelledby="studio-title"
+    >
+      <div class="min-w-0 col-span-full md:col-span-5">
+        <h2 id="studio-title" class="section-heading">
+          Lines into worlds.
+        </h2>
+      </div>
+      <div class="min-w-0 col-span-full md:col-span-7">
+        <p>
+          Visamore brings together digital design collections and experiments in texture, ornament
+          and clothing. Thorn-like lines, gothic silhouettes and worn surfaces connect the work.
+        </p>
+        <p>
+          The digital catalog is the starting point: graphics to explore, combine and bring into a
+          new composition. Physical studies take that same visual language onto fabric, beginning
+          with apparel mockups.
+        </p>
+      </div>
+    </section>
+    <section class="studio-proof" aria-labelledby="etsy-history">
+      <h2 class="section-heading" id="etsy-history">
+        A history on Etsy.
+      </h2>
+      <p class="page-intro">Collections with a sales history beyond this website.</p>
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-6">
+        {digitalProducts.filter(hasSales).map((product) => (
+          <div class="min-w-0 col-span-full md:col-span-4">
+            <div class="studio-stat">
+              <strong>{sales[product.id]}</strong>
+              <p>Etsy sales · all time</p>
+              <a href={url(digitalPath(product))}>
+                {product.designCount} designs · {product.title}
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="catalog-footnote">
+        {salesSourceNote} These are individual listing figures, not unique customers or customer
+        ratings.
+      </p>
+    </section>
+    <NextSection
+      id="studio-notes"
+      title="Notes from the studio."
+      description="On files, composition and the surfaces behind the work."
+      label="Read the Journal"
+      href={url('/journal/')}
+    />
+  </main>
+</BaseLayout>

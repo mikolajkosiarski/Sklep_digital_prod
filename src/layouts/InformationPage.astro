@@ -1,0 +1,244 @@
+---
+import type { MarkdownHeading } from 'astro';
+import BaseLayout from './BaseLayout.astro';
+import TableOfContents from '../components/content/TableOfContents.astro';
+import { getInformationEntries, informationPath, type InformationEntry } from '../lib/information';
+import { url } from '../lib/paths';
+
+interface Props {
+  entry: InformationEntry;
+  headings: MarkdownHeading[];
+}
+const { entry, headings } = Astro.props;
+const { title, description, status, updated } = entry.data;
+const related = (await getInformationEntries()).filter((item) => item.id !== entry.id);
+const draft = status === 'draft';
+const dateLabel = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+}).format(new Date(`${updated}T00:00:00Z`));
+---
+
+<BaseLayout
+  title={`${title} — Visamore`}
+  description={description}
+  section="help"
+  noindex={draft}
+  schema={{ '@context': 'https://schema.org', '@type': 'WebPage', name: title, description }}
+>
+  <main id="main-content" class="vm-container information-page" data-document-status={status}>
+    <nav class="information-breadcrumb" aria-label="Breadcrumb">
+      <a href={url('/')}>Home</a>
+      <span aria-hidden="true">/</span>
+      {entry.id !== 'help' && (
+        <>
+          <a href={url('/help/')}>Help</a>
+          <span aria-hidden="true">/</span>
+        </>
+      )}
+      <span aria-current="page">{title}</span>
+    </nav>
+    <header class="information-header">
+      <h1 class="page-title">{title}.</h1>
+      <p>{description}</p>
+    </header>
+    <div class="information-grid">
+      <aside class="information-sidebar">
+        <TableOfContents headings={headings} />
+        <p class="information-updated">
+          {draft ? 'Draft updated' : 'Last updated'}
+          <br />
+          <time datetime={updated}>{dateLabel}</time>
+        </p>
+      </aside>
+      <article class="information-paper" aria-label={title}>
+        {draft && (
+          <aside class="document-draft" aria-label="Draft document">
+            <strong>Draft · not yet in effect</strong>
+            <p>
+              This page is a preview. Store details and policies are still being prepared. Orders
+              and payments are not available on this website.
+            </p>
+          </aside>
+        )}
+        <div class="information-prose">
+          <slot />
+        </div>
+      </article>
+    </div>
+    <nav class="information-related" aria-label="More help and policies">
+      <h2>More information</h2>
+      <ul>
+        {related.map((item) => (
+          <li>
+            <a href={url(informationPath(item))}>{item.data.title}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </main>
+</BaseLayout>
+
+<style>
+  .information-page {
+    padding-top: 1rem;
+  }
+  .information-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.75rem;
+    font-size: var(--text-caption);
+    color: var(--soft);
+  }
+  .information-breadcrumb a {
+    min-width: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+  .information-header {
+    padding-block: 2.5rem 3rem;
+  }
+  .information-header p {
+    max-width: 58ch;
+    margin: 1.25rem 0 0;
+    font-size: 1rem;
+    color: var(--soft);
+  }
+  .information-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+  .information-sidebar {
+    min-width: 0;
+  }
+  .information-related h2 {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+  .information-updated {
+    margin: 0.75rem 0 0;
+    font-size: var(--text-caption);
+    color: var(--soft);
+  }
+  .information-paper {
+    min-width: 0;
+    padding: clamp(1.25rem, 4vw, 3rem);
+    background: var(--paper-base);
+    border-top: 1px solid var(--line);
+  }
+  .document-draft {
+    border-left: 2px solid var(--ink);
+    padding-left: 1rem;
+    margin: 0 0 2.5rem;
+    font-size: var(--text-caption);
+  }
+  .document-draft strong {
+    font-weight: 500;
+  }
+  .document-draft p {
+    margin: 0.5rem 0 0;
+    color: var(--soft);
+  }
+  .information-prose {
+    font-size: 1rem;
+    line-height: 1.85;
+    overflow-wrap: anywhere;
+  }
+  .information-prose :global(h2) {
+    font-size: clamp(1.25rem, 1rem + 0.7vw, 1.5rem);
+    line-height: 1.4;
+    letter-spacing: -0.03em;
+    margin: 2.75rem 0 1rem;
+    scroll-margin-top: 2rem;
+  }
+  .information-prose :global(h2:first-child) {
+    margin-top: 0;
+  }
+  .information-prose :global(h3) {
+    margin: 2rem 0 0.75rem;
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+  .information-prose :global(p),
+  .information-prose :global(ul),
+  .information-prose :global(ol) {
+    margin: 0 0 1.25rem;
+  }
+  .information-prose :global(ul),
+  .information-prose :global(ol) {
+    padding-left: 1.25rem;
+  }
+  .information-prose :global(ul) {
+    list-style: disc;
+  }
+  .information-prose :global(ol) {
+    list-style: decimal;
+  }
+  .information-prose :global(li) {
+    margin-block: 0.5rem;
+  }
+  .information-prose :global(a) {
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
+    text-decoration-thickness: 1px;
+  }
+  .information-prose :global(strong) {
+    font-weight: 500;
+  }
+  .information-prose :global(blockquote) {
+    border-left: 2px solid var(--line);
+    padding-left: 1rem;
+    margin-block: 1.5rem;
+    color: var(--soft);
+  }
+  .information-related {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .information-related ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.75rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .information-related a {
+    min-width: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    font-size: var(--text-caption);
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+  @media (min-width: 62rem) {
+    .information-header {
+      padding-block: 3rem 4rem;
+    }
+    .information-grid {
+      grid-template-columns: minmax(12rem, 1fr) minmax(0, 2.5fr);
+      gap: clamp(2rem, 4vw, 4rem);
+    }
+    .information-sidebar {
+      position: sticky;
+      top: 2rem;
+    }
+  }
+  @media (max-width: 35.99rem) {
+    .information-paper {
+      padding: 1.5rem 1rem;
+      margin-inline: -0.5rem;
+    }
+  }
+</style>

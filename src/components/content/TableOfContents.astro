@@ -1,0 +1,81 @@
+---
+import type { MarkdownHeading } from 'astro';
+interface Props {
+  headings: MarkdownHeading[];
+}
+const sections = Astro.props.headings.filter(({ depth }) => depth === 2);
+---
+
+{sections.length > 0 && (
+  <div class="page-contents">
+    <details class="contents-mobile">
+      <summary>On this page</summary>
+      <nav aria-label="On this page">
+        <ol>
+          {sections.map(({ slug, text }) => (
+            <li>
+              <a href={`#${slug}`}>{text}</a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+    </details>
+    <nav class="contents-desktop" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>
+        {sections.map(({ slug, text }) => (
+          <li>
+            <a href={`#${slug}`}>{text}</a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  </div>
+)}
+<style>
+  .page-contents {
+    border-top: 1px solid var(--line);
+  }
+  .contents-desktop {
+    display: none;
+  }
+  summary {
+    cursor: pointer;
+    min-height: 2.75rem;
+    padding-block: 0.75rem;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+  summary::marker {
+    font-size: 0.8em;
+  }
+  h2 {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding-block: 0.5rem;
+    font-size: var(--text-caption);
+    line-height: 1.6;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+  @media (min-width: 62rem) {
+    .contents-desktop {
+      display: block;
+      padding-top: 1rem;
+    }
+    .contents-mobile {
+      display: none;
+    }
+  }
+</style>

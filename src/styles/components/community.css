@@ -1,0 +1,263 @@
+/* Reviews and social profiles. */
+/* Customer words and social profiles use the same quiet editorial spacing. */
+.reviews-section {
+  margin-top: 6rem;
+  scroll-margin-top: 2rem;
+}
+.community-heading {
+  gap: 1.5rem;
+  margin-bottom: 2.75rem;
+}
+.community-intro {
+  font: var(--text-copy) / 1.9 var(--mono);
+  color: var(--soft);
+  max-width: 26rem;
+  margin: 1.25rem 0 0;
+}
+.community-heading > div {
+  flex: 1;
+  min-width: 0;
+}
+.community-heading .terminal-button {
+  width: 14.5rem;
+  flex-shrink: 0;
+}
+.content-preview-note {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--soft);
+  font: var(--text-caption) / 1.8 var(--mono);
+  margin: 0;
+}
+.content-preview-note::before {
+  content: '';
+  width: 0.375rem;
+  height: 0.375rem;
+  border: 1px solid currentColor;
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+.vm-review {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  padding: 1.5rem 0 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  box-shadow: none;
+}
+.vm-review blockquote {
+  font: 400 1rem/1.9 var(--mono);
+  margin: 0 0 1.75rem;
+  overflow-wrap: anywhere;
+}
+.vm-review blockquote p {
+  margin: 0;
+}
+.vm-review figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font: var(--text-caption) / 1.8 var(--mono);
+  color: var(--soft);
+  margin-top: auto;
+  padding-top: 1rem;
+}
+.vm-review .review-author {
+  font-size: var(--text-caption);
+  color: var(--ink);
+}
+.review-source-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  align-self: start;
+}
+.review-stars {
+  display: flex;
+  gap: 0.3rem;
+  color: var(--ink);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  margin: 0.4rem 0 1rem;
+}
+.review-stars [data-empty] {
+  color: #999;
+}
+.reviews-note {
+  font: var(--text-caption) / 1.8 var(--mono);
+  color: var(--soft);
+  margin: 2rem 0 0;
+}
+.reviews-section + .journal-section {
+  margin-top: 7rem;
+}
+.social-section {
+  position: relative;
+  margin-top: 7rem;
+  padding: 3rem 0 1rem;
+  scroll-margin-top: 2rem;
+}
+.social-title {
+  min-width: 0;
+}
+.social-copy {
+  max-width: 23rem;
+  font: var(--text-copy) / 1.9 var(--mono);
+  color: var(--soft);
+  margin: 1.25rem 0 0;
+}
+.social-mark {
+  display: block;
+  width: 10rem;
+  height: 5.5rem;
+  object-fit: contain;
+  opacity: 0.55;
+  margin: 2rem 0 0;
+  filter: grayscale(1);
+}
+.social-profiles {
+  margin-top: 1rem;
+}
+.social-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 6.5rem;
+  padding: 1.5rem 0.25rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+}
+.social-profile:first-child {
+  border-top: 1px solid var(--line);
+}
+.social-profile-name {
+  display: flex;
+  align-items: center;
+  gap: 1.125rem;
+  font: 400 1.25rem/1.4 var(--mono);
+  letter-spacing: -0.035em;
+}
+.social-profile-name svg {
+  width: 1.375rem;
+  height: 1.375rem;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+}
+.social-profile-detail {
+  font: var(--text-caption) / 1.7 var(--mono);
+  color: var(--soft);
+  text-align: right;
+  overflow-wrap: anywhere;
+  max-width: 46%;
+}
+a.social-profile:hover .social-profile-name {
+  text-decoration: underline;
+  text-underline-offset: 0.4rem;
+  text-decoration-thickness: 1px;
+}
+a.social-profile:hover {
+  color: var(--ink);
+}
+.social-section .content-preview-note {
+  margin-top: 1.5rem;
+}
+.social-profile[data-pending] {
+  color: var(--soft);
+}
+.social-profile[data-pending] .social-profile-detail {
+  font-size: var(--text-caption);
+}
+.social-section + .vm-footer {
+  margin-top: 5rem;
+}
+@media (min-width: 48rem) {
+  .reviews-section {
+    margin-top: 9rem;
+  }
+  .community-heading {
+    margin-bottom: 3.5rem;
+  }
+  .vm-review {
+    padding-top: 1.75rem;
+  }
+  .reviews-section + .journal-section {
+    margin-top: 9rem;
+  }
+  .social-section {
+    margin-top: 10rem;
+    padding-top: 3.5rem;
+  }
+  .social-profiles {
+    margin-top: 0;
+  }
+  .social-profile {
+    min-height: 7rem;
+  }
+  .social-profile-name {
+    font-size: 1.5rem;
+  }
+  .social-mark {
+    width: 13rem;
+    height: 7rem;
+    margin-top: 2.75rem;
+  }
+}
+@media (min-width: 62rem) {
+  .vm-review blockquote {
+    font-size: 1.0625rem;
+  }
+  .social-profile-name {
+    font-size: 1.625rem;
+  }
+  .social-profile-detail {
+    font-size: var(--text-caption);
+  }
+}
+@media (max-width: 29rem) {
+  .social-profile {
+    gap: 0.75rem;
+  }
+  .social-profile-name {
+    font-size: 1.0625rem;
+    gap: 0.875rem;
+  }
+  .social-profile-detail {
+    max-width: 42%;
+  }
+}
+
+/* Selected Etsy reviews: one shared grid without a carousel or hidden cards. */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+}
+.review-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+@media (min-width: 36rem) {
+  .reviews-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 75rem) {
+  .reviews-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

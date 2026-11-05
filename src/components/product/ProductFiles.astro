@@ -57,6 +57,11 @@ const { product, offer } = Astro.props;
           Direct-store delivery and licensing are being prepared. Existing Etsy purchases follow the
           terms supplied with that order.
         </p>
+        <nav class="product-support-links" aria-label="Product help">
+          <a href={url('/delivery/')}>Delivery</a>
+          <a href={url('/license/')}>Licence draft</a>
+          <a href={url('/help/')}>File help</a>
+        </nav>
       </div>
     </details>
   </div>
