@@ -272,6 +272,20 @@ async function expectedRoutes() {
     '/journal/one-focal-point/',
     '/journal/png-or-brushset/',
     '/journal/working-with-digital-ornaments/',
+    '/digital/',
+    '/physical/',
+    '/cart/',
+    '/digital/100/',
+    '/digital/121/',
+    '/digital/300/',
+    '/digital/200/',
+    '/digital/55/',
+    '/digital/25/',
+    '/physical/bat-skeleton/',
+    '/physical/crown-wings/',
+    '/physical/angel-wings/',
+    '/physical/open-mouth/',
+    '/physical/mercy/',
   ];
 }
 

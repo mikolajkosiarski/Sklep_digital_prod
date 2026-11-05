@@ -21,6 +21,15 @@ const { current } = Astro.props;
     <a class="vm-brand" href={url('/')} aria-label="Visamore — home">
       <img src={asset('assets/visamore-tag.png')} width="1752" height="192" alt="Visamore" />
     </a>
+    <div class="vm-nav-controls">
+      <a
+        class="vm-cart-link"
+        href={url('/cart/')}
+        aria-current={current === 'cart' ? 'page' : undefined}
+      >
+        Cart (<span data-cart-count>0</span>)
+      </a>
+    </div>
     <nav class="vm-navigation" id="site-menu" aria-label="Main navigation">
       <ul class="vm-nav-links">
         {navigation.map(({ key, label, href }) => (

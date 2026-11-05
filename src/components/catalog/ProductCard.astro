@@ -1,0 +1,41 @@
+---
+import type { StoreProduct } from '../../lib/storefront';
+import { formatMoney } from '../../lib/money';
+import TerminalButton from '../ui/TerminalButton.astro';
+
+interface Props {
+  product: StoreProduct;
+  headingLevel?: 2 | 3;
+}
+const { product, headingLevel = 3 } = Astro.props;
+const Heading = headingLevel === 2 ? 'h2' : 'h3';
+---
+
+<article class="product-card" data-product-card={product.key} aria-label={product.title}>
+  <a class="product-card__image" href={product.href} aria-label={`View ${product.title}`}>
+    <img
+      src={product.image.src}
+      srcset={product.image.srcset}
+      sizes="(min-width: 75rem) 360px, (min-width: 48rem) 44vw, 90vw"
+      alt={product.image.alt}
+      width={product.image.width}
+      height={product.image.height}
+      loading="lazy"
+      decoding="async"
+    />
+  </a>
+  <div class="product-card__body">
+    <Heading class="product-card__title">
+      <a href={product.href}>{product.title}</a>
+    </Heading>
+    <p class="product-card__meta">
+      {product.kind === 'digital' ? 'Digital' : 'Physical'} · {product.meta}
+    </p>
+    <div class="product-card__purchase">
+      <p class="product-card__price">
+        <span>{formatMoney(product.priceMinor)}</span>
+      </p>
+      <TerminalButton label="Add to cart" cartKey={product.key} />
+    </div>
+  </div>
+</article>

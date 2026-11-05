@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CartView from '../components/cart/CartView.astro';
+---
+
+<BaseLayout
+  title="Cart — Visamore"
+  description="Review your selected digital collections and apparel concepts."
+  section="cart"
+  noindex
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Cart — Visamore',
+    description: 'Review your selected digital collections and apparel concepts.',
+  }}
+>
+  <CartView />
+</BaseLayout>

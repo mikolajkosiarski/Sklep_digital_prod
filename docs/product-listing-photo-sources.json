@@ -1,0 +1,65 @@
+[
+  {
+    "pack": "100",
+    "index": 1,
+    "source": "https://i.etsystatic.com/56625792/r/il/a08043/7464282547/il_fullxfull.7464282547_1lyr.jpg",
+    "path": "src/assets/listings/100-listing-1.jpg",
+    "bytes": 161844
+  },
+  {
+    "pack": "100",
+    "index": 2,
+    "source": "https://i.etsystatic.com/56625792/r/il/b865a9/7416363570/il_fullxfull.7416363570_58p0.jpg",
+    "path": "src/assets/listings/100-listing-2.jpg",
+    "bytes": 208292
+  },
+  {
+    "pack": "100",
+    "index": 3,
+    "source": "https://i.etsystatic.com/56625792/r/il/462e2c/7416364420/il_fullxfull.7416364420_qkzc.jpg",
+    "path": "src/assets/listings/100-listing-3.jpg",
+    "bytes": 210866
+  },
+  {
+    "pack": "121",
+    "index": 1,
+    "source": "https://i.etsystatic.com/56625792/r/il/ba46a2/7201325863/il_fullxfull.7201325863_ivmn.jpg",
+    "path": "src/assets/listings/121-listing-1.jpg",
+    "bytes": 554116
+  },
+  {
+    "pack": "121",
+    "index": 2,
+    "source": "https://i.etsystatic.com/56625792/r/il/b5166e/7201325867/il_fullxfull.7201325867_cg5z.jpg",
+    "path": "src/assets/listings/121-listing-2.jpg",
+    "bytes": 750651
+  },
+  {
+    "pack": "121",
+    "index": 3,
+    "source": "https://i.etsystatic.com/56625792/r/il/6e428c/7153331278/il_fullxfull.7153331278_fx18.jpg",
+    "path": "src/assets/listings/121-listing-3.jpg",
+    "bytes": 663144
+  },
+  {
+    "pack": "300",
+    "index": 1,
+    "source": "https://i.etsystatic.com/56625792/r/il/9dfcfd/7452162743/il_fullxfull.7452162743_7k0g.jpg",
+    "path": "src/assets/listings/300-listing-1.jpg",
+    "bytes": 965615
+  },
+  {
+    "pack": "300",
+    "index": 2,
+    "source": "https://i.etsystatic.com/56625792/r/il/dace5e/7404249300/il_fullxfull.7404249300_19xt.jpg",
+    "path": "src/assets/listings/300-listing-2.jpg",
+    "bytes": 929367
+  },
+  {
+    "pack": "300",
+    "index": 3,
+    "source": "https://i.etsystatic.com/56625792/r/il/56f634/7404248564/il_fullxfull.7404248564_3ab0.jpg",
+    "path": "src/assets/listings/300-listing-3.jpg",
+    "bytes": 1056561
+  }
+]

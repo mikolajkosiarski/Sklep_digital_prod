@@ -50,4 +50,30 @@ const information = defineCollection({
   }),
 });
 
-export const collections = { journal, information };
+// Product assets are local files, never arbitrary URLs or filesystem paths.
+const listingFilename = z.string().regex(/^[a-zA-Z0-9][a-zA-Z0-9_-]*\.(?:jpe?g|png|webp)$/i);
+const productId = z.string().regex(/^[1-9]\d*$/);
+
+const products = defineCollection({
+  loader: glob({ base: './src/content/products', pattern: '*.md' }),
+  schema: z.object({
+    priceMinor: z.number().int().positive(),
+    designCount: z.number().int().positive(),
+    resolution: z.string().min(1),
+    resolutionDetail: z.string().min(1),
+    dpi: z.number().int().positive().optional(),
+    motifs: z.array(z.string().min(1)).min(1),
+    packaging: z.string().min(1),
+    gallery: z.array(z.object({ file: listingFilename, alt: z.string().min(1) })).min(1),
+    relatedIds: z.array(productId),
+    video: z
+      .object({
+        src: z.string().regex(/^assets\/video\/[a-zA-Z0-9][a-zA-Z0-9_-]*\.mp4$/),
+        poster: listingFilename,
+        description: z.string().min(1),
+      })
+      .optional(),
+  }),
+});
+
+export const collections = { journal, information, products };

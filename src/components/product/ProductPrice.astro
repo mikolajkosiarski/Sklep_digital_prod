@@ -1,0 +1,37 @@
+---
+import { getStoreProduct } from '../../lib/storefront';
+import { formatMoney } from '../../lib/money';
+interface Props {
+  productId?: string;
+  productKey?: string;
+  compact?: boolean;
+}
+const { productId, productKey, compact = false } = Astro.props;
+const product = getStoreProduct(productKey ?? `digital:${productId}`);
+---
+
+<p class:list={['product-price', { 'product-price--compact': compact }]}>
+  <span class="product-price__amount">{formatMoney(product.priceMinor)}</span>
+</p>
+<style>
+  .product-price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem 1rem;
+    margin: 0;
+    color: var(--ink);
+  }
+  .product-price__amount {
+    font: 500 clamp(2rem, 4vw, 2.5rem)/1.3 var(--mono);
+    font-variant-numeric: tabular-nums;
+  }
+  .product-price--compact {
+    display: grid;
+    gap: 0.25rem;
+    margin-top: 1rem;
+  }
+  .product-price--compact .product-price__amount {
+    font-size: 1.5rem;
+  }
+</style>

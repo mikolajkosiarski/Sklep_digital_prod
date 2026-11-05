@@ -1,0 +1,113 @@
+/* Home collection introduction; the ornament stays outside the reading area. */
+.collections-section {
+  position: relative;
+  isolation: isolate;
+  margin-top: 4.375rem;
+  scroll-margin-top: 1.5rem;
+}
+.collection-bleed {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 20rem;
+  overflow: clip;
+  z-index: -1;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 65%, transparent);
+}
+.collection-bleed img {
+  position: absolute;
+  top: 1.125rem;
+  right: -19.375rem;
+  width: 30.625rem;
+  max-width: none;
+  height: auto;
+  opacity: 0.28;
+  transform: rotate(-12deg);
+}
+.collections-intro {
+  position: relative;
+  min-height: 20rem;
+  padding: 1.75rem 0 4.0625rem;
+}
+.collections-intro h2 {
+  font: 400 3.3125rem / 0.95 var(--display);
+  letter-spacing: 0;
+  margin: 0;
+  width: 75%;
+}
+.collections-intro h2 span {
+  display: block;
+  width: calc(100% / var(--letter-width));
+  transform: scale(var(--letter-width), var(--letter-height));
+  transform-origin: left center;
+  max-width: 100%;
+}
+.collections-intro p {
+  margin: 1.5625rem 0 0;
+  font: var(--text-copy) / 1.9 var(--mono);
+  color: var(--soft);
+  max-width: 11.25rem;
+}
+@media (min-width: 22.5625rem) {
+  .collections-intro h2 {
+    font-size: 3.8125rem;
+  }
+  .collections-intro p {
+    max-width: 12.5rem;
+  }
+}
+@media (min-width: 37.5625rem) {
+  .collection-bleed img {
+    top: -2.5rem;
+    right: -18.125rem;
+    width: 35.625rem;
+  }
+  .collections-intro {
+    padding-top: 2.1875rem;
+  }
+  .collections-intro h2 {
+    font-size: 4.1875rem;
+    width: 62%;
+  }
+  .collections-intro p {
+    max-width: 14.375rem;
+    margin-top: 2rem;
+  }
+}
+@media (min-width: 43.8125rem) {
+  .collections-section {
+    margin-top: 6.25rem;
+  }
+  .collection-bleed {
+    inset: -2.1875rem 0 auto;
+    height: 28.125rem;
+  }
+  .collection-bleed img {
+    top: -11.25rem;
+    left: max(calc(50% + 1rem), calc(100% - 40rem));
+    right: auto;
+    width: clamp(36rem, 68vw, 52rem);
+    opacity: 0.34;
+  }
+  .collections-intro {
+    min-height: 21.875rem;
+    padding: 3.4375rem 0 4.6875rem;
+  }
+  .collections-intro h2 {
+    font-size: clamp(4rem, 7.2vw, 6.125rem);
+    width: 48%;
+  }
+  .collections-intro p {
+    max-width: 20.625rem;
+    line-height: 1.95;
+  }
+}
+@media (min-width: 65.6875rem) {
+  .collections-intro {
+    min-height: 24.375rem;
+    padding-top: 4.375rem;
+  }
+  .collections-intro p {
+    max-width: 24.375rem;
+  }
+}

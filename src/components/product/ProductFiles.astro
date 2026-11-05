@@ -1,0 +1,63 @@
+---
+import type { DigitalProduct } from '../../lib/catalog';
+import type { DigitalOffer } from '../../lib/offers';
+import { url } from '../../lib/paths';
+interface Props {
+  product: DigitalProduct;
+  offer: DigitalOffer;
+}
+const { product, offer } = Astro.props;
+---
+
+<section class="product-files" id="included" aria-labelledby="included-title">
+  <h2 id="included-title" class="section-heading">
+    Files & formats
+  </h2>
+  <div class="product-file-body">
+    <dl class="product-file-list">
+      <div>
+        <dt>{offer.designCount} transparent PNGs</dt>
+        <dd>Artwork without a background.</dd>
+      </div>
+      <div>
+        <dt>{offer.designCount} white-background PNGs</dt>
+        <dd>The same designs on white.</dd>
+      </div>
+      <div>
+        <dt>{product.brushes ? 'Procreate brushset' : 'PNG collection'}</dt>
+        <dd>
+          {product.brushes
+            ? 'Brushset included alongside the images.'
+            : 'No brushset included. Import PNGs into your image editor.'}
+        </dd>
+      </div>
+    </dl>
+    <details class="product-disclosure">
+      <summary>Dimensions & packaging</summary>
+      <div>
+        <p>
+          {offer.resolutionDetail}
+          {offer.dpi && ` ${offer.dpi} DPI.`}
+        </p>
+        <p>{offer.packaging}</p>
+        <p class="product-small-note">Packaging describes the existing Etsy edition.</p>
+        <a class="product-text-link" href={url('/journal/png-or-brushset/')}>
+          PNG or .brushset? Read the guide
+        </a>
+      </div>
+    </details>
+    <details class="product-disclosure">
+      <summary>Use & delivery</summary>
+      <div>
+        <p>
+          This is digital artwork. Listing photographs show examples and mockups; no physical item
+          is included.
+        </p>
+        <p>
+          Direct-store delivery and licensing are being prepared. Existing Etsy purchases follow the
+          terms supplied with that order.
+        </p>
+      </div>
+    </details>
+  </div>
+</section>

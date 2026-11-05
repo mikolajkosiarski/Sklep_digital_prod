@@ -1,0 +1,20 @@
+{
+  "note": "Reusable SVG windows over the original transparent PNGs. No tracing, repainting or pixel deformation. Each exported SVG embeds its source image and can be used independently.",
+  "frames": [
+    {
+      "id": "128",
+      "source": "brd0128_nb_4096x4096.png",
+      "rotation": 0,
+      "parts": [
+        {
+          "name": "top-left",
+          "viewBox": [301, 272, 2229, 2397]
+        },
+        {
+          "name": "bottom-right",
+          "viewBox": [1571, 1425, 2226, 2399]
+        }
+      ]
+    }
+  ]
+}

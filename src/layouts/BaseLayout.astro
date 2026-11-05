@@ -1,5 +1,6 @@
 ---
 import Header from '../components/layout/Header.astro';
+import CartController from '../components/cart/CartController.astro';
 import Footer from '../components/layout/Footer.astro';
 import MaterialBackground from '../components/layout/MaterialBackground.astro';
 import { asset } from '../lib/paths';
@@ -70,5 +71,6 @@ const jsonLd = JSON.stringify(data).replace(/</g, '\\u003c');
     <Header current={home ? 'home' : section} />
     <slot />
     <Footer />
+    <CartController />
   </body>
 </html>

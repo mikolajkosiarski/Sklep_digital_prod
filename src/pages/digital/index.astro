@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DigitalCatalog from '../../components/catalog/DigitalCatalog.astro';
+import DigitalGuide from '../../components/catalog/DigitalGuide.astro';
+import NextSection from '../../components/catalog/NextSection.astro';
+import { collectionSchema, digitalProducts, digitalPath, salesSourceNote } from '../../lib/catalog';
+import { url } from '../../lib/paths';
+---
+
+<BaseLayout
+  title="Digital collections — Visamore"
+  description="Explore Visamore digital design collections, with original listing covers, artwork previews and file details."
+  section="digital"
+  schema={collectionSchema('Visamore digital collections', digitalProducts, digitalPath)}
+>
+  <main id="main-content" class="vm-container">
+    <header class="catalog-header">
+      <h1 class="page-title">Digital collections.</h1>
+      <p class="page-intro">PNG artwork and Procreate brushes for your next composition.</p>
+    </header>
+    <DigitalCatalog />
+    <p class="catalog-footnote">{salesSourceNote}</p>
+    <DigitalGuide />
+    <NextSection
+      id="physical-next"
+      title="Beyond the screen."
+      description="Early clothing concepts from the same visual world."
+      label="Explore physical"
+      href={url('/physical/')}
+    />
+  </main>
+</BaseLayout>
+<script>
+  import '../../scripts/catalog';
+</script>

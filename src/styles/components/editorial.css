@@ -1,0 +1,127 @@
+/* File guidance, comparison tables and design notes. */
+.editorial-section {
+  margin-top: 5rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--line);
+}
+.editorial-copy {
+  font: var(--text-copy) / 1.85 var(--mono);
+  color: var(--soft);
+  max-width: 33rem;
+  margin: 1.25rem 0 0;
+}
+.editorial-section .terminal-button,
+.physical-feature .terminal-button {
+  width: 13rem;
+  max-width: 100%;
+  margin-top: 1.75rem;
+}
+.format-comparison {
+  background: transparent;
+  color: var(--ink);
+  font: var(--text-caption) / 1.8 var(--mono);
+  table-layout: fixed;
+  width: 100%;
+  margin: 0;
+}
+.format-comparison :is(th, td) {
+  font-weight: 400;
+  vertical-align: middle;
+  padding: 1rem 0.5rem;
+  border-bottom: 1px solid var(--line);
+}
+.format-comparison thead th {
+  color: var(--soft);
+  font-size: var(--text-caption);
+}
+.format-comparison tr > :first-child {
+  padding-left: 0;
+  width: 37%;
+}
+.format-comparison tr > :nth-child(2) {
+  width: 21%;
+}
+.format-comparison tr > :last-child {
+  padding-right: 0;
+}
+.format-comparison a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+}
+.format-comparison a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+.format-comparison caption {
+  font: var(--text-caption) / 1.8 var(--mono);
+  color: var(--soft);
+  padding-top: 0.75rem;
+}
+.download-note {
+  margin-top: 2rem;
+  max-width: 36rem;
+}
+.download-note h3 {
+  font: 500 0.875rem/1.7 var(--mono);
+  margin: 0 0 0.75rem;
+}
+.download-note p {
+  font: var(--text-copy) / 1.9 var(--mono);
+  color: var(--soft);
+  margin: 0;
+}
+.physical-feature {
+  margin-top: 7rem;
+}
+.physical-feature-image {
+  display: block;
+  max-width: 25rem;
+  margin-inline: auto;
+}
+.physical-feature .concept-label {
+  margin-top: 1.5rem;
+}
+.physical-feature .terminal-button {
+  margin-top: 1rem;
+}
+.design-note {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+.design-note h3 {
+  font: 500 1rem/1.7 var(--mono);
+  margin: 0 0 1rem;
+}
+.design-note p {
+  font: var(--text-copy) / 1.95 var(--mono);
+  color: var(--soft);
+  max-width: 30rem;
+  margin: 0;
+}
+.design-note a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  margin-top: 1rem;
+  font: var(--text-caption) var(--mono);
+}
+.design-note a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+@media (min-width: 48rem) {
+  .editorial-section {
+    margin-top: 7rem;
+    padding-top: 4rem;
+  }
+  .physical-feature {
+    margin-top: 9rem;
+  }
+  .physical-feature-image {
+    max-width: 27rem;
+  }
+}
+.physical-notes .design-notes-grid {
+  margin-top: 2rem;
+}

@@ -1,0 +1,15 @@
+{
+  "pack": "200 Gothic Frames & Arches",
+  "source": "etsy/01_Sklep_Aktualny/Oferty/200_frames/Pliki/200_frames/no_bg",
+  "note": "Original transparent PNGs copied without image changes. SVG viewBox omits empty outer margins only.",
+  "frames": [
+    {
+      "id": "brd0125",
+      "name": "Lace corners",
+      "file": "brd0125_nb_4096x4096.png",
+      "source": "etsy/01_Sklep_Aktualny/Oferty/200_frames/03_delivery/no_bg-20260509T091231Z-3-001/no_bg/brd0125_nb_4096x4096.png",
+      "viewBox": "256 256 3584 3584",
+      "sha256": "4a81e9d1e0e90d6bee7b12f904854f92c0e75d0840f2f63fe4e29bca3f544da9"
+    }
+  ]
+}

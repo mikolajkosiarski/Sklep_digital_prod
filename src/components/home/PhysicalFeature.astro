@@ -1,0 +1,36 @@
+---
+import { physicalProducts } from '../../lib/catalog';
+import { getStoreProduct } from '../../lib/storefront';
+import { url } from '../../lib/paths';
+import ProductCard from '../catalog/ProductCard.astro';
+import TerminalButton from '../ui/TerminalButton.astro';
+---
+
+<section
+  class="physical-feature vm-container"
+  id="physical"
+  aria-labelledby="physical-feature-title"
+>
+  <header class="physical-feature-heading">
+    <h2 class="section-heading" id="physical-feature-title">
+      Off the screen.
+    </h2>
+    <p>The same dark forms, explored on clothing. Apparel concepts from the archive.</p>
+    <TerminalButton label="Explore physical" href={url('/physical/')} />
+  </header>
+  <div class="product-grid">
+    {physicalProducts.slice(0, 3).map((product) => (
+      <ProductCard product={getStoreProduct(`physical:${product.slug}`)} />
+    ))}
+  </div>
+</section>
+<style>
+  .physical-feature-heading {
+    margin-bottom: 2rem;
+    max-width: 42rem;
+  }
+  .physical-feature-heading p {
+    margin-top: 1rem;
+    color: var(--soft);
+  }
+</style>

@@ -1,0 +1,211 @@
+/* Catalog intros, product details and studio pages. */
+.physical-listing-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  mask-image:
+    linear-gradient(to right, transparent, #000 2%, #000 98%, transparent),
+    linear-gradient(to bottom, transparent, #000 2%, #000 98%, transparent);
+  mask-composite: intersect;
+}
+.collections-catalog-link {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.collections-catalog-link .terminal-button {
+  width: 13rem;
+}
+.catalog-header {
+  padding: 2.5rem 0 3rem;
+}
+.page-intro {
+  font: var(--text-copy) / 1.85 var(--mono);
+  color: var(--soft);
+  max-width: 37rem;
+  margin: 1.25rem 0 0;
+}
+.catalog-footnote {
+  font: var(--text-caption) / 1.9 var(--mono);
+  color: var(--soft);
+  margin: 2.5rem 0 0;
+  max-width: 48rem;
+}
+.catalog-next {
+  margin-top: 5rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--line);
+}
+.catalog-next p {
+  font: var(--text-copy) / 1.9 var(--mono);
+  color: var(--soft);
+  margin: 1rem 0 0;
+}
+.catalog-next .terminal-button {
+  width: 13rem;
+  max-width: 100%;
+}
+.physical-art {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  max-width: 32rem;
+  margin-inline: auto;
+}
+.concept-label {
+  color: var(--soft);
+  font: var(--text-caption) / 1.8 var(--mono);
+  margin: 1rem 0;
+}
+.physical-detail-visual {
+  max-width: 33rem;
+  margin-inline: auto;
+}
+.physical-detail-visual .catalog-footnote {
+  text-align: center;
+  margin-top: 1rem;
+}
+.detail-back {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 0 2rem;
+  font: var(--text-caption) / 1.6 var(--mono);
+  color: var(--soft);
+}
+.detail-back a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+}
+.detail-back a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+.detail-copy {
+  font: var(--text-copy) / 1.85 var(--mono);
+  container-type: inline-size;
+}
+.detail-copy .page-title {
+  font-size: clamp(1.625rem, 7.5cqw, 2.5rem);
+}
+.detail-copy > p {
+  color: var(--soft);
+  margin-top: 1rem;
+}
+.product-facts {
+  font: var(--text-caption) / 1.9 var(--mono);
+  margin: 2rem 0;
+}
+.product-facts > div {
+  padding: 1rem 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: 1rem;
+}
+.product-facts dt {
+  font-weight: 400;
+}
+.product-facts dd {
+  margin: 0;
+  color: var(--soft);
+}
+.detail-copy .catalog-status {
+  font-size: var(--text-caption);
+  margin-bottom: 1.5rem;
+  max-width: 29rem;
+}
+.detail-copy .terminal-button {
+  width: 14.5rem;
+  max-width: 100%;
+}
+.about-header {
+  padding-top: 2.5rem;
+}
+.about-mark img {
+  display: block;
+  width: 100%;
+  opacity: 0.65;
+  max-width: 30rem;
+  margin-inline: auto;
+}
+.about-mark {
+  padding-block: 2rem;
+}
+.about-story {
+  margin-top: 3rem;
+}
+.about-story p {
+  font: var(--text-copy) / 1.85 var(--mono);
+  max-width: 37rem;
+  color: var(--soft);
+  margin: 0 0 1.5rem;
+}
+.studio-proof {
+  margin-top: 5rem;
+}
+.studio-stat {
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+}
+.studio-stat strong {
+  font: 400 3.5rem/1.1 var(--mono);
+  letter-spacing: -0.08em;
+}
+.studio-stat p {
+  font: var(--text-caption) / 1.8 var(--mono);
+  color: var(--soft);
+  margin: 1rem 0 0.5rem;
+}
+.studio-stat a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font: var(--text-caption) / 1.8 var(--mono);
+}
+.studio-stat a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+@media (min-width: 48rem) {
+  .catalog-header {
+    padding: 3.5rem 0 4rem;
+  }
+  .catalog-next {
+    margin-top: 7rem;
+    padding-top: 4rem;
+  }
+  .detail-back {
+    padding-bottom: 3rem;
+  }
+  .detail-copy {
+    padding-block: 1rem;
+  }
+  .about-header {
+    padding-top: 4rem;
+  }
+  .about-story {
+    margin-top: 5rem;
+  }
+  .studio-proof {
+    margin-top: 7rem;
+  }
+}
+
+.product-support-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin-top: 1rem;
+}
+.product-support-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-size: var(--text-caption);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}

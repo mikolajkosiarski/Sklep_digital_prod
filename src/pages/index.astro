@@ -1,127 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/home/Hero.astro';
+import FeaturedCollections from '../components/home/FeaturedCollections.astro';
+import PhysicalFeature from '../components/home/PhysicalFeature.astro';
 import JournalSection from '../components/journal/JournalSection.astro';
 import ContactSection from '../components/contact/ContactSection.astro';
-import TerminalButton from '../components/ui/TerminalButton.astro';
-import { asset } from '../lib/paths';
-
-const services = [
-  {
-    title: 'Digital artwork',
-    image: 'pack-100-3.png',
-    description: 'Gothic, tribal and cybersigilism forms for digital compositions.',
-  },
-  {
-    title: 'Apparel studies',
-    image: 'pack-121-3.png',
-    description: 'The same visual language explored through placement and clothing concepts.',
-  },
-  {
-    title: 'Textures & ornaments',
-    image: 'pack-300-3.png',
-    description: 'Branching details and worn surfaces for a quieter, individual composition.',
-  },
-];
 ---
 
 <BaseLayout
-  title="Visamore — digital artwork and apparel"
-  description="Independent digital artwork, apparel studies and intricate gothic forms by Visamore."
+  title="Visamore — digital collections & apparel studies"
+  description="Gothic, tribal and cybersigilism graphics, early apparel concepts and practical notes on files, composition and textures."
   home
 >
   <main id="main-content">
     <Hero />
-    <section class="vm-container stage-section" id="about" aria-labelledby="about-title">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div>
-          <h2 class="section-heading" id="about-title">
-            Made with intention.
-          </h2>
-          <p>
-            Visamore explores gothic forms, branching ornaments and the space around them. The
-            studio brings digital artwork and early apparel ideas into one visual world.
-          </p>
-          <p>
-            Each composition starts with an individual mark. Careful scale and open space keep the
-            detail readable.
-          </p>
-        </div>
-        <img
-          class="stage-image"
-          src={asset('assets/digital/pack-121-3.png')}
-          width="4096"
-          height="4096"
-          alt="A branching floral ornament by Visamore"
-          loading="lazy"
-        />
-      </div>
-    </section>
-    <section
-      class="vm-container stage-section"
-      id="collections"
-      aria-labelledby="collections-title"
-    >
-      <h2 class="section-heading" id="collections-title">
-        Explore the work.
-      </h2>
-      <p>Digital artwork, apparel ideas and studies in surface and form.</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {services.map((service) => (
-          <article class="stage-offer">
-            <img
-              class="stage-image"
-              src={asset(`assets/digital/${service.image}`)}
-              width="4096"
-              height="4096"
-              alt={`${service.title} — Visamore ornament preview`}
-              loading="lazy"
-            />
-            <h3>{service.title}</h3>
-            <p>{service.description}</p>
-            <TerminalButton href="#contact" label="Start a conversation" />
-          </article>
-        ))}
-      </div>
-    </section>
+    <FeaturedCollections />
+    <PhysicalFeature />
     <JournalSection />
     <ContactSection />
   </main>
 </BaseLayout>
-
-<style>
-  .stage-section {
-    margin-top: 5rem;
-    scroll-margin-top: 2rem;
-  }
-  .stage-section p {
-    color: var(--soft);
-    font-size: 1rem;
-    line-height: 1.9;
-    max-width: 42rem;
-    margin-top: 1rem;
-  }
-  .stage-image {
-    display: block;
-    width: 100%;
-    aspect-ratio: 1;
-    object-fit: contain;
-    max-height: 22rem;
-  }
-  .stage-offer {
-    min-width: 0;
-    padding: 1.25rem;
-    border: 1px solid var(--line);
-    background: var(--paper-base);
-    display: flex;
-    flex-direction: column;
-  }
-  .stage-offer h3 {
-    font-size: 1.125rem;
-    line-height: 1.5;
-    margin-top: 1rem;
-  }
-  .stage-offer .terminal-button {
-    margin-top: auto;
-  }
-</style>

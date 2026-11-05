@@ -1,26 +1,16 @@
 export const navigation = [
   {
-    key: 'about',
-    label: 'About',
-    href: '/#about',
-    description: '',
+    key: 'digital',
+    label: 'Digital',
+    href: '/digital/',
+    description: 'PNG collections & Procreate brushes',
   },
   {
-    key: 'work',
-    label: 'Work',
-    href: '/#collections',
-    description: '',
+    key: 'physical',
+    label: 'Physical',
+    href: '/physical/',
+    description: 'Apparel concepts in development',
   },
-  {
-    key: 'journal',
-    label: 'Journal',
-    href: '/journal/',
-    description: '',
-  },
-  {
-    key: 'contact',
-    label: 'Contact',
-    href: '/contact/',
-    description: '',
-  },
+  { key: 'journal', label: 'Journal', href: '/journal/', description: '' },
+  { key: 'contact', label: 'Contact', href: '/contact/', description: '' },
 ] as const;

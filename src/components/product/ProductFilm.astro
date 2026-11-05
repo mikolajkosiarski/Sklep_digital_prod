@@ -1,0 +1,41 @@
+---
+import { prepareListingImage } from '../../lib/product-media';
+import type { DigitalOffer } from '../../lib/offers';
+import { asset } from '../../lib/paths';
+interface Props {
+  video: NonNullable<DigitalOffer['video']>;
+  title: string;
+}
+const { video, title } = Astro.props;
+const poster = await prepareListingImage({ file: video.poster, alt: video.description });
+---
+
+<section class="product-film" id="film" aria-labelledby="film-title">
+  <div>
+    <h2 class="section-heading" id="film-title">
+      Listing film
+    </h2>
+    <p id="film-description">{video.description}</p>
+    <p class="product-small-note">
+      Original Etsy listing preview. Artwork shown on a mannequin mockup.
+    </p>
+  </div>
+  <figure>
+    <video
+      controls
+      playsinline
+      preload="none"
+      poster={poster.src}
+      width="960"
+      height="960"
+      aria-label={`${title} listing film`}
+      aria-describedby="film-description"
+    >
+      <source src={asset(video.src)} type="video/mp4" />
+      <p>
+        Your browser cannot play this video. <a href={asset(video.src)}>Open the MP4 preview</a>.
+      </p>
+    </video>
+    <figcaption>Silent listing preview</figcaption>
+  </figure>
+</section>

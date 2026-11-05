@@ -1,0 +1,25 @@
+---
+import { getStoreProduct } from '../../lib/storefront';
+import { url } from '../../lib/paths';
+import ProductCard from '../catalog/ProductCard.astro';
+interface Props {
+  ids: string[];
+}
+const products = Astro.props.ids.map((id) => getStoreProduct(`digital:${id}`));
+---
+
+<section class="product-related" aria-labelledby="related-title">
+  <header>
+    <h2 id="related-title" class="section-heading">
+      More collections
+    </h2>
+    <a class="product-text-link" href={url('/digital/')}>
+      Browse all digital
+    </a>
+  </header>
+  <div class="product-grid">
+    {products.map((product) => (
+      <ProductCard product={product} />
+    ))}
+  </div>
+</section>

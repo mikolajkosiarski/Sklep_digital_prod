@@ -159,23 +159,3 @@
     font-size: 0.875rem;
   }
 }
-
-@media (min-width: 48rem) {
-  .vm-navbar > .vm-container,
-  .home-page .vm-navbar > .vm-container {
-    grid-template-columns: auto minmax(0, 1fr);
-  }
-  .home-page .vm-brand {
-    display: flex;
-  }
-  .vm-navigation {
-    display: block;
-    grid-column: 2;
-  }
-  .vm-nav-links {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    gap: 2rem;
-  }
-}

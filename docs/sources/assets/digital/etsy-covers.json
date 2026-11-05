@@ -1,0 +1,32 @@
+{
+  "note": "Original Etsy CDN listing images from the saved export; bytes preserved. Current live listing selection has not been verified.",
+  "covers": [
+    {
+      "pack": "100",
+      "file": "etsy-100-cover.jpg",
+      "url": "https://i.etsystatic.com/56625792/r/il/e7d84a/7464282537/il_fullxfull.7464282537_ekxm.jpg",
+      "source": "etsy/01_Sklep_Aktualny/Oferty/100_Designow/04_mockups/README.md — first listing image",
+      "downloaded": "2026-10-20",
+      "sha256": "2be499f06156d503ca514b47a16cbc5eded00799ad0724dbd38b838218d1f73f",
+      "bytes": 264916
+    },
+    {
+      "pack": "121",
+      "file": "etsy-121-cover.jpg",
+      "url": "https://i.etsystatic.com/56625792/r/il/95e0f7/7153331322/il_fullxfull.7153331322_n62x.jpg",
+      "source": "etsy/01_Sklep_Aktualny/Oferty/121_Designow/04_mockups/README.md — first listing image",
+      "downloaded": "2026-10-20",
+      "sha256": "cecb7247d53c2e922d7bf7835d10935d7ea385123c1bc7b625e781a38d262d6d",
+      "bytes": 848329
+    },
+    {
+      "pack": "300",
+      "file": "etsy-300-cover.jpg",
+      "url": "https://i.etsystatic.com/56625792/r/il/62d065/7452162729/il_fullxfull.7452162729_q89n.jpg",
+      "source": "etsy/01_Sklep_Aktualny/Oferty/300_Designow/04_mockups/README.md — first listing image",
+      "downloaded": "2026-10-20",
+      "sha256": "a5510bbb2c838339d8e56b073c540025b9a130273f8f8ed635e3c46628ee237b",
+      "bytes": 1253427
+    }
+  ]
+}

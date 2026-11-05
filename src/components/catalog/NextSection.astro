@@ -1,0 +1,26 @@
+---
+import TerminalButton from '../ui/TerminalButton.astro';
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  label: string;
+  href: string;
+}
+const { id, title, description, label, href } = Astro.props;
+---
+
+<section
+  class="catalog-next grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-6 items-center"
+  aria-labelledby={id}
+>
+  <div class="min-w-0 col-span-full md:col-span-8">
+    <h2 id={id} class="section-heading">
+      {title}
+    </h2>
+    <p>{description}</p>
+  </div>
+  <div class="min-w-0 col-span-full md:col-span-4 flex md:justify-end">
+    <TerminalButton label={label} href={href} />
+  </div>
+</section>

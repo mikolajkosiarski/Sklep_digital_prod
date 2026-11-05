@@ -1,0 +1,125 @@
+{
+  "note": "Original saved listing covers and gallery images, copied or downloaded without modifying their bytes. No current price, availability or sales claims are inferred.",
+  "products": [
+    {
+      "pack": "200",
+      "descriptionSource": "etsy/01_Sklep_Aktualny/Oferty/200_frames/01_listing/tytul_opis_tagi.md"
+    },
+    {
+      "pack": "55",
+      "descriptionSource": "etsy/01_Sklep_Aktualny/Analiza/EtsyListingsDownload.csv",
+      "sourceTitle": "Cybersigilism Flash Tattoo Bundle - 55 ozdobnych szkiców tatuaży plemiennych Dotwork Gothic do druku na Procreate, odzież, sztuka ścienna"
+    },
+    {
+      "pack": "25",
+      "descriptionSource": "etsy/01_Sklep_Aktualny/Analiza/EtsyListingsDownload.csv",
+      "sourceTitle": "Zestaw tatuaży Gothic Coquette Flash Pack - 25 słodkich i strasznych szkiców tatuaży. Urocze zwierzęta z rogami, skrzydłami i kolcami. Pasujący zestaw tatuaży PNG."
+    }
+  ],
+  "images": [
+    {
+      "pack": "55",
+      "file": "etsy-55-cover.jpg",
+      "url": "https://i.etsystatic.com/56625792/r/il/a9aa67/6906508520/il_fullxfull.6906508520_5nsa.jpg",
+      "source": "etsy/01_Sklep_Aktualny/Analiza/EtsyListingsDownload.csv — OBRAZ 1",
+      "downloaded": "2026-10-23",
+      "sha256": "268a2ebd32b90b3fbfb524154a4eb2e52578af5ca48c8679e2657f4b822e1298",
+      "bytes": 197139
+    },
+    {
+      "pack": "55",
+      "file": "etsy-55-gallery-1.jpg",
+      "url": "https://i.etsystatic.com/56625792/r/il/397d64/6901017152/il_fullxfull.6901017152_qsxw.jpg",
+      "source": "etsy/01_Sklep_Aktualny/Analiza/EtsyListingsDownload.csv — OBRAZ 2",
+      "downloaded": "2026-10-23",
+      "sha256": "d1bf8b8b667ffe7f8358cb10bca673dbf586417de337c373395cecf272220c84",
+      "bytes": 157830
+    },
+    {
+      "pack": "55",
+      "file": "etsy-55-gallery-2.jpg",
+      "url": "https://i.etsystatic.com/56625792/r/il/0156c1/6896321104/il_fullxfull.6896321104_g069.jpg",
+      "source": "etsy/01_Sklep_Aktualny/Analiza/EtsyListingsDownload.csv — OBRAZ 3",
+      "downloaded": "2026-10-23",
+      "sha256": "90a9e12dba9085376533a8afba9547061ddb533c397f63a86a2fac0ede76462e",
+      "bytes": 149979
+    },
+    {
+      "pack": "55",
+      "file": "etsy-55-gallery-3.jpg",
+      "url": "https://i.etsystatic.com/56625792/r/il/bfc4eb/6944293141/il_fullxfull.6944293141_32t6.jpg",
+      "source": "etsy/01_Sklep_Aktualny/Analiza/EtsyListingsDownload.csv — OBRAZ 4",
+      "downloaded": "2026-10-23",
+      "sha256": "ad7bffc789d1a49b01d4e6b56eb634f25e73550835f70cc9bdfd4fd94082ae8e",
+      "bytes": 180905
+    },
+    {
+      "pack": "25",
+      "file": "etsy-25-cover.jpg",
+      "url": "https://i.etsystatic.com/56625792/r/il/18417d/7082514631/il_fullxfull.7082514631_28g5.jpg",
+      "source": "etsy/01_Sklep_Aktualny/Analiza/EtsyListingsDownload.csv — OBRAZ 1",
+      "downloaded": "2026-10-23",
+      "sha256": "ff7c4d6b27ef273b121423ef47072f7f0147e8c2e6f70211b6ef18b5e6d3708d",
+      "bytes": 258506
+    },
+    {
+      "pack": "25",
+      "file": "etsy-25-gallery-1.jpg",
+      "url": "https://i.etsystatic.com/56625792/r/il/55fcb2/7034545118/il_fullxfull.7034545118_kjr8.jpg",
+      "source": "etsy/01_Sklep_Aktualny/Analiza/EtsyListingsDownload.csv — OBRAZ 2",
+      "downloaded": "2026-10-23",
+      "sha256": "953b98c760d35de94e62d4a463eacda23777343c4896d4cd0c4f0ddcbc5e80fe",
+      "bytes": 150732
+    },
+    {
+      "pack": "25",
+      "file": "etsy-25-gallery-2.jpg",
+      "url": "https://i.etsystatic.com/56625792/r/il/852fdb/7082514613/il_fullxfull.7082514613_ikg6.jpg",
+      "source": "etsy/01_Sklep_Aktualny/Analiza/EtsyListingsDownload.csv — OBRAZ 3",
+      "downloaded": "2026-10-23",
+      "sha256": "475b11cb401208de6a0b4ed648fe9ab869aa6f615e9c811dd4a1e81c9beb0936",
+      "bytes": 146377
+    },
+    {
+      "pack": "25",
+      "file": "etsy-25-gallery-3.jpg",
+      "url": "https://i.etsystatic.com/56625792/r/il/b7300f/7034545128/il_fullxfull.7034545128_bd47.jpg",
+      "source": "etsy/01_Sklep_Aktualny/Analiza/EtsyListingsDownload.csv — OBRAZ 4",
+      "downloaded": "2026-10-23",
+      "sha256": "d0d4cd221d70669874c0fc571981f747e75f498af61ca9ea7b638a0a2aa670fb",
+      "bytes": 160526
+    },
+    {
+      "pack": "200",
+      "file": "etsy-200-cover.png",
+      "source": "etsy/01_Sklep_Aktualny/Oferty/200_frames/Pliki/oferta/Artboard 1.png",
+      "copied": "2026-10-23",
+      "sha256": "e941c063378a551028e4d62ca2750083c76e81a5acceae2ab8b41e4c8a03f84a",
+      "bytes": 721808
+    },
+    {
+      "pack": "200",
+      "file": "etsy-200-gallery-1.png",
+      "source": "etsy/01_Sklep_Aktualny/Oferty/200_frames/Pliki/oferta/Artboard 2.png",
+      "copied": "2026-10-23",
+      "sha256": "a539fd00dae04a65597c53bf38e4963edde5598b0674047eb52ca9571cd06114",
+      "bytes": 599085
+    },
+    {
+      "pack": "200",
+      "file": "etsy-200-gallery-2.png",
+      "source": "etsy/01_Sklep_Aktualny/Oferty/200_frames/Pliki/oferta/Artboard 3.png",
+      "copied": "2026-10-23",
+      "sha256": "1522c7e886508309340fab12093d8185c11c050b5418e59eab07fc3db23d2560",
+      "bytes": 873146
+    },
+    {
+      "pack": "200",
+      "file": "etsy-200-gallery-3.png",
+      "source": "etsy/01_Sklep_Aktualny/Oferty/200_frames/Pliki/oferta/Artboard 4.png",
+      "copied": "2026-10-23",
+      "sha256": "91fcaadad7d0195b67e5d44ab504898acadc703f71b29ac3f5296925968e3901",
+      "bytes": 630093
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+---
+interface Props {
+  options: [string, string][];
+  count: number;
+  noun: string;
+}
+const { options, count, noun } = Astro.props;
+---
+
+<div class="catalog-toolbar">
+  {options.length > 0 && (
+    <div class="catalog-filters" role="group" aria-label={`Filter ${noun}`} hidden>
+      {options.map(([key, label]) => (
+        <button
+          type="button"
+          data-filter={key}
+          aria-pressed={key === 'all' ? 'true' : 'false'}
+          aria-controls="catalog-items"
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+  )}
+  <p class="catalog-result" role="status" aria-live="polite" data-noun={noun}>
+    {count} {noun}
+  </p>
+</div>

@@ -1,0 +1,30 @@
+---
+import type { PhysicalProduct } from '../../lib/catalog';
+import { asset } from '../../lib/paths';
+
+interface Props {
+  product: PhysicalProduct;
+}
+const { product } = Astro.props;
+---
+
+<div class="physical-art">
+  <picture>
+    {product.webImage && (
+      <source
+        type="image/webp"
+        srcset={`${asset(product.webImage)}-480.webp 480w, ${asset(product.webImage)}-960.webp 960w`}
+        sizes="(min-width: 75rem) 360px, (min-width: 48rem) 44vw, 90vw"
+      />
+    )}
+    <img
+      class="physical-listing-photo"
+      src={asset(product.image)}
+      width={product.imageWidth}
+      height={product.imageHeight}
+      alt={product.alt}
+      loading="lazy"
+      decoding="async"
+    />
+  </picture>
+</div>

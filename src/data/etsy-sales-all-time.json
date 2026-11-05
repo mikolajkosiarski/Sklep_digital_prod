@@ -1,0 +1,59 @@
+{
+  "period": "all-time",
+  "metric": "salesTransactions",
+  "asOf": "2026-10-23",
+  "source": "Etsy listing statistics shown in two screenshots provided by the shop owner on 23 October 2026.",
+  "methodology": "Transcribed from the all-time sales transactions row. Listing renewal counts are recorded separately and are not used as sales totals.",
+  "products": [
+    {
+      "pack": "100",
+      "transactions": 265,
+      "renewals": 266
+    },
+    {
+      "pack": "30",
+      "transactions": 47,
+      "renewals": 47
+    },
+    {
+      "pack": "300",
+      "transactions": 135,
+      "renewals": 136
+    },
+    {
+      "pack": "200",
+      "transactions": 17,
+      "renewals": 17
+    },
+    {
+      "pack": "54",
+      "transactions": 14,
+      "renewals": 14
+    },
+    {
+      "pack": "110",
+      "transactions": 40,
+      "renewals": 44
+    },
+    {
+      "pack": "121",
+      "transactions": 130,
+      "renewals": 131
+    },
+    {
+      "pack": "25",
+      "transactions": 17,
+      "renewals": 18
+    },
+    {
+      "pack": "55",
+      "transactions": 44,
+      "renewals": 44
+    },
+    {
+      "pack": "20",
+      "transactions": 30,
+      "renewals": 30
+    }
+  ]
+}

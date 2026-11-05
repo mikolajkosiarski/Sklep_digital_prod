@@ -1,0 +1,38 @@
+---
+import { featuredProducts } from '../../lib/catalog';
+import { getStoreProduct } from '../../lib/storefront';
+import { asset, url } from '../../lib/paths';
+import ProductCard from '../catalog/ProductCard.astro';
+import TerminalButton from '../ui/TerminalButton.astro';
+---
+
+<section class="collections-section" id="collections" aria-labelledby="collections-title">
+  <div class="collection-bleed" aria-hidden="true">
+    <img
+      src={asset('assets/digital/pack-300-3.png')}
+      width="4096"
+      height="4096"
+      alt=""
+      loading="lazy"
+    />
+  </div>
+  <div class="vm-container">
+    <div class="collections-intro">
+      <h2 id="collections-title">
+        <span>Selected</span>
+        <span>collections.</span>
+      </h2>
+      <p>
+        Digital artwork for your next composition. Browse PNG collections and Procreate brushsets.
+      </p>
+    </div>
+    <div class="product-grid product-grid--featured" id="collection-products">
+      {featuredProducts.map((product) => (
+        <ProductCard product={getStoreProduct(`digital:${product.id}`)} />
+      ))}
+    </div>
+    <div class="collections-catalog-link">
+      <TerminalButton label="Explore digital" href={url('/digital/')} />
+    </div>
+  </div>
+</section>

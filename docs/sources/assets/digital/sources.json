@@ -1,0 +1,68 @@
+{
+  "note": "Original transparent PNG previews, copied unchanged from the Visamore collection sources listed below. Sales figures are maintained separately in the application data.",
+  "samples": [
+    {
+      "pack": "100",
+      "file": "pack-100-1.png",
+      "source": "etsy/01_Sklep_Aktualny/Oferty/100_Designow/03_delivery/nobg_sig100bundle/nobg/sig1_nb_2048x4096.png",
+      "sha256": "78ae106ed6e4ce666f5cdbe22aa2c7f79aadd0bec5a78ea356b0af4ef1045df2",
+      "bytes": 166321
+    },
+    {
+      "pack": "100",
+      "file": "pack-100-2.png",
+      "source": "etsy/01_Sklep_Aktualny/Oferty/100_Designow/03_delivery/nobg_sig100bundle/nobg/sig35_nb_2048x4096.png",
+      "sha256": "981ca0e177e6db48f9c09e74580cab061ae1154f167e4993f47890e7cbbb8f75",
+      "bytes": 158376
+    },
+    {
+      "pack": "100",
+      "file": "pack-100-3.png",
+      "source": "etsy/01_Sklep_Aktualny/Oferty/100_Designow/03_delivery/nobg_sig100bundle/nobg/sig44_nb_4096x2048.png",
+      "sha256": "57b96121fbd32b6efd864879d8a6369ff6dec61154ac10dc0b3d6ae266dbc672",
+      "bytes": 127586
+    },
+    {
+      "pack": "121",
+      "file": "pack-121-1.png",
+      "source": "etsy/01_Sklep_Aktualny/Oferty/121_Designow/03_delivery/transparent_background-20260509T081634Z-3-001/transparent_background/sig0035_nb_3072x4096.png",
+      "sha256": "9fdf1623b8585f7f1c55864e90e019422ae496907dc7b91f127f48530f9c1cb3",
+      "bytes": 221040
+    },
+    {
+      "pack": "121",
+      "file": "pack-121-2.png",
+      "source": "etsy/01_Sklep_Aktualny/Oferty/121_Designow/03_delivery/transparent_background-20260509T081634Z-3-001/transparent_background/sig0062_nb_4096x3072.png",
+      "sha256": "762b2382485b20670944c99ff6a340629025877fcdd6177b362e38d19d29c6e9",
+      "bytes": 169295
+    },
+    {
+      "pack": "121",
+      "file": "pack-121-3.png",
+      "source": "etsy/01_Sklep_Aktualny/Oferty/121_Designow/03_delivery/transparent_background-20260509T081634Z-3-001/transparent_background/sig0084_nb_4096x4096.png",
+      "sha256": "72af45186bc3036bcdb266f8b7795b62a857edd29d816796f7a022b99cbb57c5",
+      "bytes": 238165
+    },
+    {
+      "pack": "300",
+      "file": "pack-300-1.png",
+      "source": "etsy/01_Sklep_Aktualny/Oferty/300_Designow/03_delivery/Transparent_background-20260509T080947Z-3-001/Transparent_background/sig0001_nb_2048x4096.png",
+      "sha256": "cf7dad11661806efaaa83488511dd56ec47b5d4b955cfbb4ba96fe1a303589e2",
+      "bytes": 110157
+    },
+    {
+      "pack": "300",
+      "file": "pack-300-2.png",
+      "source": "etsy/01_Sklep_Aktualny/Oferty/300_Designow/03_delivery/Transparent_background-20260509T080947Z-3-001/Transparent_background/sig0003_nb_3072x4096.png",
+      "sha256": "48f6545bf88ba186d47460cb9cf2c2453e8bd88e5a2c7ac7b4d1a142600e9e8c",
+      "bytes": 271357
+    },
+    {
+      "pack": "300",
+      "file": "pack-300-3.png",
+      "source": "etsy/01_Sklep_Aktualny/Oferty/300_Designow/03_delivery/Transparent_background-20260509T080947Z-3-001/Transparent_background/sig0149_nb_4096x4096.png",
+      "sha256": "920411426db295b6e54d570578d2f256fe72cef25fd9c111f8f251e3dfc79509",
+      "bytes": 307129
+    }
+  ]
+}

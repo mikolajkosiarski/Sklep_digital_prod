@@ -1,0 +1,126 @@
+/* Full print: one shared card for Digital, Physical and related products. */
+.product-card {
+  container-name: product-card;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  border: 1px solid var(--line);
+  background: var(--paper-base);
+}
+.product-card__image {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--paper-base);
+}
+.product-card__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+}
+.product-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  border-top: 1px solid var(--line);
+  padding: 1.125rem;
+}
+.product-card__title {
+  margin: 0;
+  font: 500 1.125rem/1.5 var(--mono);
+  overflow-wrap: anywhere;
+}
+.product-card__title a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+}
+.product-card__title a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+.product-card__meta {
+  font: 400 0.875rem/1.8 var(--mono);
+  color: var(--soft);
+  margin: 0.25rem 0 1rem;
+}
+.product-card__purchase {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0 0.75rem;
+}
+.product-card__price {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0;
+}
+.product-card__price > span {
+  display: block;
+  font: 500 1.5rem/1.4 var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+.product-card__purchase .terminal-button {
+  grid-column: 2;
+  grid-row: 1;
+  width: fit-content;
+  flex: 0 0 auto;
+  margin: 0;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 3rem 2rem;
+}
+@media (min-width: 36rem) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 62rem) {
+  .product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.product-grid--featured {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 20rem;
+  margin-inline: auto;
+  row-gap: 2rem;
+}
+@media (min-width: 36rem) {
+  .product-grid--featured {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 42rem;
+    row-gap: 3rem;
+  }
+}
+@media (min-width: 75rem) {
+  .product-grid--featured {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-width: 72.5rem;
+  }
+}
+
+/* Keep price and cart action readable when the card has little room. */
+@container product-card (max-width: 18rem) {
+  .product-card__purchase {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 0.5rem;
+  }
+  .product-card__purchase .terminal-button {
+    grid-column: 1;
+    grid-row: 2;
+  }
+}

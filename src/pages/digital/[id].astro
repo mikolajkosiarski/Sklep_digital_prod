@@ -1,0 +1,22 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { render } from 'astro:content';
+import ProductPage from '../../layouts/ProductPage.astro';
+import { digitalProducts } from '../../lib/catalog';
+import { offerEntries } from '../../lib/offers';
+
+export const getStaticPaths = (() =>
+  offerEntries.map((entry) => {
+    const product = digitalProducts.find(({ id }) => id === entry.id);
+    if (!product) throw new Error(`Missing catalogue entry for ${entry.id}`);
+    return { params: { id: entry.id }, props: { product, entry } };
+  })) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const { product, entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<ProductPage product={product} offer={entry.data}>
+  <Content />
+</ProductPage>

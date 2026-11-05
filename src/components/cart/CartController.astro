@@ -1,0 +1,36 @@
+---
+import { storeProducts } from '../../lib/storefront';
+const data = JSON.stringify(
+  storeProducts.map(({ key, title, priceMinor, maxQuantity }) => ({
+    key,
+    title,
+    priceMinor,
+    maxQuantity,
+  })),
+).replace(/</g, '\u003c');
+---
+
+<script is:inline id="cart-catalog" type="application/json" set:html={data} />
+<p
+  class="cart-announcement"
+  data-cart-status
+  role="status"
+  aria-live="polite"
+  aria-atomic="true"
+></p>
+<script>
+  import '../../scripts/cart';
+</script>
+
+<style>
+  .cart-announcement {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+</style>

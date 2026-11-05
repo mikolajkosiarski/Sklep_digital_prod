@@ -1,0 +1,95 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import TerminalButton from '../components/ui/TerminalButton.astro';
+import ProductGallery from '../components/product/ProductGallery.astro';
+import ProductPrice from '../components/product/ProductPrice.astro';
+import ProductFiles from '../components/product/ProductFiles.astro';
+import ProductFilm from '../components/product/ProductFilm.astro';
+import RelatedProducts from '../components/product/RelatedProducts.astro';
+import { coverSource, hasSales, sales, salesSourceNote, type DigitalProduct } from '../lib/catalog';
+import type { DigitalOffer } from '../lib/offers';
+import { getProductGallery } from '../lib/product-media';
+import { asset, url } from '../lib/paths';
+import '../styles/components/product-detail.css';
+
+interface Props {
+  product: DigitalProduct;
+  offer: DigitalOffer;
+}
+const { product, offer } = Astro.props;
+const images = await getProductGallery(product);
+const title = `${product.title} · ${offer.designCount} designs`;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: title,
+  description: product.description,
+  image: asset(coverSource(product)),
+  brand: { '@type': 'Brand', name: 'Visamore' },
+  category: 'Digital design collections',
+  // Reference prices do not represent an available checkout offer.
+};
+---
+
+<BaseLayout
+  title={`${title} — Visamore`}
+  description={product.description}
+  section="digital"
+  schema={schema}
+  ogImage={coverSource(product)}
+  ogAlt={title}
+>
+  <main id="main-content" class="vm-container product-page">
+    <nav class="product-back" aria-label="Back to catalogue">
+      <a href={url('/digital/')}>All digital collections</a>
+    </nav>
+    <article aria-labelledby="product-title">
+      <div class="product-hero">
+        <header class="product-heading">
+          <h1 id="product-title" class="page-title">
+            {product.title}
+          </h1>
+          <p class="product-format">
+            {offer.designCount} designs · {product.formatLabel}
+          </p>
+          <ProductPrice productId={product.id} />
+        </header>
+        <div class="product-visual">
+          <ProductGallery
+            id={`gallery-${product.id}`}
+            images={images}
+            label={`${product.title} listing gallery`}
+          />
+        </div>
+        <div class="product-summary">
+          <div class="product-prose">
+            <slot />
+          </div>
+          <div class="product-actions">
+            <TerminalButton label="Add to cart" cartKey={`digital:${product.id}`} />
+            <a class="product-text-link" href="#included">
+              Files &amp; formats
+            </a>
+            {offer.video && (
+              <a class="product-text-link" href="#film">
+                Watch listing film
+              </a>
+            )}
+          </div>
+          <p class="product-availability">Store preview. Orders and downloads are not open yet.</p>
+          {hasSales(product) && (
+            <div class="product-sales">
+              <p>
+                <strong>{sales[product.id]}</strong> Etsy sales
+              </p>
+              <p class="product-sales-note">{salesSourceNote}</p>
+            </div>
+          )}
+        </div>
+      </div>
+      <ProductFiles product={product} offer={offer} />
+      {offer.video && <ProductFilm video={offer.video} title={product.title} />}
+    </article>
+    <RelatedProducts ids={offer.relatedIds} />
+  </main>
+</BaseLayout>

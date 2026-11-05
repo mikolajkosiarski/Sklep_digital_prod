@@ -1,0 +1,176 @@
+---
+interface Props {
+  id: string;
+  images: Array<{
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    srcset?: string;
+  }>;
+  label: string;
+}
+
+const { id, images, label } = Astro.props;
+const galleryId = id;
+---
+
+<product-gallery class="product-gallery" role="group" aria-label={label}>
+  <div class="product-gallery__panels">
+    {images.map((image, index) => (
+      <figure id={`${galleryId}-${index}`} data-gallery-panel>
+        <div class="product-gallery__stage">
+          <img
+            src={image.src}
+            srcset={image.srcset}
+            sizes="(min-width: 80rem) 640px, (min-width: 62rem) 52vw, 100vw"
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
+            loading={index === 0 ? 'eager' : 'lazy'}
+            fetchpriority={index === 0 ? 'high' : 'auto'}
+            decoding="async"
+          />
+        </div>
+        <figcaption>
+          <a
+            href={image.src}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open image ${index + 1} in a new tab: ${image.alt}`}
+          >
+            Enlarge image
+          </a>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+  <div class="product-gallery__controls" data-gallery-controls hidden>
+    <p class="product-gallery__status" data-gallery-status aria-live="polite" aria-atomic="true">
+      View 1 of {images.length}
+    </p>
+    <div class="product-gallery__thumbnails" role="group" aria-label="Choose a product image">
+      {images.map((image, index) => (
+        <button
+          type="button"
+          data-gallery-thumbnail
+          aria-label={`View image ${index + 1}: ${image.alt}`}
+          aria-controls={`${galleryId}-${index}`}
+          aria-pressed={index === 0 ? 'true' : 'false'}
+        >
+          <img
+            src={image.src}
+            srcset={image.srcset}
+            sizes="72px"
+            alt=""
+            width={image.width}
+            height={image.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </button>
+      ))}
+    </div>
+  </div>
+</product-gallery>
+
+<script>
+  import '../../scripts/product-gallery';
+</script>
+
+<style>
+  .product-gallery {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+  .product-gallery__panels {
+    display: grid;
+    gap: 2rem;
+  }
+  figure {
+    min-width: 0;
+    margin: 0;
+  }
+  .product-gallery__stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    border: 1px solid var(--line);
+    background: var(--paper-base);
+  }
+  .product-gallery__stage img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: contain;
+  }
+  figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: flex-end;
+    gap: 0.25rem 1rem;
+    padding-top: 0.75rem;
+    font: 400 var(--text-caption) / 1.6 var(--mono);
+    color: var(--soft);
+  }
+  figcaption a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  figcaption a:hover {
+    text-decoration-thickness: 2px;
+  }
+  .product-gallery__controls {
+    margin-top: 1rem;
+  }
+  .product-gallery__status {
+    margin: 0 0 0.75rem;
+    font: 400 var(--text-caption) / 1.6 var(--mono);
+    color: var(--soft);
+  }
+  .product-gallery__thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .product-gallery__thumbnails button {
+    display: grid;
+    place-items: center;
+    flex: 0 0 4.5rem;
+    width: 4.5rem;
+    height: 4.5rem;
+    padding: 3px;
+    border: 1px solid var(--line);
+    border-radius: 0;
+    background: var(--paper-base);
+    color: var(--ink);
+  }
+  .product-gallery__thumbnails button:hover {
+    border-color: var(--ink);
+  }
+  .product-gallery__thumbnails button[aria-pressed='true'] {
+    border: 3px solid var(--ink);
+    padding: 1px;
+  }
+  .product-gallery__thumbnails button:focus-visible,
+  figcaption a:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 4px;
+  }
+  .product-gallery__thumbnails img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: contain;
+  }
+</style>
