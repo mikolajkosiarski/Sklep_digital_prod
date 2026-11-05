@@ -48,6 +48,7 @@
   color: var(--color-muted);
 }
 .catalog-item {
+  display: grid;
   min-width: 0;
 }
 .catalog-header .catalog-status {
