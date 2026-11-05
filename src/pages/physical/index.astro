@@ -7,13 +7,13 @@ import { collectionSchema, physicalProducts, physicalPath } from '../../lib/cata
 import { url } from '../../lib/paths';
 const schema = {
   ...collectionSchema('Visamore physical studies', physicalProducts, physicalPath, Astro.site),
-  description: 'Draft apparel concepts shown with saved listing mockups. Not available to order.',
+  description: 'Draft apparel concepts shown with product mockups. Not available to order.',
 };
 ---
 
 <BaseLayout
   title="Physical studies — Visamore"
-  description="Explore five Visamore apparel concepts with gothic graphics and saved T-shirt listing mockups."
+  description="Explore five Visamore apparel concepts with gothic graphics and T-shirt mockups."
   section="physical"
   schema={schema}
   ogImage={physicalProducts[0].image}
@@ -28,7 +28,7 @@ const schema = {
         Gothic apparel ideas from the Visamore archive.
       </p>
       <p class="catalog-status">
-        Concepts in development, shown with saved listing mockups. Not available to order.
+        Concepts in development, shown with product mockups. Not available to order.
       </p>
     </header>
     <PhysicalCatalog />

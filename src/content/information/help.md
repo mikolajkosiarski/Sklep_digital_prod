@@ -27,9 +27,9 @@ The images shown on the website are previews. They are not the complete download
 
 ## Can I use the artwork commercially?
 
-The licence for purchases from this future store is still being defined. This preview does not grant a commercial-use licence. For an existing Etsy purchase, refer to the terms provided with that order.
+The license for purchases from this future store is still being defined. This preview does not grant a commercial-use license. For an existing Etsy purchase, refer to the terms provided with that order.
 
-The [Usage licence](../license/) page will describe the permitted uses before sales open here.
+The [Usage license](../license/) page will describe the permitted uses before sales open here.
 
 ## Are the clothes available?
 

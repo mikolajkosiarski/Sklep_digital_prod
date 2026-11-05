@@ -24,14 +24,13 @@ const schema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: `${product.title} — apparel concept`,
-  description:
-    'Draft apparel concept, illustrated with a saved listing mockup. Not available to order.',
+  description: 'Draft apparel concept, illustrated with a product mockup. Not available to order.',
 };
 ---
 
 <BaseLayout
   title={`${title} — Visamore`}
-  description={`${product.description} A draft shown with a saved listing mockup, not available to order.`}
+  description={`${product.description} A draft shown with a product mockup, not available to order.`}
   section="physical"
   schema={schema}
   ogImage={product.image}
@@ -46,7 +45,7 @@ const schema = {
     <article class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-6 items-center">
       <div class="physical-detail-visual min-w-0 col-span-full md:col-span-6">
         <PhysicalImage product={product} />
-        <p class="catalog-footnote">Saved listing image · product mockup</p>
+        <p class="catalog-footnote">Product mockup</p>
       </div>
       <div class="detail-copy min-w-0 col-span-full md:col-span-6">
         <h1 class="page-title">{product.title}.</h1>
@@ -60,7 +59,7 @@ const schema = {
           </div>
           <div>
             <dt>Preview</dt>
-            <dd>Saved product listing mockup</dd>
+            <dd>Product mockup</dd>
           </div>
           <div>
             <dt>Next steps</dt>
