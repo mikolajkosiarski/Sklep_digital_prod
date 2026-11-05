@@ -1,0 +1,8 @@
+---
+import JournalArchive from '../../components/journal/JournalArchive.astro';
+import { getJournalEntries } from '../../components/journal/entries';
+
+const articles = await getJournalEntries();
+---
+
+<JournalArchive articles={articles} />

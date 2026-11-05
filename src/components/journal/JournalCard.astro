@@ -1,0 +1,34 @@
+---
+import JournalVisual from './JournalVisual.astro';
+import { journalDate, type JournalEntry } from './entries';
+import { url } from '../../lib/paths';
+
+interface Props {
+  entry: JournalEntry;
+  heading?: 'h2' | 'h3';
+  showReadLink?: boolean;
+}
+
+const { entry, heading: Heading = 'h3', showReadLink = true } = Astro.props;
+const { title, description, category, published, readTime, art } = entry.data;
+---
+
+<article class="journal-card">
+  <a href={url(`/journal/${entry.id}/`)}>
+    <JournalVisual kind={art} />
+    <div class="journal-card-copy">
+      <span class="journal-card-meta">
+        <span>{category}</span>
+        <time datetime={published}>{journalDate(published)}</time>
+      </span>
+      <Heading>{title}</Heading>
+      <p>{description}</p>
+      {showReadLink && (
+        <span class="journal-read">
+          Read article <span aria-hidden="true">+</span>
+        </span>
+      )}
+      <span class="journal-card-duration">{readTime}</span>
+    </div>
+  </a>
+</article>

@@ -12,6 +12,12 @@ export const navigation = [
     description: '',
   },
   {
+    key: 'journal',
+    label: 'Journal',
+    href: '/journal/',
+    description: '',
+  },
+  {
     key: 'contact',
     label: 'Contact',
     href: '/contact/',

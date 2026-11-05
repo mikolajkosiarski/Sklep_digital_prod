@@ -1,0 +1,23 @@
+---
+import JournalArchive from '../../../components/journal/JournalArchive.astro';
+import {
+  getJournalEntries,
+  JOURNAL_PAGE_SIZE,
+  type JournalEntry,
+} from '../../../components/journal/entries';
+export async function getStaticPaths() {
+  const articles = await getJournalEntries();
+  const pages = Math.ceil(articles.length / JOURNAL_PAGE_SIZE);
+  return Array.from({ length: Math.max(0, pages - 1) }, (_, index) => ({
+    params: { page: String(index + 2) },
+    props: { articles, page: index + 2 },
+  }));
+}
+interface Props {
+  articles: JournalEntry[];
+  page: number;
+}
+const { articles, page } = Astro.props;
+---
+
+<JournalArchive articles={articles} page={page} />

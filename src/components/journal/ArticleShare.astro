@@ -1,0 +1,74 @@
+---
+interface Props {
+  title: string;
+  image: string;
+}
+const { title, image } = Astro.props;
+const pageUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).href;
+const imageUrl = new URL(image, Astro.site ?? Astro.url.origin).href;
+---
+
+<section class="journal-share" aria-labelledby="share-title" data-journal-share>
+  <h2 id="share-title">Share this note</h2>
+  <div class="journal-share-actions">
+    <a
+      href={`https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(pageUrl)}&media=${encodeURIComponent(imageUrl)}&description=${encodeURIComponent(title)}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-share-pinterest
+      data-share-title={title}
+      data-share-image={image}
+      aria-label="Share on Pinterest (opens a new tab)"
+    >
+      Pinterest
+    </a>
+    <a
+      href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-share-facebook
+      aria-label="Share on Facebook (opens a new tab)"
+    >
+      Facebook
+    </a>
+    <button type="button" data-copy-link hidden>
+      Copy link
+    </button>
+  </div>
+  <p class="journal-form-status" role="status" data-share-status></p>
+</section>
+
+<script>
+  const share = document.querySelector<HTMLElement>('[data-journal-share]');
+  if (share) {
+    const page = new URL(window.location.href);
+    page.search = '';
+    page.hash = '';
+    const facebook = share.querySelector<HTMLAnchorElement>('[data-share-facebook]');
+    const pinterest = share.querySelector<HTMLAnchorElement>('[data-share-pinterest]');
+    if (facebook) {
+      const target = new URL(facebook.href);
+      target.searchParams.set('u', page.href);
+      facebook.href = target.href;
+    }
+    if (pinterest) {
+      const target = new URL(pinterest.href);
+      target.searchParams.set('url', page.href);
+      target.searchParams.set('media', new URL(pinterest.dataset.shareImage ?? '', page).href);
+      pinterest.href = target.href;
+    }
+    const copy = share.querySelector<HTMLButtonElement>('[data-copy-link]');
+    const status = share.querySelector<HTMLElement>('[data-share-status]');
+    if (copy && navigator.clipboard?.writeText) {
+      copy.hidden = false;
+      copy.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(page.href);
+          if (status) status.textContent = 'Link copied.';
+        } catch {
+          if (status) status.textContent = 'Copy the address from your browser to share this note.';
+        }
+      });
+    }
+  }
+</script>

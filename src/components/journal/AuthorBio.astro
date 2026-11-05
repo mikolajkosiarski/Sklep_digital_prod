@@ -1,0 +1,23 @@
+---
+import { journalAuthors } from '../../data/journal-authors';
+import { asset } from '../../lib/paths';
+import type { JournalEntry } from './entries';
+interface Props {
+  author: JournalEntry['data']['author'];
+}
+const author = journalAuthors[Astro.props.author];
+---
+
+<section class="journal-author" aria-labelledby="author-name">
+  <img
+    src={asset(author.avatar)}
+    width="96"
+    height="96"
+    alt={`${author.name} — MK monogram`}
+    loading="lazy"
+  />
+  <div>
+    <h2 id="author-name">{author.name}</h2>
+    <p>{author.bio}</p>
+  </div>
+</section>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/home/Hero.astro';
+import JournalSection from '../components/journal/JournalSection.astro';
 import ContactSection from '../components/contact/ContactSection.astro';
 import TerminalButton from '../components/ui/TerminalButton.astro';
 import { asset } from '../lib/paths';
@@ -83,6 +84,7 @@ const services = [
         ))}
       </div>
     </section>
+    <JournalSection />
     <ContactSection />
   </main>
 </BaseLayout>

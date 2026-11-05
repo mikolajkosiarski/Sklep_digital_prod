@@ -1,0 +1,38 @@
+---
+import TerminalButton from '../ui/TerminalButton.astro';
+import JournalCard from './JournalCard.astro';
+import { getJournalEntries } from './entries';
+import { url } from '../../lib/paths';
+
+const articles = (await getJournalEntries()).slice(0, 3);
+const [featured, ...more] = articles;
+---
+
+{featured && (
+  <section class="journal-section vm-container" id="blog" aria-labelledby="journal-title">
+    <div
+      id="journal"
+      class="journal-heading flex flex-col md:flex-row justify-between md:items-end"
+    >
+      <div>
+        <h2 class="section-heading" id="journal-title">
+          Journal.
+        </h2>
+        <p class="journal-intro">Practical notes on file formats, composition and texture.</p>
+      </div>
+      <TerminalButton label="All journal entries" href={url('/journal/')} />
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-12">
+      <div class="min-w-0 lg:col-span-7">
+        <JournalCard entry={featured} />
+      </div>
+      <div class="min-w-0 lg:col-span-5">
+        <div class="journal-side">
+          {more.map((entry) => (
+            <JournalCard entry={entry} />
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+)}

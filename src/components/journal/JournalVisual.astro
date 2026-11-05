@@ -1,0 +1,60 @@
+---
+import { asset } from '../../lib/paths';
+import type { JournalEntry } from './entries';
+
+interface Props {
+  kind: JournalEntry['data']['art'];
+  label?: string;
+}
+
+const { kind, label } = Astro.props;
+---
+
+<div
+  class:list={['journal-visual', `journal-visual--${kind}`]}
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}
+>
+  {kind === 'formats' ? (
+    <>
+      <div class="format-panel">
+        <img
+          src={asset('assets/digital/pack-100-3.png')}
+          width="4096"
+          height="2048"
+          alt=""
+          loading="lazy"
+        />
+        <span>.png</span>
+      </div>
+      <div class="format-panel">
+        <div class="brush-stamps">
+          {[1, 2, 3].map(() => (
+            <img
+              src={asset('assets/digital/pack-100-3.png')}
+              width="4096"
+              height="2048"
+              alt=""
+              loading="lazy"
+            />
+          ))}
+        </div>
+        <span>.brushset</span>
+      </div>
+    </>
+  ) : kind === 'ornaments' ? (
+    <img
+      src={asset('assets/digital/pack-121-3.png')}
+      width="4096"
+      height="4096"
+      alt=""
+      loading="lazy"
+    />
+  ) : (
+    <>
+      <span class="texture-piece" />
+      <span class="texture-piece" />
+    </>
+  )}
+</div>

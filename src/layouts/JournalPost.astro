@@ -1,0 +1,136 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import JournalVisual from '../components/journal/JournalVisual.astro';
+import JournalFigure from '../components/journal/JournalFigure.astro';
+import JournalCard from '../components/journal/JournalCard.astro';
+import AuthorBio from '../components/journal/AuthorBio.astro';
+import ArticleShare from '../components/journal/ArticleShare.astro';
+import ArticleNavigation from '../components/journal/ArticleNavigation.astro';
+import JournalComments from '../components/journal/JournalComments.astro';
+import { journalDate, type JournalEntry } from '../components/journal/entries';
+import { journalAuthors } from '../data/journal-authors';
+import { asset, url } from '../lib/paths';
+
+interface Props {
+  entry: JournalEntry;
+  related: JournalEntry[];
+  previous?: JournalEntry;
+  next?: JournalEntry;
+}
+const { entry, related, previous, next } = Astro.props;
+const { title, description, category, published, author, tags, readTime, art, figure, sources } =
+  entry.data;
+const identity = journalAuthors[author];
+// Social previews use a raster image; SVG textures remain in the article.
+const socialImage = figure.image.endsWith('.svg') ? 'assets/digital/pack-121-3.png' : figure.image;
+const socialAlt = figure.image.endsWith('.svg') ? 'A branching ornament by Visamore' : figure.alt;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  datePublished: published,
+  inLanguage: 'en',
+  author: { '@type': 'Person', name: identity.name },
+  publisher: { '@type': 'Organization', name: 'Visamore' },
+  image: Astro.site ? new URL(asset(socialImage), Astro.site).href : asset(socialImage),
+  keywords: tags.join(', '),
+  isPartOf: { '@type': 'Blog', name: 'Visamore Journal' },
+  ...(Astro.site
+    ? { mainEntityOfPage: new URL(url(`/journal/${entry.id}/`), Astro.site).href }
+    : {}),
+};
+---
+
+<BaseLayout
+  title={`${title} — Visamore Journal`}
+  description={description}
+  section="journal"
+  schema={schema}
+  ogImage={socialImage}
+  ogAlt={socialAlt}
+>
+  <main id="main-content" class="vm-container">
+    <nav class="journal-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li>
+          <a href={url('/')}>Home</a>
+        </li>
+        <li>
+          <a href={url('/journal/')}>Journal</a>
+        </li>
+        <li aria-current="page">{title}</li>
+      </ol>
+    </nav>
+    <article class="journal-post">
+      <header class="article-header">
+        <h1 class="article-title">{title}</h1>
+        <p class="article-deck">{description}</p>
+        <ul class="journal-post-meta" aria-label="Article details">
+          <li>
+            <time datetime={published}>{journalDate(published)}</time>
+          </li>
+          <li>
+            <a href="#author-name" rel="author">
+              {identity.name}
+            </a>
+          </li>
+          <li>{readTime}</li>
+          <li>
+            <a href={url(`/journal/?category=${encodeURIComponent(category)}`)}>{category}</a>
+          </li>
+        </ul>
+      </header>
+      <figure class="article-figure">
+        <JournalVisual kind={art} label={`Visual study for ${title}`} />
+      </figure>
+      <div class="article-body">
+        <slot />
+        <JournalFigure figure={figure} />
+        {sources.length > 0 && (
+          <aside class="article-sources" aria-labelledby="sources-title">
+            <h2 id="sources-title">Further reading</h2>
+            <ul>
+              {sources.map((source) => (
+                <li>
+                  <a href={source.url}>{source.title}</a>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )}
+      </div>
+      <footer class="journal-article-footer">
+        <nav class="journal-tags" aria-label="Article tags">
+          <ul>
+            {tags.map((tag) => (
+              <li>
+                <a href={url(`/journal/?tag=${encodeURIComponent(tag)}#journal-results`)}>{tag}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <AuthorBio author={author} />
+        <ArticleShare title={title} image={asset(socialImage)} />
+      </footer>
+    </article>
+    <div class="journal-after-article">
+      <ArticleNavigation previous={previous} next={next} />
+      <JournalComments />
+    </div>
+    {related.length > 0 && (
+      <section class="article-related" aria-labelledby="related-title">
+        <h2 id="related-title" class="section-heading">
+          Keep exploring.
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
+          {related.map((article) => (
+            <div class="min-w-0">
+              <JournalCard entry={article} />
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+  </main>
+</BaseLayout>

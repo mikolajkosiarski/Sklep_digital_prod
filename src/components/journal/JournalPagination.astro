@@ -1,0 +1,38 @@
+---
+import { journalPageUrl } from './entries';
+interface Props {
+  page: number;
+  pages: number;
+}
+const { page, pages } = Astro.props;
+---
+
+<nav class="journal-pagination" aria-label="Journal pages" data-journal-pagination>
+  {page > 1 ? (
+    <a href={journalPageUrl(page - 1)} rel="prev">
+      Previous
+    </a>
+  ) : (
+    <span aria-disabled="true">Previous</span>
+  )}
+  <ol>
+    {Array.from({ length: pages }, (_, index) => index + 1).map((number) => (
+      <li>
+        <a
+          href={journalPageUrl(number)}
+          aria-label={`Page ${number}`}
+          aria-current={number === page ? 'page' : undefined}
+        >
+          {number}
+        </a>
+      </li>
+    ))}
+  </ol>
+  {page < pages ? (
+    <a href={journalPageUrl(page + 1)} rel="next">
+      Next
+    </a>
+  ) : (
+    <span aria-disabled="true">Next</span>
+  )}
+</nav>

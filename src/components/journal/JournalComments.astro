@@ -1,0 +1,111 @@
+---
+import TerminalButton from '../ui/TerminalButton.astro';
+---
+
+<section
+  class="journal-comments"
+  id="comments"
+  aria-labelledby="comments-title"
+  data-journal-comments
+>
+  <header>
+    <h2 id="comments-title">Discussion preview.</h2>
+    <p class="journal-section-note" id="comments-note">
+      These are sample comments. You can preview your own below; it will not be published or saved.
+    </p>
+  </header>
+  <div class="journal-comment-list">
+    <article class="journal-comment" aria-labelledby="sample-comment-one">
+      <h3 id="sample-comment-one">Sample reader 01</h3>
+      <p>
+        Seeing the artwork at its actual display size makes the spacing choices much easier to
+        judge.
+      </p>
+    </article>
+    <article class="journal-comment" aria-labelledby="sample-comment-two">
+      <h3 id="sample-comment-two">Sample reader 02</h3>
+      <p>
+        I would keep a clean version beside the textured one and compare the smallest text before
+        choosing.
+      </p>
+    </article>
+    <article
+      class="journal-comment journal-comment--preview"
+      aria-labelledby="preview-comment-author"
+      data-comment-preview
+      hidden
+    >
+      <p class="journal-comment-label">Your preview · not published</p>
+      <h3 id="preview-comment-author" data-preview-author></h3>
+      <p data-preview-body></p>
+    </article>
+  </div>
+  <form
+    class="journal-comment-form"
+    method="post"
+    action="#comments"
+    aria-describedby="comments-note"
+  >
+    <div>
+      <label for="comment-name">Your name</label>
+      <input
+        id="comment-name"
+        name="name"
+        type="text"
+        autocomplete="name"
+        required
+        maxlength="80"
+      />
+    </div>
+    <div>
+      <label for="comment-message">Comment</label>
+      <textarea
+        id="comment-message"
+        name="comment"
+        rows="5"
+        required
+        minlength="10"
+        maxlength="1500"
+        aria-describedby="comment-hint"
+      ></textarea>
+      <p class="journal-field-hint" id="comment-hint">
+        10–1,500 characters. Preview only.
+      </p>
+    </div>
+    <TerminalButton label="Preview comment" type="submit" disabled />
+    <p class="journal-form-status" role="status" data-comment-status></p>
+    <noscript>
+      <p>Comment previews require JavaScript. No comments are submitted from this page.</p>
+    </noscript>
+  </form>
+</section>
+
+<script>
+  const discussion = document.querySelector<HTMLElement>('[data-journal-comments]');
+  const form = discussion?.querySelector<HTMLFormElement>('form');
+  if (discussion && form) {
+    const name = form.querySelector<HTMLInputElement>('#comment-name');
+    const message = form.querySelector<HTMLTextAreaElement>('#comment-message');
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const preview = discussion.querySelector<HTMLElement>('[data-comment-preview]');
+    const author = discussion.querySelector<HTMLElement>('[data-preview-author]');
+    const body = discussion.querySelector<HTMLElement>('[data-preview-body]');
+    const status = discussion.querySelector<HTMLElement>('[data-comment-status]');
+    if (name && message && button && preview && author && body && status) {
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+        if (!name.value.trim() || message.value.trim().length < 10) {
+          status.textContent = 'Enter your name and a comment of at least 10 characters.';
+          return;
+        }
+        // Reader input remains text. No HTML insertion, persistence or network request.
+        author.textContent = name.value.trim();
+        body.textContent = message.value.trim();
+        preview.hidden = false;
+        status.textContent = 'Your preview is ready above. It has not been published or saved.';
+      });
+      button.disabled = false;
+    }
+  }
+</script>

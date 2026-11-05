@@ -1,0 +1,259 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import JournalCard from './JournalCard.astro';
+import JournalVisual from './JournalVisual.astro';
+import JournalPagination from './JournalPagination.astro';
+import { JOURNAL_PAGE_SIZE, type JournalEntry } from './entries';
+import { url } from '../../lib/paths';
+
+interface Props {
+  articles: JournalEntry[];
+  page?: number;
+}
+const { articles, page = 1 } = Astro.props;
+const pages = Math.ceil(articles.length / JOURNAL_PAGE_SIZE);
+const categories = [...new Set(articles.map(({ data }) => data.category))].sort();
+const featured = articles.slice(0, 3);
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'Visamore Journal',
+  description: 'Notes on files, forms and surfaces.',
+  publisher: { '@type': 'Organization', name: 'Visamore' },
+};
+---
+
+<BaseLayout
+  title={page === 1 ? 'Journal — Visamore' : `Journal — page ${page} — Visamore`}
+  description={
+    page === 1
+      ? 'Practical guides to digital design files, working with ornaments and choosing worn textures.'
+      : `Page ${page} of the Visamore Journal. More notes on digital files, composition and texture.`
+  }
+  section="journal"
+  schema={schema}
+>
+  <main
+    id="main-content"
+    class="vm-container"
+    data-journal-archive
+    data-page={page}
+    data-page-size={JOURNAL_PAGE_SIZE}
+  >
+    <header class="journal-index-header">
+      <h1 class="page-title">Journal.</h1>
+      <p class="journal-intro">
+        Practical notes on file formats, composition and texture. Small studies from the Visamore
+        workspace.
+      </p>
+    </header>
+    <div class="journal-archive-layout">
+      <aside class="journal-sidebar" aria-label="Browse the journal">
+        <form
+          class="journal-search"
+          role="search"
+          action={url('/journal/')}
+          method="get"
+          data-journal-search
+        >
+          <label for="journal-query">Search the journal</label>
+          <div class="journal-search-field">
+            <input
+              id="journal-query"
+              name="q"
+              type="search"
+              placeholder="Search notes…"
+              maxlength="100"
+            />
+            <button type="submit" aria-label="Search">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <circle cx="10.5" cy="10.5" r="6.5" />
+                <path d="m15.5 15.5 5 5" />
+              </svg>
+            </button>
+          </div>
+        </form>
+        <details class="journal-directory" open data-journal-directory>
+          <summary>Categories & selected notes</summary>
+          <div class="journal-directory-content">
+            <nav class="journal-categories" aria-labelledby="journal-categories-title">
+              <h2 id="journal-categories-title">Categories</h2>
+              <ul>
+                <li>
+                  <a
+                    href={url('/journal/#journal-results')}
+                    data-journal-category=""
+                    aria-current="true"
+                  >
+                    <span>All notes</span>
+                    <span class="journal-count">{articles.length}</span>
+                  </a>
+                </li>
+                {categories.map((category) => (
+                  <li>
+                    <a
+                      href={url(
+                        `/journal/?category=${encodeURIComponent(category)}#journal-results`,
+                      )}
+                      data-journal-category={category}
+                    >
+                      <span>{category}</span>
+                      <span class="journal-count">
+                        {articles.filter(({ data }) => data.category === category).length}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <section class="journal-featured" aria-labelledby="journal-featured-title">
+              <h2 id="journal-featured-title">Selected notes</h2>
+              <ul>
+                {featured.map((entry) => (
+                  <li>
+                    <a href={url(`/journal/${entry.id}/`)}>
+                      <JournalVisual kind={entry.data.art} />
+                      <span>{entry.data.title}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
+        </details>
+        <noscript>
+          <p class="journal-section-note">
+            Use the page links to browse every note. Search and filters require JavaScript.
+          </p>
+        </noscript>
+      </aside>
+      <section class="journal-results" id="journal-results" aria-labelledby="journal-results-title">
+        <h2 class="sr-only" id="journal-results-title">
+          Journal entries
+        </h2>
+        <div class="journal-results-toolbar">
+          <p class="journal-results-count" role="status" data-journal-count>
+            {articles.length} notes · Page {page} of {pages}
+          </p>
+          <button class="journal-clear" type="button" data-journal-clear hidden>
+            Clear filters
+          </button>
+        </div>
+        <div class="journal-archive-grid">
+          {articles.map((entry, index) => (
+            <div
+              data-journal-entry
+              data-category={entry.data.category}
+              data-tags={JSON.stringify(entry.data.tags)}
+              data-search={`${entry.data.title} ${entry.data.description} ${entry.data.category} ${entry.data.tags.join(' ')}`}
+              data-entry-page={Math.floor(index / JOURNAL_PAGE_SIZE) + 1}
+              hidden={Math.floor(index / JOURNAL_PAGE_SIZE) + 1 !== page}
+            >
+              <JournalCard entry={entry} showReadLink />
+            </div>
+          ))}
+        </div>
+        <div class="journal-empty" data-journal-empty hidden>
+          <h3>No notes found.</h3>
+          <p>Try a shorter phrase or clear the filters to see every category.</p>
+        </div>
+        <JournalPagination page={page} pages={pages} />
+      </section>
+    </div>
+  </main>
+</BaseLayout>
+
+<script>
+  const archive = document.querySelector<HTMLElement>('[data-journal-archive]');
+  if (archive) {
+    const form = archive.querySelector<HTMLFormElement>('[data-journal-search]');
+    const input = archive.querySelector<HTMLInputElement>('#journal-query');
+    const cards = [...archive.querySelectorAll<HTMLElement>('[data-journal-entry]')];
+    const categories = [...archive.querySelectorAll<HTMLAnchorElement>('[data-journal-category]')];
+    const count = archive.querySelector<HTMLElement>('[data-journal-count]');
+    const clear = archive.querySelector<HTMLButtonElement>('[data-journal-clear]');
+    const empty = archive.querySelector<HTMLElement>('[data-journal-empty]');
+    const pagination = archive.querySelector<HTMLElement>('[data-journal-pagination]');
+    const directory = archive.querySelector<HTMLDetailsElement>('[data-journal-directory]');
+    const currentPage = archive.dataset.page ?? '1';
+    const initialCount = count?.textContent ?? '';
+    const query = new URLSearchParams(window.location.search);
+    let category = query.get('category') ?? '';
+    let tag = (query.get('tag') ?? '').slice(0, 80);
+    if (!categories.some((link) => link.dataset.journalCategory === category)) category = '';
+    if (directory) {
+      const wide = window.matchMedia('(min-width: 62rem)');
+      directory.open = wide.matches;
+      wide.addEventListener('change', () => {
+        directory.open = wide.matches;
+      });
+    }
+    if (form && input && count && clear && empty && pagination) {
+      input.value = (query.get('q') ?? '').slice(0, 100);
+      const apply = (updateUrl: boolean) => {
+        const phrase = input.value.trim().toLocaleLowerCase('en');
+        const filtering = Boolean(phrase || category || tag);
+        let matches = 0;
+        for (const card of cards) {
+          const tags: string[] = JSON.parse(card.dataset.tags ?? '[]');
+          const match =
+            (!phrase || (card.dataset.search ?? '').toLocaleLowerCase('en').includes(phrase)) &&
+            (!category || card.dataset.category === category) &&
+            (!tag || tags.includes(tag));
+          card.hidden = !match || (!filtering && card.dataset.entryPage !== currentPage);
+          if (!card.hidden) matches++;
+        }
+        for (const link of categories) {
+          if (link.dataset.journalCategory === category) link.setAttribute('aria-current', 'true');
+          else link.removeAttribute('aria-current');
+        }
+        count.textContent = filtering
+          ? `${matches} ${matches === 1 ? 'note' : 'notes'}${category ? ` in ${category}` : ''}${tag ? ` tagged “${tag}”` : ''}${phrase ? ` matching “${input.value.trim()}”` : ''}`
+          : initialCount;
+        clear.hidden = !filtering;
+        empty.hidden = matches > 0;
+        pagination.hidden = filtering;
+        if (updateUrl) {
+          const address = new URL(window.location.href);
+          address.search = '';
+          if (phrase) address.searchParams.set('q', input.value.trim());
+          if (category) address.searchParams.set('category', category);
+          if (tag) address.searchParams.set('tag', tag);
+          window.history.replaceState(null, '', address);
+        }
+      };
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        apply(true);
+      });
+      for (const link of categories)
+        link.addEventListener('click', (event) => {
+          if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+          event.preventDefault();
+          category = link.dataset.journalCategory ?? '';
+          tag = '';
+          apply(true);
+          if (directory && !window.matchMedia('(min-width: 62rem)').matches) {
+            directory.open = false;
+            directory.querySelector('summary')?.focus();
+          }
+        });
+      clear.addEventListener('click', () => {
+        input.value = '';
+        category = '';
+        tag = '';
+        apply(true);
+        input.focus();
+      });
+      apply(false);
+    }
+  }
+</script>

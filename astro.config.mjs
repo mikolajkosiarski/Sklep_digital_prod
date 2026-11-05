@@ -5,6 +5,10 @@ import tailwindcss from '@tailwindcss/vite';
 
 const redirects = {
   '/hero-frames.html': '/',
+  '/journal.html': '/journal/',
+  '/journal-png-or-brushset.html': '/journal/png-or-brushset/',
+  '/journal-working-with-digital-ornaments.html': '/journal/working-with-digital-ornaments/',
+  '/journal-a-study-in-worn-textures.html': '/journal/a-study-in-worn-textures/',
 };
 
 export default defineConfig({

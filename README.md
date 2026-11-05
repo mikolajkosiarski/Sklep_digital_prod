@@ -1,8 +1,10 @@
 # Visamore
 
-Local implementation stage 1.
+Local implementation stage 2.
 
 Responsive Astro and Tailwind site, shared header/footer, hero, brand and offer sections, contact page and local form preview.
+
+Markdown Journal with eight articles, shared article template, archive, search, categories, pagination, author, sharing and discussion preview.
 
 ## Run and check
 

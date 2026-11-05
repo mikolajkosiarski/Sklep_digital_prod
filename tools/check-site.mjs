@@ -258,7 +258,21 @@ async function htmlFiles(directory) {
 }
 
 async function expectedRoutes() {
-  return ['/', '/contact/', '/404.html'];
+  return [
+    '/',
+    '/contact/',
+    '/404.html',
+    '/journal/',
+    '/journal/page/2/',
+    '/journal/a-study-in-worn-textures/',
+    '/journal/check-the-final-size/',
+    '/journal/give-the-frame-room/',
+    '/journal/keep-a-pale-background-readable/',
+    '/journal/keep-the-working-file-editable/',
+    '/journal/one-focal-point/',
+    '/journal/png-or-brushset/',
+    '/journal/working-with-digital-ornaments/',
+  ];
 }
 
 try {
