@@ -19,7 +19,8 @@ not part of this application.
   Fonts stylesheet on 2026-10-26:
   https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap
 - Pinyon Script is distributed under SIL OFL 1.1. Its existing license is
-  `fonts/pinyon-script/OFL.txt`.
+  `fonts/pinyon-script/OFL.txt`. The site serves the unmodified font converted
+  from TTF to WOFF2 for smaller downloads.
 
 These source notes do not grant redistribution rights to the commercial Visamore
 artwork or product packs. The application contains the selected previews used

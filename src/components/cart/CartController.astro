@@ -1,5 +1,7 @@
 ---
 import { storeProducts } from '../../lib/storefront';
+import { url } from '../../lib/paths';
+// Escape '<' so catalogue text cannot close the JSON script element.
 const data = JSON.stringify(
   storeProducts.map(({ key, title, priceMinor, maxQuantity }) => ({
     key,
@@ -7,23 +9,44 @@ const data = JSON.stringify(
     priceMinor,
     maxQuantity,
   })),
-).replace(/</g, '\u003c');
+).replace(/</g, '\\u003c');
 ---
 
 <script is:inline id="cart-catalog" type="application/json" set:html={data} />
-<p
-  class="cart-announcement"
-  data-cart-status
-  role="status"
-  aria-live="polite"
-  aria-atomic="true"
-></p>
+<div class="cart-toast" data-cart-toast>
+  <p data-cart-status role="status" aria-live="polite" aria-atomic="true"></p>
+  <a class="cart-toast__link" href={url('/cart/')} data-cart-toast-link hidden>
+    View cart
+  </a>
+</div>
 <script>
   import '../../scripts/cart';
 </script>
 
 <style>
-  .cart-announcement {
+  /* The live region always exists so screen readers hear every update; it is
+     only drawn as a small notice while it holds a message. */
+  .cart-toast {
+    position: fixed;
+    inset-inline: 1rem;
+    bottom: 1rem;
+    z-index: 40;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 1.5rem;
+    max-width: 30rem;
+    margin-inline: auto;
+    padding: 0.875rem 1.25rem;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font: 400 var(--text-caption) / 1.6 var(--font-mono);
+  }
+  .cart-toast p {
+    margin: 0;
+  }
+  .cart-toast:not(.is-visible) {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -32,5 +55,16 @@ const data = JSON.stringify(
     overflow: hidden;
     clip-path: inset(50%);
     white-space: nowrap;
+  }
+  .cart-toast__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+  .cart-toast__link:focus-visible {
+    outline-color: var(--color-paper);
   }
 </style>

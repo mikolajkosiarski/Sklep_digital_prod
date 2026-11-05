@@ -30,7 +30,7 @@
   padding: 1.75rem 0 4.0625rem;
 }
 .collections-intro h2 {
-  font: 400 3.3125rem / 0.95 var(--display);
+  font: 400 3.3125rem / 0.95 var(--font-display);
   letter-spacing: 0;
   margin: 0;
   width: 75%;
@@ -44,11 +44,11 @@
 }
 .collections-intro p {
   margin: 1.5625rem 0 0;
-  font: var(--text-copy) / 1.9 var(--mono);
-  color: var(--soft);
+  font: var(--text-copy) / 1.9 var(--font-mono);
+  color: var(--color-muted);
   max-width: 11.25rem;
 }
-@media (min-width: 22.5625rem) {
+@variant xs {
   .collections-intro h2 {
     font-size: 3.8125rem;
   }
@@ -56,7 +56,7 @@
     max-width: 12.5rem;
   }
 }
-@media (min-width: 37.5625rem) {
+@variant sm {
   .collection-bleed img {
     top: -2.5rem;
     right: -18.125rem;
@@ -74,7 +74,7 @@
     margin-top: 2rem;
   }
 }
-@media (min-width: 43.8125rem) {
+@variant md {
   .collections-section {
     margin-top: 6.25rem;
   }
@@ -102,7 +102,7 @@
     line-height: 1.95;
   }
 }
-@media (min-width: 65.6875rem) {
+@variant lg {
   .collections-intro {
     min-height: 24.375rem;
     padding-top: 4.375rem;

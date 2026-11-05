@@ -11,7 +11,12 @@ import { url } from '../../lib/paths';
   title="Digital collections — Visamore"
   description="Explore Visamore digital design collections, with original listing covers, artwork previews and file details."
   section="digital"
-  schema={collectionSchema('Visamore digital collections', digitalProducts, digitalPath)}
+  schema={collectionSchema(
+    'Visamore digital collections',
+    digitalProducts,
+    digitalPath,
+    Astro.site,
+  )}
 >
   <main id="main-content" class="vm-container">
     <header class="catalog-header">

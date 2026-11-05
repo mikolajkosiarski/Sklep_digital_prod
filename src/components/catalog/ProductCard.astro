@@ -11,8 +11,9 @@ const { product, headingLevel = 3 } = Astro.props;
 const Heading = headingLevel === 2 ? 'h2' : 'h3';
 ---
 
-<article class="product-card" data-product-card={product.key} aria-label={product.title}>
-  <a class="product-card__image" href={product.href} aria-label={`View ${product.title}`}>
+<article class="product-card" data-product-card={product.key}>
+  <!-- The title link is the card's single tab stop; the image repeats it for pointer users. -->
+  <a class="product-card__image" href={product.href} tabindex="-1" aria-hidden="true">
     <img
       src={product.image.src}
       srcset={product.image.srcset}

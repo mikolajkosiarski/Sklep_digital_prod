@@ -1,6 +1,6 @@
 import type { ImageMetadata } from 'astro';
 import { getImage } from 'astro:assets';
-import { coverSource, type DigitalProduct } from './catalog';
+import { coverFile, type DigitalProduct } from './catalog';
 import { getOffer, type OfferImage } from './offers';
 
 const images = import.meta.glob<ImageMetadata>('../assets/listings/*.{jpg,jpeg,png,webp}', {
@@ -28,12 +28,25 @@ export async function prepareListingImage(image: OfferImage) {
   };
 }
 
+/** A 1200 px JPEG of a listing image for link previews and structured data. */
+export async function getSocialImage(file: string): Promise<string> {
+  const source = images[`../assets/listings/${file}`];
+  if (!source) throw new Error(`Missing listing image: ${file}`);
+  const image = await getImage({
+    src: source,
+    width: Math.min(1200, source.width),
+    format: 'jpeg',
+    quality: 82,
+  });
+  return image.src;
+}
+
 export async function getProductGallery(product: DigitalProduct) {
   return Promise.all(
     [
       ...getOffer(product.id).gallery,
       {
-        file: coverSource(product).split('/').at(-1)!,
+        file: coverFile(product),
         alt:
           product.coverAlt ??
           `${product.title} — original ${product.designCount}-design listing cover`,

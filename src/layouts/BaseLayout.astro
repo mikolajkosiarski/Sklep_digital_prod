@@ -46,7 +46,12 @@ const jsonLd = JSON.stringify(data).replace(/</g, '\\u003c');
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f7f7f7" />
+    <!-- Marks scripting before first paint so the mobile menu starts closed. -->
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
     <title>{title}</title>
+    <link rel="icon" href={asset('favicon.svg')} type="image/svg+xml" />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, follow" />}
     <meta property="og:title" content={title} />

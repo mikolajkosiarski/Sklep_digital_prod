@@ -9,7 +9,7 @@ const quantityId = `cart-quantity-${product.key.replace(':', '-')}`;
 ---
 
 <article class="cart-line" data-cart-row={product.key} aria-label={product.title} hidden>
-  <a class="cart-line-image" href={product.href} aria-label={`View ${product.title}`}>
+  <a class="cart-line-image" href={product.href} tabindex="-1" aria-hidden="true">
     <img
       src={product.image.src}
       srcset={product.image.srcset}
@@ -82,13 +82,14 @@ const quantityId = `cart-quantity-${product.key.replace(':', '-')}`;
   </div>
 </article>
 <style>
+  @reference '../../styles/global.css';
   .cart-line {
     display: grid;
     grid-template-columns: 6rem minmax(0, 1fr) auto;
     grid-template-areas: 'image info total' 'image controls controls';
     gap: 0.75rem 1.5rem;
     padding-block: 1.5rem;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid var(--color-line);
     min-width: 0;
   }
   .cart-line-image {
@@ -102,14 +103,14 @@ const quantityId = `cart-quantity-${product.key.replace(':', '-')}`;
     aspect-ratio: 1;
     height: auto;
     object-fit: contain;
-    background: var(--paper-base);
+    background: var(--color-paper);
   }
   .cart-line-info {
     grid-area: info;
     min-width: 0;
   }
   .cart-line-info h2 {
-    font: 500 1.125rem/1.5 var(--mono);
+    font: 500 1.125rem/1.5 var(--font-mono);
     margin: 0 0 0.5rem;
     overflow-wrap: anywhere;
   }
@@ -126,7 +127,7 @@ const quantityId = `cart-quantity-${product.key.replace(':', '-')}`;
     margin: 0.25rem 0 0;
     font-size: 0.875rem;
     line-height: 1.7;
-    color: var(--soft);
+    color: var(--color-muted);
     overflow-wrap: anywhere;
   }
   .cart-line-total {
@@ -137,7 +138,7 @@ const quantityId = `cart-quantity-${product.key.replace(':', '-')}`;
   }
   .cart-line-total strong {
     display: block;
-    font: 500 1.125rem/1.5 var(--mono);
+    font: 500 1.125rem/1.5 var(--font-mono);
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
   }
@@ -145,7 +146,7 @@ const quantityId = `cart-quantity-${product.key.replace(':', '-')}`;
     display: block;
     font-size: 0.75rem;
     line-height: 1.5;
-    color: var(--soft);
+    color: var(--color-muted);
     margin-bottom: 0.25rem;
   }
   .cart-line-controls {
@@ -160,8 +161,8 @@ const quantityId = `cart-quantity-${product.key.replace(':', '-')}`;
   .cart-quantity {
     display: inline-grid;
     grid-template-columns: 2.75rem 3rem 2.75rem;
-    border: 1px solid var(--line);
-    background: var(--paper-base);
+    border: 1px solid var(--color-line);
+    background: var(--color-paper);
   }
   .cart-quantity button,
   .cart-quantity input {
@@ -170,8 +171,8 @@ const quantityId = `cart-quantity-${product.key.replace(':', '-')}`;
     height: 2.75rem;
     border: 0;
     background: transparent;
-    color: var(--ink);
-    font: 400 1rem/1.5 var(--mono);
+    color: var(--color-ink);
+    font: 400 1rem/1.5 var(--font-mono);
     text-align: center;
     padding: 0;
   }
@@ -189,7 +190,7 @@ const quantityId = `cart-quantity-${product.key.replace(':', '-')}`;
   .cart-quantity input {
     appearance: textfield;
     -moz-appearance: textfield;
-    border-inline: 1px solid var(--line);
+    border-inline: 1px solid var(--color-line);
     border-radius: 0;
   }
   .cart-quantity input::-webkit-inner-spin-button,
@@ -206,30 +207,36 @@ const quantityId = `cart-quantity-${product.key.replace(':', '-')}`;
   .cart-remove {
     border: 0;
     background: transparent;
-    color: var(--soft);
+    color: var(--color-muted);
     min-height: 2.75rem;
     padding: 0.5rem 0;
-    font: 400 0.875rem/1.5 var(--mono);
+    font: 400 0.875rem/1.5 var(--font-mono);
     text-decoration: underline;
     text-underline-offset: 0.3em;
   }
   .cart-remove:hover {
-    color: var(--ink);
+    color: var(--color-ink);
   }
-  @media (max-width: 35.999rem) {
-    .cart-line {
+  .cart-line {
+    @variant max-sm {
       grid-template-columns: 4.5rem minmax(0, 1fr);
       grid-template-areas: 'image info' 'image total' 'controls controls';
       column-gap: 1rem;
     }
-    .cart-line-total {
+  }
+  .cart-line-total {
+    @variant max-sm {
       text-align: left;
       margin-top: 0.25rem;
     }
-    .cart-total-label {
+  }
+  .cart-total-label {
+    @variant max-sm {
       display: none;
     }
-    .cart-line-controls {
+  }
+  .cart-line-controls {
+    @variant max-sm {
       margin-top: 0.25rem;
     }
   }

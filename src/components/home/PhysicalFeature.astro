@@ -2,6 +2,7 @@
 import { physicalProducts } from '../../lib/catalog';
 import { getStoreProduct } from '../../lib/storefront';
 import { url } from '../../lib/paths';
+import { mobileProductRail } from '../../lib/layout-classes';
 import ProductCard from '../catalog/ProductCard.astro';
 import TerminalButton from '../ui/TerminalButton.astro';
 ---
@@ -18,7 +19,7 @@ import TerminalButton from '../ui/TerminalButton.astro';
     <p>The same dark forms, explored on clothing. Apparel concepts from the archive.</p>
     <TerminalButton label="Explore physical" href={url('/physical/')} />
   </header>
-  <div class="product-grid">
+  <div class:list={['product-grid', mobileProductRail]}>
     {physicalProducts.slice(0, 3).map((product) => (
       <ProductCard product={getStoreProduct(`physical:${product.slug}`)} />
     ))}
@@ -31,6 +32,6 @@ import TerminalButton from '../ui/TerminalButton.astro';
   }
   .physical-feature-heading p {
     margin-top: 1rem;
-    color: var(--soft);
+    color: var(--color-muted);
   }
 </style>

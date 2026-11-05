@@ -14,12 +14,12 @@
 }
 .contact-section-header p {
   max-width: 36rem;
-  color: var(--soft);
+  color: var(--color-muted);
   margin: 1.25rem 0 0;
   font-size: 1rem;
 }
 .contact-section-title {
-  font: 500 1.375rem/1.6 var(--mono);
+  font: 500 1.375rem/1.6 var(--font-mono);
   letter-spacing: -0.035em;
   margin: 0;
 }
@@ -32,8 +32,8 @@
 .contact-form-panel {
   min-width: 0;
   padding: clamp(1rem, 3vw, 2rem);
-  background: var(--paper-base);
-  border-top: 1px solid var(--line);
+  background: var(--color-paper);
+  border-top: 1px solid var(--color-line);
 }
 .contact-form {
   display: grid;
@@ -41,7 +41,7 @@
 }
 .contact-required {
   font-size: var(--text-caption);
-  color: var(--soft);
+  color: var(--color-muted);
   margin: 0;
 }
 .contact-form-row {
@@ -65,8 +65,8 @@
   border-radius: 0;
   padding: 0.75rem;
   background: #fbfbfb;
-  color: var(--ink);
-  font: 1rem/1.7 var(--mono);
+  color: var(--color-ink);
+  font: 1rem/1.7 var(--font-mono);
 }
 .contact-field select {
   padding-right: 1.5rem;
@@ -79,11 +79,11 @@
   opacity: 1;
 }
 .contact-field :is(input, select, textarea):focus-visible {
-  outline: 2px solid var(--ink);
+  outline: 2px solid var(--color-ink);
   outline-offset: 4px;
 }
 .contact-field [aria-invalid='true'] {
-  border: 2px solid var(--ink);
+  border: 2px solid var(--color-ink);
   padding: calc(0.75rem - 1px);
 }
 .contact-field select[aria-invalid='true'] {
@@ -91,14 +91,14 @@
 }
 .contact-field-hint,
 .contact-error {
-  font: var(--text-caption)/1.7 var(--mono);
+  font: var(--text-caption)/1.7 var(--font-mono);
   margin: 0.5rem 0 0;
 }
 .contact-field-hint {
-  color: var(--soft);
+  color: var(--color-muted);
 }
 .contact-error {
-  color: var(--ink);
+  color: var(--color-ink);
   font-weight: 500;
 }
 .contact-form-actions {
@@ -114,14 +114,14 @@
   padding: 0.5rem 0;
   border: 0;
   background: transparent;
-  color: var(--soft);
+  color: var(--color-muted);
   text-decoration: underline;
   text-underline-offset: 0.25em;
   font-size: var(--text-caption);
 }
 .contact-privacy {
   font-size: var(--text-caption);
-  color: var(--soft);
+  color: var(--color-muted);
   margin: 0;
 }
 .contact-privacy a {
@@ -135,19 +135,19 @@
   margin: 0;
   min-height: 1.5rem;
   font-size: var(--text-caption);
-  color: var(--soft);
+  color: var(--color-muted);
 }
 .contact-message-preview {
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--color-line);
   padding-top: 1.5rem;
   overflow-wrap: anywhere;
 }
 .contact-message-preview:focus {
-  outline: 2px solid var(--ink);
+  outline: 2px solid var(--color-ink);
   outline-offset: 0.5rem;
 }
 .contact-message-preview h3 {
-  font: 500 1.125rem/1.7 var(--mono);
+  font: 500 1.125rem/1.7 var(--font-mono);
 }
 .contact-message-preview dl {
   margin: 0 0 1.5rem;
@@ -159,7 +159,7 @@
   margin-bottom: 0.75rem;
 }
 .contact-message-preview dt {
-  color: var(--soft);
+  color: var(--color-muted);
 }
 .contact-message-preview dd {
   margin: 0;
@@ -170,19 +170,19 @@
 }
 .contact-information {
   min-width: 0;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--color-line);
   padding-top: 1.5rem;
 }
 .contact-prose h3 {
-  font: 500 1rem/1.7 var(--mono);
+  font: 500 1rem/1.7 var(--font-mono);
   margin: 2rem 0 0.75rem;
 }
 .contact-prose h3:first-child {
   margin-top: 0;
 }
 .contact-prose p {
-  color: var(--soft);
-  font: var(--text-copy)/1.9 var(--mono);
+  color: var(--color-muted);
+  font: var(--text-copy)/1.9 var(--font-mono);
   margin: 0 0 1rem;
 }
 .contact-useful-links {
@@ -216,7 +216,7 @@
 .contact-breadcrumb li + li::before {
   content: '/';
   margin-right: 0.75rem;
-  color: var(--soft);
+  color: var(--color-muted);
 }
 .contact-breadcrumb a {
   display: inline-flex;
@@ -231,11 +231,11 @@
 }
 .contact-page-header p {
   max-width: 40rem;
-  color: var(--soft);
+  color: var(--color-muted);
   font-size: 1rem;
   margin: 1.25rem 0 0;
 }
-@media (min-width: 36rem) {
+@variant sm {
   .contact-form-row {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -244,7 +244,7 @@
     gap: 1rem;
   }
 }
-@media (min-width: 48rem) {
+@variant md {
   .contact-section {
     margin-top: 9rem;
   }
@@ -264,7 +264,7 @@
     padding-block: 3rem 4rem;
   }
 }
-@media (min-width: 62rem) {
+@variant lg {
   .contact-layout {
     grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
     gap: clamp(2rem, 5vw, 4rem);

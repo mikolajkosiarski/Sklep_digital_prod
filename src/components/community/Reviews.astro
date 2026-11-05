@@ -33,12 +33,13 @@ const source = reviews.sourceUrl ?? reviews.items.find((item) => item.sourceUrl)
             <p>{item.quote}</p>
           </blockquote>
           <figcaption>
-            <span class="review-author">{item.author}</span>
+            <span class="review-author">{item.author}</span>{' '}
             <span class="review-meta">
               <span>{reviews.sourceLabel}</span>
               {item.date && (
                 <>
-                  <span aria-hidden="true">·</span>
+                  {' '}
+                  <span aria-hidden="true">·</span>{' '}
                   <time datetime={item.date}>{formatReviewDate(item.date)}</time>
                 </>
               )}

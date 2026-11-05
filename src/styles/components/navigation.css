@@ -27,6 +27,10 @@
   width: 100%;
   height: auto;
 }
+/* The hero carries the wordmark on the home page, so the header omits it. */
+.home-page .vm-brand {
+  display: none;
+}
 /* Mobile: Menu left, brand centred, Cart right. */
 .vm-nav-controls {
   display: contents;
@@ -39,8 +43,8 @@
   padding: 0.5rem 0;
   border: 0;
   background: transparent;
-  color: var(--ink);
-  font: 400 1rem/1.5 var(--mono);
+  color: var(--color-ink);
+  font: 400 1rem/1.5 var(--font-mono);
   white-space: nowrap;
 }
 .vm-menu-toggle {
@@ -77,7 +81,7 @@
   align-items: center;
   min-height: 3rem;
   padding: 0.5rem 0;
-  font: 400 1rem/1.5 var(--mono);
+  font: 400 1rem/1.5 var(--font-mono);
 }
 .vm-nav-link[aria-current],
 .vm-nav-link:hover,
@@ -86,6 +90,13 @@
   text-decoration: underline;
   text-underline-offset: 0.4em;
 }
+/* With scripting on, keep the phone menu closed until menu.ts takes over,
+   so the link list never flashes open in the page flow. */
+@variant max-md {
+  .js .vm-navbar:not([data-menu-ready]) .vm-navigation {
+    display: none;
+  }
+}
 .vm-navbar:has(.vm-menu-toggle:not([hidden])) .vm-navigation {
   position: absolute;
   top: 100%;
@@ -93,10 +104,10 @@
   right: 0;
   width: 100%;
   padding: 0.75rem 1.5rem 1.25rem;
-  background: var(--paper-base);
-  border-block: 1px solid var(--line);
+  background: var(--color-paper);
+  border-block: 1px solid var(--color-line);
 }
-@media (min-width: 48rem) {
+@variant md {
   .vm-navbar {
     min-height: 6rem;
     padding-block: 1rem;
@@ -115,9 +126,6 @@
     grid-row: auto;
     justify-self: start;
     width: 8.5rem;
-  }
-  .home-page .vm-brand {
-    display: none;
   }
   .vm-menu-toggle {
     display: none;
@@ -148,7 +156,7 @@
   }
 }
 
-@media (max-width: 23.999rem) {
+@variant max-xs {
   .vm-navbar > .vm-container {
     column-gap: 0.5rem;
   }

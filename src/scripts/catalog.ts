@@ -20,7 +20,7 @@ if (catalog) {
       const next = new URL(location.href);
       if (selected === 'all' || !selected) next.searchParams.delete('filter');
       else next.searchParams.set('filter', selected);
-      history.pushState(null, '', next);
+      history.replaceState(null, '', next);
     }
   };
   buttons.forEach((button) =>

@@ -54,6 +54,7 @@ const groups = [
 </footer>
 
 <style>
+  @reference '../../styles/global.css';
   .footer-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -71,12 +72,12 @@ const groups = [
   .footer-brand {
     font-weight: 500;
     font-size: 1.125rem;
-    color: var(--ink);
+    color: var(--color-ink);
   }
   nav h2 {
     font-size: 1rem;
     margin: 0.65rem 0 0.75rem;
-    color: var(--ink);
+    color: var(--color-ink);
   }
   nav ul {
     margin: 0;
@@ -93,21 +94,23 @@ const groups = [
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--color-line);
     margin-top: 2rem;
     padding-top: 1rem;
   }
-  @media (min-width: 48rem) {
-    .footer-grid {
+  .footer-grid {
+    @variant md {
       grid-template-columns: 1.1fr 1fr 1fr 1.35fr;
       gap: 1.5rem;
     }
-    .footer-intro {
+  }
+  .footer-intro {
+    @variant md {
       grid-column: auto;
     }
   }
-  @media (max-width: 23rem) {
-    .footer-grid {
+  .footer-grid {
+    @variant max-xs {
       grid-template-columns: minmax(0, 1fr);
     }
   }

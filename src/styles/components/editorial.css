@@ -2,11 +2,11 @@
 .editorial-section {
   margin-top: 5rem;
   padding-top: 3rem;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--color-line);
 }
 .editorial-copy {
-  font: var(--text-copy) / 1.85 var(--mono);
-  color: var(--soft);
+  font: var(--text-copy) / 1.85 var(--font-mono);
+  color: var(--color-muted);
   max-width: 33rem;
   margin: 1.25rem 0 0;
 }
@@ -18,8 +18,8 @@
 }
 .format-comparison {
   background: transparent;
-  color: var(--ink);
-  font: var(--text-caption) / 1.8 var(--mono);
+  color: var(--color-ink);
+  font: var(--text-caption) / 1.8 var(--font-mono);
   table-layout: fixed;
   width: 100%;
   margin: 0;
@@ -28,10 +28,10 @@
   font-weight: 400;
   vertical-align: middle;
   padding: 1rem 0.5rem;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--color-line);
 }
 .format-comparison thead th {
-  color: var(--soft);
+  color: var(--color-muted);
   font-size: var(--text-caption);
 }
 .format-comparison tr > :first-child {
@@ -54,8 +54,8 @@
   text-underline-offset: 0.3rem;
 }
 .format-comparison caption {
-  font: var(--text-caption) / 1.8 var(--mono);
-  color: var(--soft);
+  font: var(--text-caption) / 1.8 var(--font-mono);
+  color: var(--color-muted);
   padding-top: 0.75rem;
 }
 .download-note {
@@ -63,12 +63,12 @@
   max-width: 36rem;
 }
 .download-note h3 {
-  font: 500 0.875rem/1.7 var(--mono);
+  font: 500 0.875rem/1.7 var(--font-mono);
   margin: 0 0 0.75rem;
 }
 .download-note p {
-  font: var(--text-copy) / 1.9 var(--mono);
-  color: var(--soft);
+  font: var(--text-copy) / 1.9 var(--font-mono);
+  color: var(--color-muted);
   margin: 0;
 }
 .physical-feature {
@@ -87,15 +87,15 @@
 }
 .design-note {
   padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--color-line);
 }
 .design-note h3 {
-  font: 500 1rem/1.7 var(--mono);
+  font: 500 1rem/1.7 var(--font-mono);
   margin: 0 0 1rem;
 }
 .design-note p {
-  font: var(--text-copy) / 1.95 var(--mono);
-  color: var(--soft);
+  font: var(--text-copy) / 1.95 var(--font-mono);
+  color: var(--color-muted);
   max-width: 30rem;
   margin: 0;
 }
@@ -104,13 +104,13 @@
   align-items: center;
   min-height: 2.75rem;
   margin-top: 1rem;
-  font: var(--text-caption) var(--mono);
+  font: var(--text-caption) var(--font-mono);
 }
 .design-note a:hover {
   text-decoration: underline;
   text-underline-offset: 0.3rem;
 }
-@media (min-width: 48rem) {
+@variant md {
   .editorial-section {
     margin-top: 7rem;
     padding-top: 4rem;

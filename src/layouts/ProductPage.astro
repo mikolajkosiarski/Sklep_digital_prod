@@ -6,10 +6,10 @@ import ProductPrice from '../components/product/ProductPrice.astro';
 import ProductFiles from '../components/product/ProductFiles.astro';
 import ProductFilm from '../components/product/ProductFilm.astro';
 import RelatedProducts from '../components/product/RelatedProducts.astro';
-import { coverSource, hasSales, sales, salesSourceNote, type DigitalProduct } from '../lib/catalog';
+import { coverFile, hasSales, sales, salesSourceNote, type DigitalProduct } from '../lib/catalog';
 import type { DigitalOffer } from '../lib/offers';
-import { getProductGallery } from '../lib/product-media';
-import { asset, url } from '../lib/paths';
+import { getProductGallery, getSocialImage } from '../lib/product-media';
+import { absoluteUrl, url } from '../lib/paths';
 import '../styles/components/product-detail.css';
 
 interface Props {
@@ -18,13 +18,14 @@ interface Props {
 }
 const { product, offer } = Astro.props;
 const images = await getProductGallery(product);
+const socialImage = await getSocialImage(coverFile(product));
 const title = `${product.title} · ${offer.designCount} designs`;
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: title,
   description: product.description,
-  image: asset(coverSource(product)),
+  image: absoluteUrl(socialImage, Astro.site),
   brand: { '@type': 'Brand', name: 'Visamore' },
   category: 'Digital design collections',
   // Reference prices do not represent an available checkout offer.
@@ -36,7 +37,7 @@ const schema = {
   description={product.description}
   section="digital"
   schema={schema}
-  ogImage={coverSource(product)}
+  ogImage={socialImage}
   ogAlt={title}
 >
   <main id="main-content" class="vm-container product-page">

@@ -35,4 +35,5 @@ if (menu && toggle) {
     if (desktop.matches && hadToggleFocus) menu.querySelector<HTMLAnchorElement>('a')?.focus();
   });
   update();
+  menu.closest('.vm-navbar')?.setAttribute('data-menu-ready', '');
 }
