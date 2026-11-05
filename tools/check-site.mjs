@@ -9,7 +9,10 @@ const args = process.argv.slice(2);
 const rootOption = args.indexOf('--root');
 const baseOption = args.indexOf('--base');
 const root = path.resolve(rootOption >= 0 ? args[rootOption + 1] : path.join(project, 'dist'));
-const base = baseOption >= 0 ? `/${args[baseOption + 1].replace(/^\/+|\/+$/g, '')}` : '';
+const configuredBase = baseOption >= 0 ? args[baseOption + 1] : process.env.BASE_PATH;
+const base = configuredBase
+  ? `/${configuredBase.replace(/^\/+|\/+$/g, '')}`.replace(/\/$/, '')
+  : '';
 const problems = new Set();
 const checkedAssets = new Set();
 const documents = new Map();
@@ -80,6 +83,16 @@ async function reference(value, file, label, checkFragment = true) {
     fragment = hash >= 0 ? decodeURIComponent(value.slice(hash + 1)).split(':~:text=')[0] : '';
   } catch {
     report(file, `${label}: invalid URL encoding ${value}`);
+    return null;
+  }
+  if (
+    base &&
+    pathname.startsWith('/') &&
+    pathname !== base &&
+    !pathname.startsWith(`${base}/`) &&
+    label !== 'required page'
+  ) {
+    report(file, `${label}: URL is outside deployment base ${value}`);
     return null;
   }
   if (base && (pathname === base || pathname.startsWith(`${base}/`)))

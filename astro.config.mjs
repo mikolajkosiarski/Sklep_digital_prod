@@ -4,6 +4,8 @@ import { markdownSafety, markdownHtmlSafety } from './tools/markdown-safety.mjs'
 import tailwindcss from '@tailwindcss/vite';
 import catalog from './src/data/shop-content.json' with { type: 'json' };
 
+const deploymentBase = (process.env.BASE_PATH || '/').replace(/\/+$/, '');
+
 // Keep bookmarked prototype addresses working while the site uses clean routes.
 const redirects = {
   '/hero-frames.html': '/',
@@ -28,7 +30,7 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'always',
   site: process.env.SITE_URL || undefined,
-  base: process.env.BASE_PATH || '/',
+  base: deploymentBase || '/',
   server: { host: '127.0.0.1', port: 4321 },
   vite: { plugins: [tailwindcss()] },
   markdown: {
@@ -37,5 +39,11 @@ export default defineConfig({
       hastPlugins: [markdownHtmlSafety],
     }),
   },
-  redirects,
+  // Static redirect destinations must stay inside the deployed repository path.
+  redirects: Object.fromEntries(
+    Object.entries(redirects).map(([source, destination]) => [
+      source,
+      `${deploymentBase}${destination}`,
+    ]),
+  ),
 });

@@ -9,7 +9,8 @@ Historia została uporządkowana lokalnie 5 listopada 2026 na podstawie istniej�
 | 3 / Sklep            | Katalogi Digital i Physical, opisy produktów, wspólne karty Full print, galerie, ceny, film i lokalny koszyk.                           | `feat(store): add catalogues, product pages and local cart`   |
 | 4 / Pozostałe strony | About, pomoc, szkice dokumentów, rzeczywiste opinie Etsy, sekcja społecznościowa, finalna nawigacja i dokumentacja.                     | `feat(site): complete information pages and Etsy reviews`     |
 | 5 / Wygląd           | Większe gwiazdki ocen w opiniach.                                                                                                       | `style(reviews): enlarge rating stars`                        |
+| 6 / Wdrożenie        | GitHub Pages: automatyczny build i publikacja po testach, ścieżka repozytorium i zgodne przekierowania.                                 | `ci(pages): deploy Astro site to GitHub Pages`                |
 
-Tagi `etap-1-cw3`, `etap-2-cw4`, `etap-3-sklep`, `etap-4-podstrony` i `etap-5-opinie` wskazują odpowiadające etapy. Finalny kod jest na gałęzi `main`. Wcześniejsze etapy można oglądać w osobnym katalogu przez `git worktree add <folder> <tag>` bez cofania uruchomionej wersji.
+Tagi `etap-1-cw3`, `etap-2-cw4`, `etap-3-sklep`, `etap-4-podstrony`, `etap-5-opinie` i `etap-6-github-pages` wskazują odpowiadające etapy. Finalny kod jest na gałęzi `main`. Wcześniejsze etapy można oglądać w osobnym katalogu przez `git worktree add <folder> <tag>` bez cofania uruchomionej wersji.
 
-Zależności, wygenerowane pliki i lokalne archiwa nie są śledzone. Ta operacja tworzy historię lokalną; nie wysyła kodu i nie wdraża GitHub Pages. Testy i build nie zastępują formalnego audytu Lighthouse ani zewnętrznej walidacji Schema.org.
+Zależności, wygenerowane pliki i lokalne archiwa nie są śledzone. Pierwsze pięć etapów porządkuje istniejącą wersję. Szósty dodaje workflow publikacji GitHub Pages; ustawienia i adres strony są opisane w README. Testy i build nie zastępują formalnego audytu Lighthouse ani zewnętrznej walidacji Schema.org.

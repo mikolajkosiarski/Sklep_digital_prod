@@ -101,10 +101,22 @@ Po zmianach układu sprawdź w przeglądarce szerokości 360–390, 768 i co naj
 
 ## Historia etapów
 
-Lokalna historia na gałęzi `main` jest podzielona na CW3, CW4, sklep, pozostałe podstrony i osobną poprawkę gwiazdek opinii. Zakres commitów i odpowiadające tagi opisuje [docs/git-stages.md](docs/git-stages.md). Etapy wydzielono z istniejącego projektu; każdy jest sprawdzany oddzielnie.
+Historia na gałęzi `main` jest podzielona na CW3, CW4, sklep, pozostałe podstrony, poprawkę gwiazdek opinii i wdrożenie GitHub Pages. Zakres commitów i odpowiadające tagi opisuje [docs/git-stages.md](docs/git-stages.md). Etapy wydzielono z istniejącego projektu; każdy jest sprawdzany oddzielnie.
 
 ## GitHub i wdrożenie
 
-Repozytorium wskazane w karcie projektu: [mikolajkosiarski/Sklep_digital_prod](https://github.com/mikolajkosiarski/Sklep_digital_prod). Wysyłanie kodu i publikacja GitHub Pages to osobne czynności. Obecny etap jest przygotowywany lokalnie; projekt nie zawiera workflow automatycznej publikacji.
+Repozytorium: [mikolajkosiarski/Sklep_digital_prod](https://github.com/mikolajkosiarski/Sklep_digital_prod).
 
-Przy późniejszym wdrożeniu ustaw `SITE_URL` na właściwy adres i ewentualnie `BASE_PATH` na podkatalog. Nie zapisuj tokenów ani plików `.env` w repozytorium. Do projektu dołączamy podglądy ofert, a nie pełne płatne paczki dla klientów.
+Strona: [mikolajkosiarski.github.io/Sklep_digital_prod](https://mikolajkosiarski.github.io/Sklep_digital_prod/).
+
+Workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) po każdym pushu na `main` uruchamia testy, sprawdzanie typów, build Astro i walidację odnośników. Publikacja następuje tylko po ich powodzeniu. Można ją też uruchomić ręcznie w zakładce Actions. Źródłem GitHub Pages są GitHub Actions.
+
+Workflow ustawia `SITE_URL=https://mikolajkosiarski.github.io` oraz `BASE_PATH=/Sklep_digital_prod`. Dzięki temu metadane, linki i zasoby wskazują podkatalog repozytorium. Lokalny serwer nadal działa pod `/`. Walidator buildu korzysta z tego samego `BASE_PATH` i wykrywa odnośniki wychodzące poza katalog wdrożenia.
+
+Lokalne sprawdzenie konfiguracji produkcyjnej:
+
+```sh
+SITE_URL=https://mikolajkosiarski.github.io BASE_PATH=/Sklep_digital_prod npm run build
+```
+
+Nie zapisuj tokenów ani plików `.env` w repozytorium. Workflow korzysta z uprawnień GitHuba do publikacji Pages i nie wymaga własnego tokena. Do projektu dołączamy podglądy ofert, a nie pełne płatne paczki dla klientów.
