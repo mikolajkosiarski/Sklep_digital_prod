@@ -50,7 +50,7 @@
 }
 .frame-description {
   margin: 1.25rem 0 0.5rem;
-  color: var(--soft);
+  color: var(--color-muted);
   font-size: 1rem;
   line-height: 1.5;
 }
@@ -62,7 +62,7 @@
   width: 100%;
   height: auto;
 }
-@media (min-width: 48rem) {
+@variant md {
   .hero-shell {
     width: calc(100% - clamp(5rem, 12vw, 20rem));
   }

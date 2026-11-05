@@ -35,9 +35,7 @@
       "files": "200 transparent PNG + 200 white-background PNG",
       "brushes": true,
       "delivery": "Files are accessed through the Google Drive link in the delivery PDF.",
-      "cover": "assets/digital/etsy-200-cover.png",
-      "coverWidth": 2048,
-      "coverHeight": 2048,
+      "cover": "etsy-200-cover.png",
       "coverAlt": "Original Visamore listing cover for 200 Frames & Gothic Arches"
     },
     {
@@ -48,8 +46,6 @@
       "files": "55 transparent PNG + 55 white-background PNG",
       "brushes": false,
       "delivery": "All 110 PNG files are supplied in one ZIP archive.",
-      "coverWidth": 1080,
-      "coverHeight": 1080,
       "coverAlt": "Original Etsy cover for the 55-design ornamental dotwork collection"
     },
     {
@@ -60,8 +56,6 @@
       "files": "25 transparent PNG + 25 white-background PNG",
       "brushes": false,
       "delivery": "All 50 high-resolution PNG files are supplied in one ZIP archive.",
-      "coverWidth": 1080,
-      "coverHeight": 1080,
       "coverAlt": "Original Etsy cover for the 25-design Gothic Coquette collection"
     }
   ],

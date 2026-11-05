@@ -3,53 +3,44 @@ import SocialIcon from './SocialIcon.astro';
 import { community } from '../../lib/community';
 import { asset } from '../../lib/paths';
 
-const profiles = community.socialProfiles;
-const pending = profiles.some((profile) => !profile.url);
+// Only confirmed profiles are published; the section stays hidden until one exists.
+const profiles = community.socialProfiles.filter((profile) => profile.url);
 ---
 
-<section class="social-section vm-container" id="social" aria-labelledby="social-title">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12 items-center">
-    <div class="social-title">
-      <h2 id="social-title" class="section-heading">
-        Elsewhere.
-      </h2>
-      <p class="social-copy">
-        New designs, visual studies
-        <br />
-        and details from the studio.
-      </p>
-      <img
-        class="social-mark"
-        src={asset('assets/digital/pack-100-3.png')}
-        width="4096"
-        height="2048"
-        alt=""
-        loading="lazy"
-      />
-    </div>
-    <div>
-      <div class="social-profiles">
-        {profiles.map((profile) => {
-          const Tag = profile.url ? 'a' : 'div';
-          const detail = profile.url
-            ? profile.handle || 'Visit profile'
-            : 'Profile link to confirm';
-          return (
-            <Tag
-              class="social-profile"
-              href={profile.url ?? undefined}
-              data-pending={!profile.url || undefined}
-            >
+{profiles.length > 0 && (
+  <section class="social-section vm-container" id="social" aria-labelledby="social-title">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12 items-center">
+      <div class="social-title">
+        <h2 id="social-title" class="section-heading">
+          Elsewhere.
+        </h2>
+        <p class="social-copy">
+          New designs, visual studies
+          <br />
+          and details from the studio.
+        </p>
+        <img
+          class="social-mark"
+          src={asset('assets/digital/pack-100-3.png')}
+          width="4096"
+          height="2048"
+          alt=""
+          loading="lazy"
+        />
+      </div>
+      <div>
+        <div class="social-profiles">
+          {profiles.map((profile) => (
+            <a class="social-profile" href={profile.url}>
               <span class="social-profile-name">
                 <SocialIcon platform={profile.platform} />
                 {profile.platform}
-              </span>
-              <span class="social-profile-detail">{detail}</span>
-            </Tag>
-          );
-        })}
+              </span>{' '}
+              <span class="social-profile-detail">{profile.handle || 'Visit profile'}</span>
+            </a>
+          ))}
+        </div>
       </div>
-      {pending && <p class="content-preview-note">Layout preview · profiles to confirm</p>}
     </div>
-  </div>
-</section>
+  </section>
+)}

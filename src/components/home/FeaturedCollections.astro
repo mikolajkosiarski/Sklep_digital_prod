@@ -2,6 +2,7 @@
 import { featuredProducts } from '../../lib/catalog';
 import { getStoreProduct } from '../../lib/storefront';
 import { asset, url } from '../../lib/paths';
+import { mobileProductRail } from '../../lib/layout-classes';
 import ProductCard from '../catalog/ProductCard.astro';
 import TerminalButton from '../ui/TerminalButton.astro';
 ---
@@ -19,14 +20,16 @@ import TerminalButton from '../ui/TerminalButton.astro';
   <div class="vm-container">
     <div class="collections-intro">
       <h2 id="collections-title">
-        <span>Selected</span>
-        <span>collections.</span>
+        <span>Selected</span> <span>collections.</span>
       </h2>
       <p>
         Digital artwork for your next composition. Browse PNG collections and Procreate brushsets.
       </p>
     </div>
-    <div class="product-grid product-grid--featured" id="collection-products">
+    <div
+      class:list={['product-grid product-grid--featured', mobileProductRail]}
+      id="collection-products"
+    >
       {featuredProducts.map((product) => (
         <ProductCard product={getStoreProduct(`digital:${product.id}`)} />
       ))}

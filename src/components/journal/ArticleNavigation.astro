@@ -11,8 +11,7 @@ const { previous, next } = Astro.props;
 <nav class="journal-article-nav" aria-label="Article navigation">
   {previous ? (
     <a href={url(`/journal/${previous.id}/`)} rel="prev">
-      <span>Previous note</span>
-      <strong>{previous.data.title}</strong>
+      <span>Previous note</span> <strong>{previous.data.title}</strong>
     </a>
   ) : (
     <div>
@@ -22,8 +21,7 @@ const { previous, next } = Astro.props;
   )}
   {next ? (
     <a href={url(`/journal/${next.id}/`)} rel="next">
-      <span>Next note</span>
-      <strong>{next.data.title}</strong>
+      <span>Next note</span> <strong>{next.data.title}</strong>
     </a>
   ) : (
     <div>

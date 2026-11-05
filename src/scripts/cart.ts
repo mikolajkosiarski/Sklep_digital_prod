@@ -16,7 +16,25 @@ if (data?.textContent) {
   const products: Product[] = JSON.parse(data.textContent);
   const known = new Map(products.map((product) => [product.key, product]));
   const status = document.querySelector<HTMLElement>('[data-cart-status]');
+  const toast = document.querySelector<HTMLElement>('[data-cart-toast]');
+  const toastLink = document.querySelector<HTMLElement>('[data-cart-toast-link]');
+  const onCartPage = document.querySelector('[data-cart-row]') !== null;
+  let toastTimer: number | undefined;
   let items: CartLine[] = [];
+  // Shown visually for a few seconds and announced through the same live region.
+  const announce = (message: string) => {
+    if (!status) return;
+    status.textContent = message;
+    if (!toast || onCartPage) return;
+    if (toastLink) toastLink.hidden = false;
+    toast.classList.add('is-visible');
+    window.clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(() => {
+      if (toast.contains(document.activeElement)) return;
+      toast.classList.remove('is-visible');
+      if (toastLink) toastLink.hidden = true;
+    }, 5000);
+  };
   const read = () => {
     try {
       items = parseCart(localStorage.getItem(cartStorageKey), products);
@@ -28,6 +46,22 @@ if (data?.textContent) {
     const count = items.reduce((sum, item) => sum + item.quantity, 0);
     document.querySelectorAll<HTMLElement>('[data-cart-count]').forEach((node) => {
       node.textContent = String(count);
+    });
+    document.querySelectorAll<HTMLElement>('[data-cart-noun]').forEach((node) => {
+      node.textContent = count === 1 ? 'item' : 'items';
+    });
+    document.querySelectorAll<HTMLButtonElement>('[data-cart-add]').forEach((button) => {
+      const product = known.get(button.dataset.cartAdd ?? '');
+      if (!product) return;
+      const quantity = items.find((item) => item.key === product.key)?.quantity ?? 0;
+      const full = quantity >= product.maxQuantity;
+      const label = button.querySelector<HTMLElement>('.terminal-button__label');
+      if (label) label.textContent = full ? 'In cart' : 'Add to cart';
+      button.dataset.inCart = String(quantity > 0);
+      button.setAttribute(
+        'aria-label',
+        full ? `${product.title} is in your cart` : `Add ${product.title} to cart`,
+      );
     });
     document.querySelectorAll<HTMLElement>('[data-cart-empty]').forEach((node) => {
       node.hidden = items.length > 0;
@@ -60,20 +94,20 @@ if (data?.textContent) {
       message += ' This cart is kept only in this tab.';
     }
     render();
-    if (status) status.textContent = message;
+    announce(message);
   };
   document.querySelectorAll<HTMLButtonElement>('[data-cart-add]').forEach((button) => {
     const key = button.dataset.cartAdd;
     if (!key || !known.has(key)) return;
     button.disabled = false;
-    button.setAttribute('aria-label', `Add ${known.get(key)!.title} to cart`);
     button.addEventListener('click', () => {
       read();
       const product = known.get(key)!;
       const current = items.find((item) => item.key === key)?.quantity ?? 0;
       if (current >= product.maxQuantity) {
-        if (status)
-          status.textContent = `${product.title} is already in your cart${product.maxQuantity > 1 ? ' at the quantity limit' : ''}.`;
+        announce(
+          `${product.title} is already in your cart${product.maxQuantity > 1 ? ' at the quantity limit' : ''}.`,
+        );
         return;
       }
       items = setCartQuantity(items, key, current + 1, products);
@@ -125,7 +159,7 @@ if (data?.textContent) {
       ) {
         if (commit) {
           render();
-          if (status) status.textContent = 'Choose a quantity from 1 to 99.';
+          announce(`Choose a quantity from 1 to ${known.get(key)!.maxQuantity}.`);
         }
         return;
       }

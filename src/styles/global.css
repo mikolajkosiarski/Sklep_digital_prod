@@ -21,6 +21,7 @@
 
 @theme {
   --breakpoint-*: initial;
+  --breakpoint-xs: 22.5rem;
   --breakpoint-sm: 36rem;
   --breakpoint-md: 48rem;
   --breakpoint-lg: 62rem;

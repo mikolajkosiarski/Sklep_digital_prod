@@ -13,3 +13,9 @@ export function url(path = ''): string {
   return `${base}/${path.replace(/^\/+/, '')}`;
 }
 export const asset = url;
+
+/** Absolute URL for metadata and structured data; relative when no site is set. */
+export function absoluteUrl(path: string, site: URL | undefined): string {
+  const resolved = url(path);
+  return site ? new URL(resolved, site).href : resolved;
+}

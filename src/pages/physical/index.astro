@@ -6,7 +6,7 @@ import NextSection from '../../components/catalog/NextSection.astro';
 import { collectionSchema, physicalProducts, physicalPath } from '../../lib/catalog';
 import { url } from '../../lib/paths';
 const schema = {
-  ...collectionSchema('Visamore physical studies', physicalProducts, physicalPath),
+  ...collectionSchema('Visamore physical studies', physicalProducts, physicalPath, Astro.site),
   description: 'Draft apparel concepts shown with saved listing mockups. Not available to order.',
 };
 ---

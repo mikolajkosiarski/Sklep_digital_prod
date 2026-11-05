@@ -1,7 +1,7 @@
 import {
   digitalProducts,
   physicalProducts,
-  coverSource,
+  coverFile,
   digitalPath,
   physicalPath,
   sales,
@@ -32,7 +32,7 @@ const digital: StoreProduct[] = await Promise.all(
     meta: `${product.designCount} designs · ${product.brushes ? 'PNG + brushes' : 'PNG'}`,
     sales: sales[product.id],
     image: await prepareListingImage({
-      file: coverSource(product).split('/').at(-1)!,
+      file: coverFile(product),
       alt: product.coverAlt ?? `${product.title} listing cover`,
     }),
   })),

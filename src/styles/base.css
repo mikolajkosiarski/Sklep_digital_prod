@@ -38,34 +38,28 @@
 }
 @font-face {
   font-family: 'Pinyon Script';
-  src: url('/assets/fonts/pinyon-script/PinyonScript-Regular.ttf') format('truetype');
+  src: url('/assets/fonts/pinyon-script/PinyonScript-Regular.woff2') format('woff2');
   font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
+/* Colours and fonts come from the Tailwind @theme in global.css. Only the
+   proportions of the script heading are defined here. */
 :root {
   color-scheme: light;
-  --paper-base: #f7f7f7;
-  --ink: #282828;
-  --soft: var(--color-muted);
-  --line: #cecece;
-  --rust: #454545;
-  --mono: Plex, 'Courier New', monospace;
-  --display: 'Pinyon Script', cursive;
   --letter-width: 1.18;
   --letter-height: 0.82;
-  --frame-opacity: 0.6;
 }
 html {
-  background: var(--paper-base);
+  background: var(--color-paper);
   scroll-behavior: smooth;
   scroll-padding-top: 1.5rem;
 }
 body {
   margin: 0;
   min-height: 100svh;
-  font: 400 var(--text-copy) / 1.8 var(--mono);
-  color: var(--ink);
+  font: 400 var(--text-copy) / 1.8 var(--font-mono);
+  color: var(--color-ink);
   background: transparent;
   -webkit-font-smoothing: antialiased;
   font-synthesis: none;
@@ -92,7 +86,7 @@ button {
 a:focus-visible,
 button:focus-visible,
 summary:focus-visible {
-  outline: 2px solid var(--ink);
+  outline: 2px solid var(--color-ink);
   outline-offset: 5px;
 }
 img {
@@ -144,7 +138,7 @@ th {
 }
 caption {
   padding-block: 0.5rem;
-  color: var(--soft);
+  color: var(--color-muted);
   text-align: left;
 }
 @media (prefers-reduced-motion: reduce) {

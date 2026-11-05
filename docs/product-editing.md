@@ -20,7 +20,7 @@ Treść oferty i cenę edytuj w `src/content/products/<id>.md`. Tekst pod frontm
 | `video`                                 | Opcjonalny lokalny film, poster i opis.               |
 | `relatedIds`                            | Identyfikatory innych istniejących ofert.             |
 
-Wpis katalogowy z tym samym identyfikatorem musi istnieć w `src/data/shop-content.json`. Tam są krótkie tytuły, opisy, formaty i okładki. `src/lib/offers.ts` sprawdza zgodność identyfikatorów, powiązań i lokalnych mediów. Ceny Digital mają robocze źródło Etsy z 23 października 2026, opisane w `src/data/digital-offers.json`.
+Wpis katalogowy z tym samym identyfikatorem musi istnieć w `src/data/shop-content.json`. Tam są krótkie tytuły, opisy, formaty i okładki. Okładki leżą wyłącznie w `src/assets/listings/` jako `etsy-<id>-cover.jpg`; pole `cover` podaje inną nazwę pliku tylko wtedy, gdy jest potrzebna. Astro tworzy z nich zarówno obrazy kart, jak i podgląd linku (og:image). `src/lib/offers.ts` sprawdza zgodność identyfikatorów, powiązań i lokalnych mediów. Ceny Digital mają robocze źródło Etsy z 23 października 2026, opisane w `src/data/digital-offers.json`.
 
 `src/lib/product-media.ts` przygotowuje WebP w kilku szerokościach. Galeria używa `srcset`, pełnego podglądu i klawiatury. Okładka katalogowa jest automatycznie dodawana do galerii. Film paczki 300 jest w `public/assets/video/pack-300-preview.mp4`, bez autoplay i z natywnymi kontrolkami.
 

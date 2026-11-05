@@ -40,6 +40,10 @@ tests/           testy koszyka, statystyk i bezpieczeństwa Markdown
 tools/           walidacja buildu i Markdown
 ```
 
+### Tailwind i style
+
+Kolory, fonty, rozmiary tekstu i breakpointy są zdefiniowane raz w `@theme` w `src/styles/global.css` (`--color-ink`, `--color-muted`, `--color-line`, `--color-paper`, `--font-mono`, `--font-display`; breakpointy `xs` 360 px, `sm` 576 px, `md` 768 px, `lg` 992 px, `xl` 1200 px). Style komponentów korzystają z tych samych zmiennych i z dyrektywy `@variant` zamiast ręcznych `@media`. W blokach `<style>` komponentów Astro jest `@reference` do `global.css`, a `@variant` stoi wewnątrz selektora, żeby zachować zakres komponentu. Układy siatek i pas kart na telefonie są zapisane klasami Tailwinda w znacznikach.
+
 Edytuj pliki w `src/`. `node_modules/`, `.astro/` i `dist/` są generowane lokalnie i pomijane przez Git. Archiwalne porównywarki, szkice stylów, zrzuty i logi robocze znajdują się poza aplikacją. Projekt nie zawiera tras `/design/` ani przełączania wariantów wyglądu.
 
 ## Wspólne elementy
@@ -50,7 +54,7 @@ Edytuj pliki w `src/`. `node_modules/`, `.astro/` i `dist/` są generowane lokal
 - `src/components/ui/TerminalButton.astro` obsługuje link lub przycisk. Wygląd **Terminal relic** to tekst i obracany pikselowy plus, bez wypełnienia i obrysu. Fokus oraz ograniczenie animacji są w `src/styles/components/buttons.css`.
 - `src/lib/storefront.ts` normalizuje dane obu katalogów dla tych samych kart i koszyka.
 
-Główna prezentuje cztery kolekcje Digital w rzędzie na dużym ekranie, dwie na tablecie i jedną na telefonie. W wąskich kartach cena i przycisk zajmują osobne wiersze. Tło wylinki zachowuje chłodne szarości i krycie 30%; źródło wzoru to `public/textures/serpent.svg`, a parametry tła są w `src/styles/components/surface.css`.
+Główna prezentuje cztery kolekcje Digital w rzędzie na dużym ekranie i dwie na tablecie. Na telefonie karty Digital i Physical tworzą przewijany w poziomie pas z przyciąganiem, w którym kolejna karta częściowo wystaje (`src/lib/layout-classes.ts`). W wąskich kartach cena i przycisk zajmują osobne wiersze. Tło wylinki zachowuje chłodne szarości i krycie 30%; źródło wzoru to `public/textures/serpent.svg`, a parametry tła są w `src/styles/components/surface.css`.
 
 ## Edycja treści
 
@@ -85,7 +89,7 @@ Koszyk działa lokalnie: Digital można dodać raz, Physical do 99 sztuk. Zapisu
 
 Kontakt i komentarze walidują oraz pokazują tekst lokalnie. Nie wysyłają wiadomości ani nie publikują komentarzy. Opinie na głównej przepisano z czterech dostarczonych zrzutów Etsy; źródła są zachowane w `docs/sources/etsy-reviews/`. Statystyki oznaczają transakcje sprzedaży za cały czas, stan na 23 października 2026; wznowienia ofert są zapisane oddzielnie.
 
-Płatności, zamówienia, konta i zabezpieczone pobieranie plików są kolejnym etapem. Warunki sprzedaży i pozostałe dokumenty wymagają potwierdzenia danych sprzedawcy oraz dopasowania do przyszłej obsługi zamówień. Profile społecznościowe czekają na właściwe adresy. Lista danych do uzupełnienia: [uruchomienie sklepu](docs/store-launch-information.md).
+Płatności, zamówienia, konta i zabezpieczone pobieranie plików są kolejnym etapem. Warunki sprzedaży i pozostałe dokumenty wymagają potwierdzenia danych sprzedawcy oraz dopasowania do przyszłej obsługi zamówień. Profile społecznościowe czekają na właściwe adresy; sekcja „Elsewhere” pojawia się automatycznie, gdy w `src/data/community-content.json` jest choć jeden adres profilu. Lista danych do uzupełnienia: [uruchomienie sklepu](docs/store-launch-information.md).
 
 ## Sprawdzanie zmian
 

@@ -1,7 +1,7 @@
 import catalog from '../data/shop-content.json';
 import salesData from '../data/etsy-sales-all-time.json';
 import { readSalesSnapshot } from './sales';
-import { url } from './paths';
+import { absoluteUrl } from './paths';
 import { getOffer } from './offers';
 
 export interface DigitalProduct {
@@ -14,8 +14,6 @@ export interface DigitalProduct {
   brushes: boolean;
   delivery: string;
   cover?: string;
-  coverWidth?: number;
-  coverHeight?: number;
   coverAlt?: string;
 }
 
@@ -44,14 +42,16 @@ export const featuredProducts = digitalProducts.filter(({ id }) =>
 
 export const digitalPath = (product: DigitalProduct) => `/digital/${product.id}/`;
 export const physicalPath = (product: PhysicalProduct) => `/physical/${product.slug}/`;
-export const coverSource = (product: DigitalProduct) =>
-  product.cover ?? `assets/digital/etsy-${product.id}-cover.jpg`;
+/** File name of the listing cover inside src/assets/listings. */
+export const coverFile = (product: DigitalProduct) =>
+  product.cover ?? `etsy-${product.id}-cover.jpg`;
 export const hasSales = (product: DigitalProduct) => Object.hasOwn(sales, product.id);
 
 export function collectionSchema<T extends { title: string }>(
   name: string,
   products: T[],
   path: (product: T) => string,
+  site: URL | undefined,
 ) {
   return {
     '@context': 'https://schema.org',
@@ -63,7 +63,7 @@ export function collectionSchema<T extends { title: string }>(
         '@type': 'ListItem',
         position: index + 1,
         name: product.title,
-        url: url(path(product)),
+        url: absoluteUrl(path(product), site),
       })),
     },
   };
