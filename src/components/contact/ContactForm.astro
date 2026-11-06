@@ -12,7 +12,7 @@ const id = (field: string) => `${idPrefix}-${field}`;
 <div class="contact-form-panel">
   <form
     class="contact-form"
-    action="#contact"
+    action="#kontakt"
     method="post"
     aria-label="Contact Visamore"
     data-contact-form
@@ -52,9 +52,9 @@ const id = (field: string) => `${idPrefix}-${field}`;
       <select id={id('topic')} name="topic" required aria-describedby={id('topic-error')}>
         <option value="">Choose a topic</option>
         <option value="digital">Digital artwork & files</option>
-        <option value="physical">Apparel & physical pieces</option>
         <option value="order">An existing Etsy order</option>
-        <option value="collaboration">Collaboration & licensing</option>
+        <option value="license">Extended license</option>
+        <option value="collaboration">Collaboration</option>
         <option value="other">Something else</option>
       </select>
       <p class="contact-error" id={id('topic-error')} data-contact-error="topic" hidden></p>

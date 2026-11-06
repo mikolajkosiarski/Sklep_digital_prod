@@ -1,40 +1,29 @@
 ---
 title: Artwork license
-description: The usage questions that will be settled before digital collections go on sale here.
+description: The Standard license included with every Visamore collection, and the Extended license for apps and digital products.
 group: policies
 status: draft
 order: 3
-updated: '2026-10-29'
+updated: '2026-11-06'
 ---
 
 ## Scope of this page
 
-The license for purchases through this future store is still being defined. This draft does not grant a new license or change the terms of an existing Etsy purchase. For an existing purchase, refer to the terms supplied with that purchase.
+This is a plain-language draft of the licenses planned for this store. It does not change the terms of an existing Etsy purchase; for those, refer to the terms supplied with that order. The final wording will be checked before sales open here.
 
-## Personal and commercial projects
+## Standard license
 
-Before launch, each applicable license must state whether personal projects, client work and commercial end products are permitted, and whether a different license is needed for larger-scale use.
+Every collection comes with the Standard license, at no extra cost.
 
-The final wording must distinguish using artwork within a finished composition from distributing the original files.
+- You may use the designs on products you make and sell, for example prints and clothing.
+- You may not resell, share or give away the files themselves, or offer them as a digital download in any form, including inside another asset pack or template.
 
-## Print, apparel and tattoo use
+## Extended license
 
-To confirm: permissions for printed goods, apparel, print-on-demand services and tattoo work; any quantity limits; and whether a design may be used as supplied or must form part of a new composition.
+An Extended license is needed to use the designs inside apps, digital products or platforms run by another company, for example when integrating the artwork into an app.
 
-No permission or restriction for these uses is being assumed in this draft.
+It is priced individually. Choose Extended on the product page, or write to us through the [contact page](../contact/?topic=license) with the collection and how you plan to use it.
 
-## Editing and sharing files
+## Still to confirm
 
-To confirm: modifications, the number of permitted users, use by collaborators, delivery of working files to clients, and storage with third-party production services.
-
-Resale of source artwork, redistribution, inclusion in another downloadable asset pack and use in editable templates must each be addressed explicitly in the final license.
-
-## Ownership and attribution
-
-The final license must identify the relevant rights holder and explain which rights the customer receives, any attribution requirement, duration, territory and any lawful termination provisions. It must match the rights actually held in the artwork.
-
-## Choosing a license
-
-Before payment, the product page and checkout will need to identify the exact applicable license. Customers must be able to read and retain its terms.
-
-If a planned use is not covered by the final published license, the [contact page](../contact/) will provide the verified route for clarification.
+Before sales open, the final license will also cover: tattoo work and print-on-demand services, any quantity limits, the number of people who may use one purchase, attribution, and the rights holder, duration and territory of the license.

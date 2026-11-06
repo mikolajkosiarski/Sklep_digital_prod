@@ -9,6 +9,7 @@ import ArticleNavigation from '../components/journal/ArticleNavigation.astro';
 import JournalComments from '../components/journal/JournalComments.astro';
 import { journalDate, type JournalEntry } from '../components/journal/entries';
 import { journalAuthors } from '../data/journal-authors';
+import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
 import { asset, url } from '../lib/paths';
 
 interface Props {
@@ -51,17 +52,7 @@ const schema = {
   ogAlt={socialAlt}
 >
   <main id="main-content" class="vm-container">
-    <nav class="journal-breadcrumb" aria-label="Breadcrumb">
-      <ol>
-        <li>
-          <a href={url('/')}>Home</a>
-        </li>
-        <li>
-          <a href={url('/journal/')}>Journal</a>
-        </li>
-        <li aria-current="page">{title}</li>
-      </ol>
-    </nav>
+    <Breadcrumbs items={[{ label: 'Journal', href: '/journal/' }, { label: title }]} />
     <article class="journal-post">
       <header class="article-header">
         <h1 class="article-title">{title}</h1>

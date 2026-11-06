@@ -4,10 +4,6 @@
 .product-page {
   font-size: 1rem;
 }
-.product-back {
-  padding-block: 1rem 2rem;
-}
-.product-back a,
 .product-text-link {
   display: inline-flex;
   align-items: center;
@@ -17,7 +13,6 @@
   text-decoration-thickness: 1px;
   overflow-wrap: anywhere;
 }
-.product-back a:hover,
 .product-text-link:hover {
   text-decoration-thickness: 2px;
 }
@@ -90,16 +85,6 @@
   border-left: 2px solid var(--color-line);
   padding-left: 1rem;
 }
-.product-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1.5rem;
-  margin-top: 2rem;
-}
-.product-actions .terminal-button {
-  width: 17rem;
-}
 .product-availability {
   margin: 1rem 0 0;
   font-size: var(--text-caption);
@@ -124,53 +109,9 @@
   color: var(--color-muted);
   max-width: 45ch;
 }
-.product-files {
-  display: grid;
-  gap: 1.5rem;
-  margin-top: clamp(3.5rem, 7vw, 6rem);
-  padding-top: 2rem;
-  border-top: 1px solid var(--color-ink);
-  scroll-margin-top: 2rem;
-}
-.product-files .section-heading,
 .product-film .section-heading,
 .product-related .section-heading {
   font-size: clamp(1.5rem, 1.2rem + 1vw, 1.875rem);
-}
-.product-file-body {
-  min-width: 0;
-}
-.product-file-list {
-  margin: 0 0 1.5rem;
-}
-.product-file-list > div {
-  padding-block: 0.875rem;
-  border-bottom: 1px solid var(--color-line);
-}
-.product-file-list > div:first-child {
-  padding-top: 0;
-}
-.product-file-list dt {
-  font-weight: 500;
-}
-.product-file-list dd {
-  margin: 0.25rem 0 0;
-  color: var(--color-muted);
-  overflow-wrap: anywhere;
-}
-.product-disclosure {
-  border-bottom: 1px solid var(--color-line);
-}
-.product-disclosure summary {
-  cursor: pointer;
-  padding-block: 1rem;
-  min-height: 2.75rem;
-  font-weight: 500;
-}
-.product-disclosure > div {
-  padding: 0.5rem 0 1.25rem;
-  overflow-wrap: anywhere;
-  max-width: 65ch;
 }
 .product-small-note {
   font-size: var(--text-caption);
@@ -218,14 +159,10 @@
 }
 
 @variant md {
-  .product-files,
   .product-film {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
     gap: 3rem;
     padding-top: 2.5rem;
-  }
-  .product-back {
-    padding-bottom: 2.5rem;
   }
 }
 @variant lg {

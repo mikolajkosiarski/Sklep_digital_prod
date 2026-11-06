@@ -1,0 +1,76 @@
+---
+import TerminalButton from '../ui/TerminalButton.astro';
+import { url } from '../../lib/paths';
+interface Props {
+  productKey: string;
+  code: string;
+  title: string;
+}
+const { productKey, code, title } = Astro.props;
+const extendedHref = url(
+  `/contact/?topic=license&collection=${encodeURIComponent(`${code} ${title}`)}`,
+);
+---
+
+<form class="product-purchase" data-product-purchase action={url('/cart/')} method="get">
+  <div class="product-field">
+    <label for="product-license">License</label>
+    <select id="product-license" name="license" data-license-select>
+      <option value="standard">Standard — included</option>
+      <option value="extended">Extended — quote on request</option>
+    </select>
+    <p class="product-field__hint" data-license-hint="standard">
+      Use the designs on products you make and sell, such as prints and clothing. Reselling or
+      sharing the files themselves is not allowed.
+    </p>
+    <p class="product-field__hint" data-license-hint="extended" hidden>
+      For apps, digital products and other companies’ platforms. Priced individually.
+    </p>
+  </div>
+  <div class="product-field product-field--quantity">
+    <label for="product-quantity">Quantity</label>
+    <input
+      id="product-quantity"
+      name="quantity"
+      type="number"
+      inputmode="numeric"
+      value="1"
+      min="1"
+      max="1"
+      step="1"
+      aria-describedby="product-quantity-hint"
+    />
+    <p class="product-field__hint" id="product-quantity-hint">
+      Digital files: one license per order.
+    </p>
+  </div>
+  <div class="product-purchase__actions">
+    <div data-license-action="standard">
+      <TerminalButton label="Add to cart" cartKey={productKey} />
+    </div>
+    <div data-license-action="extended" hidden>
+      <TerminalButton
+        href={extendedHref}
+        label="Ask about extended license"
+        ariaLabel={`Ask about an extended license for ${title}`}
+      />
+    </div>
+  </div>
+</form>
+<script>
+  // The license choice swaps the action: Standard adds to the cart, Extended asks for a quote.
+  document.querySelectorAll<HTMLFormElement>('[data-product-purchase]').forEach((form) => {
+    const select = form.querySelector<HTMLSelectElement>('[data-license-select]');
+    if (!select) return;
+    form.addEventListener('submit', (event) => event.preventDefault());
+    const update = () => {
+      form
+        .querySelectorAll<HTMLElement>('[data-license-hint], [data-license-action]')
+        .forEach((node) => {
+          node.hidden = (node.dataset.licenseHint ?? node.dataset.licenseAction) !== select.value;
+        });
+    };
+    select.addEventListener('change', update);
+    update();
+  });
+</script>

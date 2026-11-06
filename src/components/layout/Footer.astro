@@ -1,5 +1,6 @@
 ---
 import { navigation } from '../../data/navigation';
+import details from '../../data/contact-details.json';
 import { getInformationEntries, informationPath } from '../../lib/information';
 import { url } from '../../lib/paths';
 const entries = await getInformationEntries();
@@ -48,7 +49,10 @@ const groups = [
     ))}
   </div>
   <div class="footer-bottom">
-    <span>Visamore · {new Date().getFullYear()}</span>
+    <span>
+      © {new Date().getFullYear()} Visamore ·{' '}
+      {details.business || <span class="footer-placeholder">business details to be added</span>}
+    </span>
     <a href="#top">Back to top</a>
   </div>
 </footer>

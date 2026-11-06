@@ -1,4 +1,4 @@
-/* Full print: one shared card for Digital, Physical and related products.
+/* Full print: one shared card for the shop, the home page and related products.
    The card never sets its own height. Its grid cell or rail item stretches it,
    so every card in a row matches the tallest one, and the purchase row sits on
    the bottom edge in every layout. */

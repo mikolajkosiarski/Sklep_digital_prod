@@ -277,17 +277,17 @@ async function expectedRoutes() {
   );
   return [
     '/',
-    '/digital/',
+    '/shop/',
     '/cart/',
-    '/physical/',
+    '/checkout/',
+    '/account/',
     '/journal/',
     '/about/',
     '/404.html',
     ...(await readdir(path.join(project, 'src/content/information')))
       .filter((name) => name.endsWith('.md'))
       .map((name) => `/${name.slice(0, -3)}/`),
-    ...catalog.digital.map(({ id }) => `/digital/${id}/`),
-    ...catalog.physical.map(({ slug }) => `/physical/${slug}/`),
+    ...catalog.digital.map(({ id }) => `/shop/${id}/`),
     ...posts.map((name) => `/journal/${name.slice(0, -3)}/`),
   ];
 }

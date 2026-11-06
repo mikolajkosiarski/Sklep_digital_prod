@@ -49,10 +49,20 @@
   margin: 0;
 }
 .frame-description {
-  margin: 1.25rem 0 0.5rem;
+  max-width: 34ch;
+  margin: 1.25rem auto 0.5rem;
   color: var(--color-muted);
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.6;
+  text-wrap: balance;
+}
+.frame-contact {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font: var(--text-caption) / 1.5 var(--font-mono);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
 }
 .frame-content .frame-cta {
   justify-content: center;

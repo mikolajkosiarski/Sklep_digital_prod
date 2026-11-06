@@ -16,7 +16,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.4.2"
+    "astro": "^7.4.2",
+    "bootstrap-icons": "1.13.2"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",

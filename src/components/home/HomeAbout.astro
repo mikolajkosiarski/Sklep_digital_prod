@@ -1,0 +1,35 @@
+---
+import TerminalButton from '../ui/TerminalButton.astro';
+import { decorImage } from '../../lib/decor-images';
+---
+
+<!-- id="o-nas": the about section required by the course brief (CW3). -->
+<section class="home-about vm-container" id="o-nas" aria-labelledby="home-about-title">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-8 items-center">
+    <div class="min-w-0 md:col-span-6">
+      <h2 class="section-heading" id="home-about-title">
+        About Visamore.
+      </h2>
+      <p class="editorial-copy">
+        Visamore creates digital design collections: gothic silhouettes, thorn-like lines and
+        ornaments drawn for tattoo flash, prints and screen work.
+      </p>
+      <p class="editorial-copy">
+        Each collection is delivered as transparent and white-background PNG files, several with a
+        Procreate brushset, so the artwork is ready to combine into a new composition.
+      </p>
+      <TerminalButton href="/about/" label="More about the studio" />
+    </div>
+    <div class="home-about__visual min-w-0 md:col-span-6" aria-hidden="true">
+      <img
+        {...decorImage('assets/digital/pack-121-3.png')}
+        sizes="(min-width: 768px) 45vw, 90vw"
+        width="4096"
+        height="4096"
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </div>
+</section>

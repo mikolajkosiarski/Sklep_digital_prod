@@ -1,0 +1,47 @@
+---
+import { absoluteUrl, url } from '../../lib/paths';
+
+export interface Crumb {
+  label: string;
+  /** Site path such as '/shop/'. Omit it for the current page. */
+  href?: string;
+}
+interface Props {
+  /** Trail after Home; the last item is the current page. */
+  items: Crumb[];
+}
+const trail: Crumb[] = [{ label: 'Home', href: '/' }, ...Astro.props.items];
+const last = trail.length - 1;
+const current = Astro.url.pathname;
+
+// Search engines read the same trail as BreadcrumbList structured data.
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: trail.map((crumb, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: crumb.label,
+    item: crumb.href
+      ? absoluteUrl(crumb.href, Astro.site)
+      : Astro.site
+        ? new URL(current, Astro.site).href
+        : current,
+  })),
+}).replace(/</g, '\\u003c');
+---
+
+<nav class="vm-breadcrumb" aria-label="Breadcrumb">
+  <ol>
+    {trail.map((crumb, index) =>
+      index === last ? (
+        <li aria-current="page">{crumb.label}</li>
+      ) : (
+        <li>
+          <a href={url(crumb.href ?? '/')}>{crumb.label}</a>
+        </li>
+      ),
+    )}
+  </ol>
+</nav>
+<script is:inline type="application/ld+json" set:html={schema} />

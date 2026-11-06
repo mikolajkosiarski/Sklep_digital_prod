@@ -1,0 +1,32 @@
+---
+// Totals shared by the cart and checkout; scripts/cart.ts fills in the amounts.
+interface Props {
+  /** Label for the delivery row, which depends on the chosen method at checkout. */
+  deliveryLabel?: string;
+}
+const { deliveryLabel = 'Delivery' } = Astro.props;
+---
+
+<dl class="order-totals">
+  <div>
+    <dt>Subtotal</dt>
+    <dd data-cart-subtotal>€0.00</dd>
+  </div>
+  <div data-cart-discount-row hidden>
+    <dt>
+      Discount <span data-cart-promo-label></span>
+    </dt>
+    <dd data-cart-discount>−€0.00</dd>
+  </div>
+  <div>
+    <dt>{deliveryLabel}</dt>
+    <dd>
+      €0.00 <span class="order-totals__note">digital download</span>
+    </dd>
+  </div>
+  <div class="order-totals__total">
+    <dt>Total</dt>
+    <dd data-cart-total>€0.00</dd>
+  </div>
+</dl>
+<p class="order-totals__tax">Demo totals. Tax is not calculated in this store preview.</p>

@@ -4,6 +4,10 @@ import {
   serializeCart,
   setCartQuantity,
   cartTotalMinor,
+  demoPromoCodes,
+  normalisePromoCode,
+  promoDiscountMinor,
+  promoStorageKey,
   type CartLine,
   type CartProduct,
 } from '../lib/cart-state';
@@ -21,6 +25,7 @@ if (data?.textContent) {
   const onCartPage = document.querySelector('[data-cart-row]') !== null;
   let toastTimer: number | undefined;
   let items: CartLine[] = [];
+  let promo: string | null = null;
   // Shown visually for a few seconds and announced through the same live region.
   const announce = (message: string) => {
     if (!status) return;
@@ -38,18 +43,19 @@ if (data?.textContent) {
   const read = () => {
     try {
       items = parseCart(localStorage.getItem(cartStorageKey), products);
+      promo = normalisePromoCode(localStorage.getItem(promoStorageKey));
     } catch {
       /* Keep this tab's cart when storage is blocked. */
     }
   };
+  const setText = (selector: string, text: string) =>
+    document.querySelectorAll<HTMLElement>(selector).forEach((node) => {
+      node.textContent = text;
+    });
   const render = () => {
     const count = items.reduce((sum, item) => sum + item.quantity, 0);
-    document.querySelectorAll<HTMLElement>('[data-cart-count]').forEach((node) => {
-      node.textContent = String(count);
-    });
-    document.querySelectorAll<HTMLElement>('[data-cart-noun]').forEach((node) => {
-      node.textContent = count === 1 ? 'item' : 'items';
-    });
+    setText('[data-cart-count]', String(count));
+    setText('[data-cart-noun]', count === 1 ? 'item' : 'items');
     document.querySelectorAll<HTMLButtonElement>('[data-cart-add]').forEach((button) => {
       const product = known.get(button.dataset.cartAdd ?? '');
       if (!product) return;
@@ -69,27 +75,33 @@ if (data?.textContent) {
     document.querySelectorAll<HTMLElement>('[data-cart-filled]').forEach((node) => {
       node.hidden = items.length === 0;
     });
-    document.querySelectorAll<HTMLElement>('[data-cart-row]').forEach((row) => {
-      const line = items.find((item) => item.key === row.dataset.cartRow);
+    // Cart table rows and the shorter checkout summary rows.
+    document.querySelectorAll<HTMLElement>('[data-cart-row], [data-summary-row]').forEach((row) => {
+      const key = row.dataset.cartRow ?? row.dataset.summaryRow;
+      const line = items.find((item) => item.key === key);
       row.hidden = !line;
       if (!line) return;
       const product = known.get(line.key)!;
       const quantity = row.querySelector<HTMLInputElement>('[data-cart-quantity]');
       if (quantity) quantity.value = String(line.quantity);
-      row.querySelectorAll<HTMLButtonElement>('[data-cart-step]').forEach((button) => {
-        const next = line.quantity + Number(button.dataset.cartStep);
-        button.disabled = next < 1 || next > product.maxQuantity;
-      });
       const total = row.querySelector<HTMLElement>('[data-line-total]');
       if (total) total.textContent = formatMoney(line.quantity * product.priceMinor);
     });
-    document.querySelectorAll<HTMLElement>('[data-cart-total]').forEach((node) => {
-      node.textContent = formatMoney(cartTotalMinor(items, products));
+    const subtotal = cartTotalMinor(items, products);
+    const discount = promoDiscountMinor(subtotal, promo);
+    setText('[data-cart-subtotal]', formatMoney(subtotal));
+    setText('[data-cart-discount]', `−${formatMoney(discount)}`);
+    setText('[data-cart-promo-label]', promo ? `(${promo})` : '');
+    document.querySelectorAll<HTMLElement>('[data-cart-discount-row]').forEach((row) => {
+      row.hidden = discount === 0;
     });
+    setText('[data-cart-total]', formatMoney(subtotal - discount));
   };
   const save = (message: string) => {
     try {
       localStorage.setItem(cartStorageKey, serializeCart(items));
+      if (promo) localStorage.setItem(promoStorageKey, promo);
+      else localStorage.removeItem(promoStorageKey);
     } catch {
       message += ' This cart is kept only in this tab.';
     }
@@ -132,34 +144,25 @@ if (data?.textContent) {
       )?.focus();
     });
   });
-  document.querySelectorAll<HTMLButtonElement>('[data-cart-step]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const key = button.dataset.cartKey;
-      const step = Number(button.dataset.cartStep);
-      if (!key || !known.has(key) || ![-1, 1].includes(step)) return;
-      read();
-      const line = items.find((item) => item.key === key);
-      if (!line) return;
-      const next = line.quantity + step;
-      if (next < 1 || next > known.get(key)!.maxQuantity) return;
-      items = setCartQuantity(items, key, next, products);
-      save('Cart quantity updated.');
-    });
-  });
   document.querySelectorAll<HTMLInputElement>('[data-cart-quantity]').forEach((input) => {
     const updateQuantity = (commit: boolean) => {
       const key = input.dataset.cartQuantity;
-      if (!key || !known.has(key)) return;
+      const product = key ? known.get(key) : undefined;
+      if (!key || !product) return;
       const quantity = Number(input.value);
       if (
         !input.value ||
         !Number.isSafeInteger(quantity) ||
         quantity < 1 ||
-        quantity > known.get(key)!.maxQuantity
+        quantity > product.maxQuantity
       ) {
         if (commit) {
           render();
-          announce(`Choose a quantity from 1 to ${known.get(key)!.maxQuantity}.`);
+          announce(
+            product.maxQuantity === 1
+              ? 'Each digital collection is licensed once per order.'
+              : `Choose a quantity from 1 to ${product.maxQuantity}.`,
+          );
         }
         return;
       }
@@ -170,12 +173,41 @@ if (data?.textContent) {
     input.addEventListener('input', () => updateQuantity(false));
     input.addEventListener('change', () => updateQuantity(true));
   });
+  document.querySelectorAll<HTMLFormElement>('[data-cart-promo]').forEach((form) => {
+    const input = form.querySelector<HTMLInputElement>('input');
+    const message = form.querySelector<HTMLElement>('[data-cart-promo-status]');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!input) return;
+      read();
+      const code = normalisePromoCode(input.value);
+      if (!input.value.trim()) {
+        promo = null;
+        save('Promo code removed.');
+        if (message) message.textContent = '';
+        return;
+      }
+      if (!code) {
+        if (message) message.textContent = 'This code is not valid.';
+        input.setAttribute('aria-invalid', 'true');
+        return;
+      }
+      promo = code;
+      input.value = code;
+      input.removeAttribute('aria-invalid');
+      save(`Promo code ${code} applied.`);
+      if (message)
+        message.textContent = `${code} applied: ${demoPromoCodes[code]}% off the subtotal.`;
+    });
+  });
   addEventListener('storage', (event) => {
-    if (event.key === cartStorageKey || event.key === null) {
+    if (event.key === cartStorageKey || event.key === promoStorageKey || event.key === null) {
       read();
       render();
     }
   });
   read();
+  const promoInput = document.querySelector<HTMLInputElement>('[data-cart-promo] input');
+  if (promoInput && promo) promoInput.value = promo;
   render();
 }

@@ -1,0 +1,156 @@
+---
+import { styleLabels, type StyleKey } from '../../lib/catalog';
+import { storeProducts } from '../../lib/storefront';
+import ProductCard from './ProductCard.astro';
+import Pagination from '../ui/Pagination.astro';
+
+// Every product is rendered in HTML; scripts/shop.ts filters and sorts in place.
+const products = storeProducts;
+const prices = products.map(({ priceMinor }) => priceMinor);
+const priceFloor = Math.floor(Math.min(...prices) / 100);
+const priceCeiling = Math.ceil(Math.max(...prices) / 100);
+const styles = (Object.keys(styleLabels) as StyleKey[])
+  .map((key) => ({
+    key,
+    label: styleLabels[key],
+    count: products.filter((product) => product.styles.includes(key)).length,
+  }))
+  .filter(({ count }) => count > 0);
+const sizes = [
+  { key: 'small', label: 'Up to 60 designs', test: (n: number) => n <= 60 },
+  { key: 'medium', label: '100–150 designs', test: (n: number) => n >= 100 && n <= 150 },
+  { key: 'large', label: '200+ designs', test: (n: number) => n >= 200 },
+];
+const sizeOf = (designs: number) => sizes.find(({ test }) => test(designs))?.key ?? 'medium';
+const PAGE_SIZE = 9;
+---
+
+<div class="shop-layout" data-shop>
+  <aside class="shop-filters" aria-labelledby="filters-title">
+    <form class="shop-filter-form" data-shop-filters hidden>
+      <details class="shop-filters__panel" data-shop-panel open>
+        <summary class="shop-filters__title">
+          <h2 id="filters-title">Filters</h2>
+          <span class="shop-filters__active" data-shop-active></span>
+        </summary>
+        <div class="shop-filters__body">
+          <fieldset>
+            <legend>Style</legend>
+            {styles.map(({ key, label, count }) => (
+              <label class="shop-check">
+                <input type="checkbox" name="style" value={key} />
+                <span>{label}</span>
+                <span class="shop-check__count">{count}</span>
+              </label>
+            ))}
+          </fieldset>
+          <fieldset>
+            <legend>Price</legend>
+            <label class="shop-range" for="shop-price">
+              <span>
+                Up to{' '}
+                <output id="shop-price-value" for="shop-price">
+                  €{priceCeiling}
+                </output>
+              </span>
+              <input
+                id="shop-price"
+                type="range"
+                name="price"
+                min={priceFloor}
+                max={priceCeiling}
+                step="1"
+                value={priceCeiling}
+              />
+            </label>
+            <p class="shop-range__limits" aria-hidden="true">
+              <span>€{priceFloor}</span>
+              <span>€{priceCeiling}</span>
+            </p>
+          </fieldset>
+          <fieldset>
+            <legend>Format</legend>
+            <label class="shop-check">
+              <input type="checkbox" name="format" value="brushes" />
+              <span>PNG + Procreate brushes</span>
+            </label>
+            <label class="shop-check">
+              <input type="checkbox" name="format" value="png" />
+              <span>PNG only</span>
+            </label>
+          </fieldset>
+          <fieldset>
+            <legend>Collection size</legend>
+            {sizes.map(({ key, label }) => (
+              <label class="shop-check">
+                <input type="checkbox" name="size" value={key} />
+                <span>{label}</span>
+              </label>
+            ))}
+          </fieldset>
+          <button class="shop-reset" type="reset">
+            Reset filters
+          </button>
+        </div>
+      </details>
+    </form>
+    <noscript>
+      <p class="shop-filters__note">
+        Filters and sorting need JavaScript. All collections are listed.
+      </p>
+    </noscript>
+  </aside>
+  <section class="shop-results" aria-labelledby="results-title">
+    <h2 class="sr-only" id="results-title">
+      Collections
+    </h2>
+    <div class="shop-toolbar">
+      <p class="shop-count" role="status" aria-live="polite" data-shop-count>
+        {products.length} collections
+      </p>
+      <div class="shop-sort" data-shop-sort hidden>
+        <label for="shop-sort">Sort by</label>
+        <select id="shop-sort" name="sort">
+          <option value="popular">Popularity</option>
+          <option value="price-asc">Price: low to high</option>
+          <option value="price-desc">Price: high to low</option>
+          <option value="name">Name: A–Z</option>
+          <option value="designs">Most designs</option>
+        </select>
+      </div>
+    </div>
+    <div class="product-grid shop-grid" id="shop-items" data-shop-items>
+      {products.map((product, index) => (
+        <div
+          class="shop-item"
+          data-shop-item
+          data-index={index}
+          data-styles={product.styles.join(' ')}
+          data-price={product.priceMinor}
+          data-format={product.brushes ? 'brushes' : 'png'}
+          data-size={sizeOf(product.designCount)}
+          data-sales={product.sales ?? 0}
+          data-designs={product.designCount}
+          data-title={product.title}
+        >
+          <ProductCard product={product} />
+        </div>
+      ))}
+    </div>
+    <div class="shop-empty" data-shop-empty hidden>
+      <p>No collections match these filters.</p>
+      <button class="shop-reset" type="button" data-shop-clear>
+        Reset filters
+      </button>
+    </div>
+    <Pagination
+      current={1}
+      total={Math.max(1, Math.ceil(products.length / PAGE_SIZE))}
+      href={(page) => (page === 1 ? '/shop/' : `/shop/page/${page}/`)}
+      label="Shop pages"
+    />
+  </section>
+</div>
+<script>
+  import '../../scripts/shop';
+</script>

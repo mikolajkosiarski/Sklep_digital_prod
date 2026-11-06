@@ -11,7 +11,16 @@ const product = getStoreProduct(productKey ?? `digital:${productId}`);
 ---
 
 <p class:list={['product-price', { 'product-price--compact': compact }]}>
-  <span class="product-price__amount">{formatMoney(product.priceMinor)}</span>
+  <span class="product-price__amount">
+    {product.compareAtMinor && <span class="sr-only">Sale price </span>}
+    {formatMoney(product.priceMinor)}
+  </span>
+  {product.compareAtMinor && (
+    <s class="product-price__regular">
+      <span class="sr-only">Regular price </span>
+      {formatMoney(product.compareAtMinor)}
+    </s>
+  )}
 </p>
 <style>
   .product-price {
@@ -25,6 +34,10 @@ const product = getStoreProduct(productKey ?? `digital:${productId}`);
   .product-price__amount {
     font: 500 clamp(2rem, 4vw, 2.5rem)/1.3 var(--font-mono);
     font-variant-numeric: tabular-nums;
+  }
+  .product-price__regular {
+    color: var(--color-muted);
+    font: 400 1rem/1.4 var(--font-mono);
   }
   .product-price--compact {
     display: grid;

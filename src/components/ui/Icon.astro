@@ -1,0 +1,22 @@
+---
+// Bootstrap Icons (MIT, npm package `bootstrap-icons`), inlined as SVG at build
+// time. Only the icon files are used; no Bootstrap CSS or JavaScript is loaded.
+import trash from 'bootstrap-icons/icons/trash.svg?raw';
+import checkCircle from 'bootstrap-icons/icons/check-circle.svg?raw';
+import download from 'bootstrap-icons/icons/download.svg?raw';
+import pencil from 'bootstrap-icons/icons/pencil.svg?raw';
+
+const icons = { trash, 'check-circle': checkCircle, download, pencil } as const;
+interface Props {
+  name: keyof typeof icons;
+  class?: string;
+}
+const { name, class: className } = Astro.props;
+// Decorative: the control or text next to the icon carries the accessible name.
+const svg = icons[name]
+  .replace(/\s(width|height)="16"/g, '')
+  .replace(/class="([^"]*)"/, `class="$1 vm-icon${className ? ` ${className}` : ''}"`)
+  .replace('<svg ', '<svg aria-hidden="true" focusable="false" ');
+---
+
+<Fragment set:html={svg} />

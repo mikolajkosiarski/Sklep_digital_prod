@@ -3,6 +3,7 @@ import type { MarkdownHeading } from 'astro';
 import BaseLayout from './BaseLayout.astro';
 import TableOfContents from '../components/content/TableOfContents.astro';
 import { getInformationEntries, informationPath, type InformationEntry } from '../lib/information';
+import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
 import { url } from '../lib/paths';
 
 interface Props {
@@ -29,17 +30,13 @@ const dateLabel = new Intl.DateTimeFormat('en-GB', {
   schema={{ '@context': 'https://schema.org', '@type': 'WebPage', name: title, description }}
 >
   <main id="main-content" class="vm-container information-page" data-document-status={status}>
-    <nav class="information-breadcrumb" aria-label="Breadcrumb">
-      <a href={url('/')}>Home</a>
-      <span aria-hidden="true">/</span>
-      {entry.id !== 'help' && (
-        <>
-          <a href={url('/help/')}>Help</a>
-          <span aria-hidden="true">/</span>
-        </>
-      )}
-      <span aria-current="page">{title}</span>
-    </nav>
+    <Breadcrumbs
+      items={
+        entry.id === 'help'
+          ? [{ label: title }]
+          : [{ label: 'Help', href: '/help/' }, { label: title }]
+      }
+    />
     <header class="information-header">
       <h1 class="page-title">{title}.</h1>
       <p>{description}</p>
@@ -85,22 +82,6 @@ const dateLabel = new Intl.DateTimeFormat('en-GB', {
   @reference '../styles/global.css';
   .information-page {
     padding-top: 1rem;
-  }
-  .information-breadcrumb {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.4rem 0.75rem;
-    font-size: var(--text-caption);
-    color: var(--color-muted);
-  }
-  .information-breadcrumb a {
-    min-width: 2.75rem;
-    display: inline-flex;
-    align-items: center;
-    min-height: 2.75rem;
-    text-decoration: underline;
-    text-underline-offset: 0.25em;
   }
   .information-header {
     padding-block: 2.5rem 3rem;

@@ -27,13 +27,9 @@ The images shown on the website are previews. They are not the complete download
 
 ## Can I use the artwork commercially?
 
-The license for purchases from this future store is still being defined. This preview does not grant a commercial-use license. For an existing Etsy purchase, refer to the terms provided with that order.
+Yes, on products you make. Every collection comes with the Standard license: you may use the designs on products you make and sell, such as prints and clothing, but you may not resell or share the files themselves. Using the designs inside apps or other companies' digital products needs an Extended license, priced individually.
 
-The [Usage license](../license/) page will describe the permitted uses before sales open here.
-
-## Are the clothes available?
-
-The [Physical collection](../physical/) currently shows apparel concepts and mockups. They are not available to order. Production details, measurements, materials and delivery options will be added before any physical product is sold.
+The [license page](../license/) explains both. It is still a draft, and an existing Etsy purchase follows the terms provided with that order.
 
 ## I need help with an existing purchase
 

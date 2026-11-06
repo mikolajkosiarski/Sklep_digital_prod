@@ -1,5 +1,5 @@
 ---
-import { digitalProducts, digitalPath } from '../../lib/catalog';
+import { digitalProducts, productPath } from '../../lib/catalog';
 import { url } from '../../lib/paths';
 import TerminalButton from '../ui/TerminalButton.astro';
 ---
@@ -30,7 +30,7 @@ import TerminalButton from '../ui/TerminalButton.astro';
           {digitalProducts.map((product) => (
             <tr>
               <th scope="row">
-                <a href={url(digitalPath(product))}>{product.designCount} designs</a>
+                <a href={url(productPath(product))}>{product.designCount} designs</a>
               </th>
               <td>PNG</td>
               <td>{product.brushes ? 'Included' : 'Not included'}</td>

@@ -1,14 +1,4 @@
 /* Catalog intros, product details and studio pages. */
-.physical-listing-photo {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  mask-image:
-    linear-gradient(to right, transparent, #000 2%, #000 98%, transparent),
-    linear-gradient(to bottom, transparent, #000 2%, #000 98%, transparent);
-  mask-composite: intersect;
-}
 .collections-catalog-link {
   display: flex;
   justify-content: center;
@@ -44,82 +34,6 @@
 }
 .catalog-next .terminal-button {
   width: 13rem;
-  max-width: 100%;
-}
-.physical-art {
-  display: grid;
-  place-items: center;
-  aspect-ratio: 1;
-  max-width: 32rem;
-  margin-inline: auto;
-}
-.concept-label {
-  color: var(--color-muted);
-  font: var(--text-caption) / 1.8 var(--font-mono);
-  margin: 1rem 0;
-}
-.physical-detail-visual {
-  max-width: 33rem;
-  margin-inline: auto;
-}
-.physical-detail-visual .catalog-footnote {
-  text-align: center;
-  margin-top: 1rem;
-}
-.detail-back {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 0 2rem;
-  font: var(--text-caption) / 1.6 var(--font-mono);
-  color: var(--color-muted);
-}
-.detail-back a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 2.75rem;
-}
-.detail-back a:hover {
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
-}
-.detail-copy {
-  font: var(--text-copy) / 1.85 var(--font-mono);
-  container-type: inline-size;
-}
-.detail-copy .page-title {
-  font-size: clamp(1.625rem, 7.5cqw, 2.5rem);
-}
-.detail-copy > p {
-  color: var(--color-muted);
-  margin-top: 1rem;
-}
-.product-facts {
-  font: var(--text-caption) / 1.9 var(--font-mono);
-  margin: 2rem 0;
-}
-.product-facts > div {
-  padding: 1rem 0;
-  border-top: 1px solid var(--color-line);
-  display: grid;
-  grid-template-columns: 5.5rem minmax(0, 1fr);
-  gap: 1rem;
-}
-.product-facts dt {
-  font-weight: 400;
-}
-.product-facts dd {
-  margin: 0;
-  color: var(--color-muted);
-}
-.detail-copy .catalog-status {
-  font-size: var(--text-caption);
-  margin-bottom: 1.5rem;
-  max-width: 29rem;
-}
-.detail-copy .terminal-button {
-  width: 14.5rem;
   max-width: 100%;
 }
 .about-header {
@@ -177,12 +91,6 @@
   .catalog-next {
     margin-top: 7rem;
     padding-top: 4rem;
-  }
-  .detail-back {
-    padding-bottom: 3rem;
-  }
-  .detail-copy {
-    padding-block: 1rem;
   }
   .about-header {
     padding-top: 4rem;

@@ -1,6 +1,7 @@
 ---
 import { getEntry, render } from 'astro:content';
 import ContactForm from './ContactForm.astro';
+import ContactDetails from './ContactDetails.astro';
 import TerminalButton from '../ui/TerminalButton.astro';
 import { url } from '../../lib/paths';
 
@@ -19,7 +20,7 @@ const prefix = standalone ? 'page-contact' : 'home-contact';
     'contact-section',
     { 'vm-container': !standalone, 'contact-section--standalone': standalone },
   ]}
-  id="contact"
+  id="kontakt"
   aria-labelledby={`${prefix}-title`}
 >
   <header class="contact-section-header">
@@ -34,6 +35,7 @@ const prefix = standalone ? 'page-contact' : 'home-contact';
   <div class="contact-layout">
     <ContactForm idPrefix={prefix} />
     <aside class="contact-information" aria-label="Contact information">
+      <ContactDetails />
       <div class="contact-prose">
         <Content />
       </div>

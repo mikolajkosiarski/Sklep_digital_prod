@@ -1,0 +1,28 @@
+---
+interface Props {
+  average: number;
+  count?: number;
+  class?: string;
+}
+const { average, count, class: className } = Astro.props;
+const filled = Math.round(average);
+const value = average.toFixed(1);
+const label =
+  count === undefined
+    ? `${value} out of 5 stars`
+    : `${value} out of 5 stars, ${count} ${count === 1 ? 'review' : 'reviews'}`;
+---
+
+<p class:list={['star-rating', className]}>
+  <span class="star-rating__stars" role="img" aria-label={label}>
+    {Array.from({ length: 5 }, (_, index) => (
+      <span aria-hidden="true" data-empty={index >= filled || undefined}>
+        {index >= filled ? '☆' : '★'}
+      </span>
+    ))}
+  </span>
+  <span class="star-rating__value" aria-hidden="true">
+    {value}
+    {count !== undefined && <> ({count})</>}
+  </span>
+</p>
