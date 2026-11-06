@@ -2,7 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import NextSection from '../components/catalog/NextSection.astro';
 import { digitalProducts, digitalPath, hasSales, sales, salesSourceNote } from '../lib/catalog';
-import { asset, url } from '../lib/paths';
+import { decorImage } from '../lib/decor-images';
+import { url } from '../lib/paths';
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'AboutPage',
@@ -35,7 +36,13 @@ const schema = {
         </p>
       </div>
       <div class="about-mark min-w-0 col-span-full md:col-span-5" aria-hidden="true">
-        <img src={asset('assets/digital/pack-100-3.png')} width="4096" height="2048" alt="" />
+        <img
+          {...decorImage('assets/digital/pack-100-3.png')}
+          sizes="(min-width: 768px) 40vw, 90vw"
+          width="4096"
+          height="2048"
+          alt=""
+        />
       </div>
     </header>
     <section

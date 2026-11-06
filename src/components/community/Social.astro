@@ -1,7 +1,7 @@
 ---
 import SocialIcon from './SocialIcon.astro';
 import { community } from '../../lib/community';
-import { asset } from '../../lib/paths';
+import { decorImage } from '../../lib/decor-images';
 
 // Only confirmed profiles are published; the section stays hidden until one exists.
 const profiles = community.socialProfiles.filter((profile) => profile.url);
@@ -21,7 +21,8 @@ const profiles = community.socialProfiles.filter((profile) => profile.url);
         </p>
         <img
           class="social-mark"
-          src={asset('assets/digital/pack-100-3.png')}
+          {...decorImage('assets/digital/pack-100-3.png')}
+          sizes="(min-width: 768px) 40vw, 90vw"
           width="4096"
           height="2048"
           alt=""

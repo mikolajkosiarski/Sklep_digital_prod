@@ -1,5 +1,5 @@
 ---
-import { asset } from '../../lib/paths';
+import { decorImage } from '../../lib/decor-images';
 import type { JournalEntry } from './entries';
 interface Props {
   figure: JournalEntry['data']['figure'];
@@ -8,6 +8,12 @@ const { figure } = Astro.props;
 ---
 
 <figure class="journal-detail-figure">
-  <img src={asset(figure.image)} alt={figure.alt} loading="lazy" decoding="async" />
+  <img
+    {...decorImage(figure.image)}
+    sizes="(min-width: 768px) 768px, 100vw"
+    alt={figure.alt}
+    loading="lazy"
+    decoding="async"
+  />
   <figcaption>{figure.caption}</figcaption>
 </figure>
