@@ -54,7 +54,7 @@ Edytuj pliki w `src/`. `node_modules/`, `.astro/` i `dist/` są generowane lokal
 - `src/components/catalog/ProductCard.astro` jest jedynym szablonem kart w sklepie, na głównej i w produktach powiązanych. Styl **Full print**: obraz na pełną szerokość, etykieta (Bestseller przy co najmniej 100 sprzedażach na Etsy albo Sale przy promocji), tytuł `h3`, ocena, cena (z przekreśloną ceną regularną przy promocji) i przycisk „View details”. Style bazowe są w `src/styles/components/product-card.css`.
 - `src/components/ui/TerminalButton.astro` obsługuje link lub przycisk. Wygląd **Terminal relic** to tekst i obracany pikselowy plus, bez wypełnienia i obrysu. Fokus oraz ograniczenie animacji są w `src/styles/components/buttons.css`.
 - `src/lib/storefront.ts` normalizuje dane kolekcji dla kart, sklepu i koszyka.
-- `src/components/ui/Icon.astro` wstawia ikony z biblioteki Bootstrap Icons (pakiet npm `bootstrap-icons`) jako SVG w HTML. Używane są tylko pliki ikon (kosz w koszyku, pobieranie, edycja, potwierdzenie); Bootstrap CSS ani JS nie są ładowane.
+- `src/components/ui/Icon.astro` zawiera cztery własne pikselowe ikony SVG (kosz w koszyku, pobieranie, edycja, potwierdzenie) w stylu plusa z przycisków. Projekt nie używa Bootstrapa ani Bootstrap Icons.
 
 Główna prezentuje cztery kolekcje Digital w rzędzie na dużym ekranie i dwie na tablecie. Na telefonie karty tworzą przewijany w poziomie pas z przyciąganiem, w którym kolejna karta częściowo wystaje (`src/lib/layout-classes.ts`). W wąskich kartach cena i przycisk zajmują osobne wiersze. Tło wylinki zachowuje chłodne szarości i krycie 30%; źródło wzoru to `public/textures/serpent.svg`, a parametry tła są w `src/styles/components/surface.css`.
 
@@ -106,7 +106,7 @@ Kasa i konto są wyraźnie oznaczonymi demonstracjami: formularz kasy nie wysył
 | `konto.html`      | `/account/` → `src/pages/account.astro`, `src/scripts/account.ts`                                          |
 | `style.css`       | `src/styles/global.css`; blok `/* MODUŁ E-COMMERCE */` w `src/styles/components/ecommerce.css`             |
 
-Odstępstwa uzgodnione z charakterem sklepu: zamiast Bootstrapa jest Astro + Tailwind (komponenty `badge`, `table-responsive`, `nav-pills`, zakładki i paginacja są własnymi komponentami); menu zostało tekstowe („Account”, „Cart (n)” z prawdziwym licznikiem zamiast ikon i statycznej cyfry); dostawa w kasie jest cyfrowa (link e-mailem, pobranie z konta) zamiast kuriera i paczkomatu; wariantem produktu jest licencja (Standard albo Extended na wycenę), a liczba sztuk jest ograniczona do 1.
+Odstępstwa uzgodnione z charakterem sklepu: zamiast Bootstrapa jest Astro + Tailwind (komponenty `badge`, `table-responsive`, `nav-pills`, zakładki i paginacja są własnymi komponentami, a zamiast Bootstrap Icons są własne ikony SVG); menu zostało tekstowe („Account”, „Cart (n)” z prawdziwym licznikiem zamiast ikon i statycznej cyfry); dostawa w kasie jest cyfrowa (link e-mailem, pobranie z konta) zamiast kuriera i paczkomatu; wariantem produktu jest licencja (Standard albo Extended na wycenę), a liczba sztuk jest ograniczona do 1.
 
 Kontakt i komentarze walidują oraz pokazują tekst lokalnie. Nie wysyłają wiadomości ani nie publikują komentarzy. Opinie na głównej przepisano z czterech dostarczonych zrzutów Etsy; źródła są zachowane w `docs/sources/etsy-reviews/`. Statystyki oznaczają transakcje sprzedaży za cały czas, stan na 23 października 2026; wznowienia ofert są zapisane oddzielnie.
 
