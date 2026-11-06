@@ -85,10 +85,9 @@
 .home-about__visual img {
   display: block;
   width: 100%;
-  max-width: 28rem;
+  max-width: 24rem;
   height: auto;
   margin-inline: auto;
-  opacity: 0.85;
 }
 @variant md {
   .home-about {

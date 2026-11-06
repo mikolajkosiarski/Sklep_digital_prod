@@ -10,3 +10,5 @@
 - Zrzuty stanowiące źródło opinii są w `docs/sources/etsy-reviews/`. Strona renderuje tekst opinii, bez osadzania zrzutów.
 
 Zasoby są podglądami używanymi przez serwis. Projekt nie zawiera pełnych płatnych paczek przeznaczonych do pobierania przez klientów.
+
+- `public/assets/digital/angel-sig0011-640.webp` i `-1280.webp` (sekcja „About Visamore” na głównej) to wzór `sig0011` z paczki 110 Dark Art Tattoos (`110_designs_bundle_v1/transparent_bg/sig0011_t_4096x4096.png`). Biały oryginał przycięto do konturu i przebarwiono na kolor tekstu strony `#282828` z zachowaniem przezroczystości. W repozytorium jest tylko podgląd do 1280 px, bez pliku źródłowego 4096 px.

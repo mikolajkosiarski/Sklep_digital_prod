@@ -1,6 +1,6 @@
 ---
 import TerminalButton from '../ui/TerminalButton.astro';
-import { decorImage } from '../../lib/decor-images';
+import { asset } from '../../lib/paths';
 ---
 
 <!-- id="o-nas": the about section required by the course brief (CW3). -->
@@ -22,10 +22,11 @@ import { decorImage } from '../../lib/decor-images';
     </div>
     <div class="home-about__visual min-w-0 md:col-span-6" aria-hidden="true">
       <img
-        {...decorImage('assets/digital/pack-121-3.png')}
-        sizes="(min-width: 768px) 45vw, 90vw"
-        width="4096"
-        height="4096"
+        src={asset('assets/digital/angel-sig0011-1280.webp')}
+        srcset={`${asset('assets/digital/angel-sig0011-640.webp')} 640w, ${asset('assets/digital/angel-sig0011-1280.webp')} 1280w`}
+        sizes="(min-width: 768px) 28rem, 90vw"
+        width="3060"
+        height="3766"
         alt=""
         loading="lazy"
         decoding="async"
