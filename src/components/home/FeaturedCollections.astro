@@ -1,20 +1,22 @@
 ---
 import { featuredProducts } from '../../lib/catalog';
 import { getStoreProduct } from '../../lib/storefront';
-import { asset, url } from '../../lib/paths';
+import { url } from '../../lib/paths';
+import { decorImage } from '../../lib/decor-images';
 import { mobileProductRail } from '../../lib/layout-classes';
 import ProductCard from '../catalog/ProductCard.astro';
 import TerminalButton from '../ui/TerminalButton.astro';
 ---
 
 <section class="collections-section" id="collections" aria-labelledby="collections-title">
+  <!-- Decorative at 28% opacity: phones get the 640 px copy. -->
   <div class="collection-bleed" aria-hidden="true">
     <img
-      src={asset('assets/digital/pack-300-3.png')}
+      {...decorImage('assets/digital/pack-300-3.png')}
+      sizes="(min-width: 768px) 832px, 340px"
       width="4096"
       height="4096"
       alt=""
-      loading="lazy"
     />
   </div>
   <div class="vm-container">

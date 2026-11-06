@@ -9,14 +9,18 @@ import TerminalButton from '../ui/TerminalButton.astro';
       <div class="hero-ornaments" aria-hidden="true">
         <img
           class="hero-ornament hero-ornament--top-left"
-          src={asset('assets/frames/parts/128/top-left.svg')}
+          src={asset('assets/frames/parts/128/top-left-960.webp')}
+          srcset={`${asset('assets/frames/parts/128/top-left-480.webp')} 480w, ${asset('assets/frames/parts/128/top-left-960.webp')} 960w`}
+          sizes="(min-width: 768px) 448px, 160px"
           width="2229"
           height="2397"
           alt=""
         />
         <img
           class="hero-ornament hero-ornament--bottom-right"
-          src={asset('assets/frames/parts/128/bottom-right.svg')}
+          src={asset('assets/frames/parts/128/bottom-right-960.webp')}
+          srcset={`${asset('assets/frames/parts/128/bottom-right-480.webp')} 480w, ${asset('assets/frames/parts/128/bottom-right-960.webp')} 960w`}
+          sizes="(min-width: 768px) 448px, 160px"
           width="2226"
           height="2399"
           alt=""

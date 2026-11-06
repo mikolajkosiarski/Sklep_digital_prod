@@ -1,5 +1,5 @@
 {
-  "note": "Reusable SVG windows over the original transparent PNGs. No tracing, repainting or pixel deformation. Each exported SVG embeds its source image and can be used independently.",
+  "note": "Corner crops of the original transparent PNG, using the viewBox values below. No tracing, repainting or pixel deformation. Served as 480 and 960 px WebP files.",
   "frames": [
     {
       "id": "128",
