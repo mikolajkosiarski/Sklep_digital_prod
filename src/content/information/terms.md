@@ -9,7 +9,7 @@ updated: '2026-10-29'
 
 ## About this store
 
-VISAMORE is preparing a store for digital artwork and selected physical products. This preview does not accept orders or payments and does not deliver purchased files. Physical pieces shown as concepts are not available to order.
+VISAMORE is preparing a store for digital artwork. This preview does not accept orders or payments and does not deliver purchased files.
 
 These terms are being prepared for that future store. They do not replace the terms of an existing purchase made through Etsy.
 
@@ -23,8 +23,6 @@ The [contact page](../contact/) will provide the verified details in one place.
 
 Each digital product page must describe the included files, number of designs, formats, dimensions and relevant software or device requirements. PNG artwork and Procreate brushsets are different formats; availability of one does not imply that both are included.
 
-Physical product pages must state the final materials, sizes, relevant product and manufacturer information, availability and delivery conditions. Concept previews are not final product specifications.
-
 The scope of permitted use of digital artwork will be set out in the [license](../license/) and linked before purchase.
 
 ## Ordering, prices and payment
@@ -37,7 +35,7 @@ The final checkout must show the total payable amount and any additional costs b
 
 To complete before launch: how files are delivered, when access is provided, whether an account is needed, any download or access limits, and support for delivery problems.
 
-Physical delivery regions, methods, charges and estimated fulfilment times must be confirmed separately. This preview makes no delivery-time or lifetime-access promise.
+This preview makes no delivery-time or lifetime-access promise.
 
 ## Withdrawal and complaints
 

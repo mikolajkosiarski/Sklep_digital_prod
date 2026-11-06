@@ -26,10 +26,6 @@ The final delivery information will specify how an order is confirmed, how files
 
 These details are still being prepared. No delivery time, account requirement or permanent download entitlement is promised by this preview.
 
-## Physical products
-
-The clothing shown in the [Physical collection](../physical/) is currently at the concept stage. Before it is available to order, this page will describe shipping destinations, charges, dispatch and estimated delivery times, as well as any production lead time.
-
 ## A missing or damaged file
 
 If you already purchased a pack on Etsy, contact the seller through that order with the pack name and a description of the issue. Do not send passwords or payment-card details.

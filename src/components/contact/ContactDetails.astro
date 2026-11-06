@@ -1,0 +1,36 @@
+---
+import details from '../../data/contact-details.json';
+
+// Missing details stay visible as placeholders so they are not forgotten.
+const rows = [
+  { label: 'Email', value: details.email, href: details.email && `mailto:${details.email}` },
+  {
+    label: 'Phone',
+    value: details.phone,
+    href: details.phone && `tel:${details.phone.replace(/\s+/g, '')}`,
+  },
+  { label: 'Address', value: details.address },
+  { label: 'Business', value: details.business },
+];
+---
+
+<address class="contact-details">
+  <dl>
+    {rows.map(({ label, value, href }) => (
+      <div>
+        <dt>{label}</dt>
+        <dd>
+          {value ? (
+            href ? (
+              <a href={href}>{value}</a>
+            ) : (
+              value
+            )
+          ) : (
+            <span class="contact-details__placeholder">To be added</span>
+          )}
+        </dd>
+      </div>
+    ))}
+  </dl>
+</address>

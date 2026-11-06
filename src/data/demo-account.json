@@ -1,0 +1,31 @@
+{
+  "note": "Sample customer used by the demo account page. Not a real person or order.",
+  "customer": {
+    "firstName": "Alex",
+    "lastName": "Sample",
+    "email": "alex@example.com",
+    "memberSince": "2026-03-02"
+  },
+  "address": {
+    "name": "Alex Sample",
+    "street": "ul. Przykładowa 1",
+    "postcode": "00-001",
+    "city": "Warszawa",
+    "country": "Poland",
+    "phone": "+48 000 000 000"
+  },
+  "orders": [
+    {
+      "number": "VM-1042",
+      "date": "2026-10-28",
+      "status": "Sent",
+      "items": ["300"]
+    },
+    {
+      "number": "VM-1037",
+      "date": "2026-09-14",
+      "status": "Sent",
+      "items": ["100", "25"]
+    }
+  ]
+}

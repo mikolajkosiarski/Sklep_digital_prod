@@ -8,7 +8,8 @@ import ProductCard from '../catalog/ProductCard.astro';
 import TerminalButton from '../ui/TerminalButton.astro';
 ---
 
-<section class="collections-section" id="collections" aria-labelledby="collections-title">
+<!-- id="sklep": the shop section required by the course brief (CW5). -->
+<section class="collections-section" id="sklep" aria-labelledby="collections-title">
   <!-- Decorative at 28% opacity: phones get the 640 px copy. -->
   <div class="collection-bleed" aria-hidden="true">
     <img
@@ -37,7 +38,7 @@ import TerminalButton from '../ui/TerminalButton.astro';
       ))}
     </div>
     <div class="collections-catalog-link">
-      <TerminalButton label="Explore digital" href={url('/digital/')} />
+      <TerminalButton label="Browse the shop" href={url('/shop/')} />
     </div>
   </div>
 </section>

@@ -8,8 +8,18 @@ interface Props {
   cartKey?: string;
   type?: 'button' | 'submit';
   disabled?: boolean;
+  /** Longer accessible name that starts with the visible label. */
+  ariaLabel?: string;
 }
-const { href, label, class: className, cartKey, type = 'button', disabled = false } = Astro.props;
+const {
+  href,
+  label,
+  class: className,
+  cartKey,
+  type = 'button',
+  disabled = false,
+  ariaLabel,
+} = Astro.props;
 const Tag = href ? 'a' : 'button';
 ---
 
@@ -19,6 +29,7 @@ const Tag = href ? 'a' : 'button';
   type={href ? undefined : type}
   data-cart-add={cartKey}
   disabled={cartKey || disabled ? true : undefined}
+  aria-label={ariaLabel}
 >
   <span class="terminal-button__label">{label}</span>
   <svg class="terminal-button__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">

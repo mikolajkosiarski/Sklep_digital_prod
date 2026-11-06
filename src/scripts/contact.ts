@@ -11,6 +11,17 @@ document.querySelectorAll<HTMLFormElement>('[data-contact-form]').forEach((form)
   if (!name || !email || !topic || !message || !submit || !status || !preview) return;
 
   const fields = [name, email, topic, message];
+  // Links such as /contact/?topic=license&collection=VM-300 prefill the request.
+  const params = new URLSearchParams(location.search);
+  const requested = params.get('topic');
+  if (requested && [...topic.options].some((option) => option.value === requested))
+    topic.value = requested;
+  const collection = params
+    .get('collection')
+    ?.slice(0, 80)
+    .replace(/[^\w\s&·-]/g, '');
+  if (requested === 'license' && collection && !message.value)
+    message.value = `Extended license for ${collection}. Planned use: `;
   const outputs = [...form.querySelectorAll<HTMLElement>('[data-contact-output]')];
   const clearPreview = () => {
     preview.hidden = true;

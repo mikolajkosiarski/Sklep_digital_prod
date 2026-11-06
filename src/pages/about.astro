@@ -1,7 +1,8 @@
 ---
+import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import NextSection from '../components/catalog/NextSection.astro';
-import { digitalProducts, digitalPath, hasSales, sales, salesSourceNote } from '../lib/catalog';
+import { digitalProducts, productPath, hasSales, sales, salesSourceNote } from '../lib/catalog';
 import { decorImage } from '../lib/decor-images';
 import { url } from '../lib/paths';
 const schema = {
@@ -11,21 +12,21 @@ const schema = {
   about: {
     '@type': 'Organization',
     name: 'Visamore',
-    description:
-      'Digital design collections and apparel concepts exploring gothic forms, ornaments and textures.',
+    description: 'Digital design collections exploring gothic forms, ornaments and textures.',
   },
 };
 ---
 
 <BaseLayout
   title="About — Visamore"
-  description="Explore the visual direction behind Visamore, its digital collections, apparel concepts and their sales history on Etsy."
+  description="Explore the visual direction behind Visamore, its digital collections and their sales history on Etsy."
   section="about"
   schema={schema}
   ogImage="assets/digital/pack-100-3.png"
   ogAlt="About — Visamore"
 >
   <main id="main-content" class="vm-container">
+    <Breadcrumbs items={[{ label: 'About' }]} />
     <header class="about-header grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-6 items-center">
       <div class="min-w-0 col-span-full md:col-span-7">
         <h1 class="page-title">About Visamore.</h1>
@@ -56,13 +57,12 @@ const schema = {
       </div>
       <div class="min-w-0 col-span-full md:col-span-7">
         <p>
-          Visamore brings together digital design collections and experiments in texture, ornament
-          and clothing. Thorn-like lines, gothic silhouettes and worn surfaces connect the work.
+          Visamore creates digital design collections and experiments in texture and ornament.
+          Thorn-like lines, gothic silhouettes and worn surfaces connect the work.
         </p>
         <p>
-          The digital catalog is the starting point: graphics to explore, combine and bring into a
-          new composition. Physical studies take that same visual language onto fabric, beginning
-          with apparel mockups.
+          Each collection is a set of graphics to explore, combine and bring into a new composition,
+          from tattoo flash and stencils to prints and screen designs.
         </p>
       </div>
     </section>
@@ -77,7 +77,7 @@ const schema = {
             <div class="studio-stat">
               <strong>{sales[product.id]}</strong>
               <p>Etsy sales · all time</p>
-              <a href={url(digitalPath(product))}>
+              <a href={url(productPath(product))}>
                 {product.designCount} designs · {product.title}
               </a>
             </div>

@@ -1,0 +1,184 @@
+---
+import type { DigitalProduct } from '../../lib/catalog';
+import type { DigitalOffer } from '../../lib/offers';
+import { styleLabels } from '../../lib/catalog';
+import { url } from '../../lib/paths';
+import StarRating from '../ui/StarRating.astro';
+interface Props {
+  product: DigitalProduct;
+  offer: DigitalOffer;
+  code: string;
+}
+const { product, offer, code } = Astro.props;
+const tabs = [
+  { id: 'description', label: 'Description' },
+  { id: 'specifications', label: 'Specifications' },
+  { id: 'reviews', label: `Reviews${offer.rating ? ` (${offer.rating.count})` : ''}` },
+];
+const reviewDate = (value: string) =>
+  new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(
+    new Date(`${value}T12:00:00Z`),
+  );
+---
+
+<!-- Without JavaScript the three panels read as consecutive sections. -->
+<section class="product-tabs" id="details" aria-label="Product details" data-product-tabs>
+  <div class="product-tabs__list" role="tablist" aria-label="Product details" hidden>
+    {tabs.map((tab, index) => (
+      <button
+        type="button"
+        role="tab"
+        id={`tab-${tab.id}`}
+        aria-controls={`panel-${tab.id}`}
+        aria-selected={index === 0 ? 'true' : 'false'}
+        tabindex={index === 0 ? 0 : -1}
+      >
+        {tab.label}
+      </button>
+    ))}
+  </div>
+
+  <div class="product-tabs__panel" id="panel-description" aria-labelledby="tab-description">
+    <h2 class="product-tabs__heading">Description</h2>
+    <div class="product-prose">
+      <slot />
+    </div>
+  </div>
+
+  <div class="product-tabs__panel" id="panel-specifications" aria-labelledby="tab-specifications">
+    <h2 class="product-tabs__heading">Specifications</h2>
+    <dl class="product-specs">
+      <div>
+        <dt>Product code</dt>
+        <dd>{code}</dd>
+      </div>
+      <div>
+        <dt>Designs</dt>
+        <dd>{offer.designCount}</dd>
+      </div>
+      <div>
+        <dt>Files</dt>
+        <dd>
+          {offer.designCount} transparent PNGs and {offer.designCount} white-background PNGs
+          {product.brushes && ', plus a Procreate brushset'}
+        </dd>
+      </div>
+      <div>
+        <dt>Resolution</dt>
+        <dd>
+          {offer.resolutionDetail}
+          {offer.dpi && ` ${offer.dpi} DPI.`}
+        </dd>
+      </div>
+      <div>
+        <dt>Style</dt>
+        <dd>{product.styles.map((style) => styleLabels[style]).join(', ')}</dd>
+      </div>
+      <div>
+        <dt>Motifs</dt>
+        <dd>{offer.motifs.join(', ')}</dd>
+      </div>
+      <div>
+        <dt>Packaging</dt>
+        <dd>{offer.packaging}</dd>
+      </div>
+      <div>
+        <dt>Delivery</dt>
+        <dd>Digital download. Listing photographs show mockups; no physical item is included.</dd>
+      </div>
+    </dl>
+    <nav class="product-support-links" aria-label="Product help">
+      <a href={url('/journal/png-or-brushset/')}>PNG or .brushset?</a>
+      <a href={url('/license/')}>License</a>
+      <a href={url('/delivery/')}>Delivery</a>
+      <a href={url('/help/')}>File help</a>
+    </nav>
+  </div>
+
+  <div class="product-tabs__panel" id="panel-reviews" aria-labelledby="tab-reviews">
+    <h2 class="product-tabs__heading">Reviews</h2>
+    {offer.rating ? (
+      <div class="product-review-summary">
+        <StarRating average={offer.rating.average} count={offer.rating.count} />
+        <p>Etsy rating for this collection, checked on {reviewDate(offer.rating.checkedOn)}.</p>
+      </div>
+    ) : (
+      <p class="product-review-summary">
+        No rating summary has been added for this collection yet.
+      </p>
+    )}
+    {offer.reviews.length > 0 ? (
+      <>
+        <h3 class="product-reviews__title">Selected reviews</h3>
+        <ul class="product-reviews">
+          {offer.reviews.map((review) => (
+            <li>
+              <figure>
+                <StarRating average={review.rating} />
+                <blockquote>
+                  <p>{review.text}</p>
+                </blockquote>
+                <figcaption>
+                  {review.author}, Etsy,{' '}
+                  <time datetime={review.date}>{reviewDate(review.date)}</time>
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+      </>
+    ) : (
+      <p>No reviews have been added for this collection yet.</p>
+    )}
+  </div>
+</section>
+<script>
+  // Accessible tabs: arrow keys move between tabs, only the active panel is shown.
+  document.querySelectorAll<HTMLElement>('[data-product-tabs]').forEach((root) => {
+    const list = root.querySelector<HTMLElement>('[role="tablist"]');
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const panels = tabs.map((tab) => document.getElementById(tab.getAttribute('aria-controls')!));
+    if (!list || panels.some((panel) => !panel)) return;
+    const select = (index: number, focus: boolean) => {
+      tabs.forEach((tab, i) => {
+        const active = i === index;
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+        panels[i]!.hidden = !active;
+      });
+      if (focus) tabs[index].focus();
+    };
+    panels.forEach((panel) => {
+      panel!.setAttribute('role', 'tabpanel');
+      panel!.tabIndex = 0;
+    });
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => select(index, false));
+      tab.addEventListener('keydown', (event) => {
+        const last = tabs.length - 1;
+        const next =
+          event.key === 'ArrowRight'
+            ? index === last
+              ? 0
+              : index + 1
+            : event.key === 'ArrowLeft'
+              ? index === 0
+                ? last
+                : index - 1
+              : event.key === 'Home'
+                ? 0
+                : event.key === 'End'
+                  ? last
+                  : -1;
+        if (next < 0) return;
+        event.preventDefault();
+        select(next, true);
+      });
+    });
+    root.classList.add('is-enhanced');
+    list.hidden = false;
+    // A link such as #panel-reviews opens that tab.
+    const fromHash = panels.findIndex((panel) => `#${panel!.id}` === location.hash);
+    select(fromHash >= 0 ? fromHash : 0, false);
+  });
+</script>

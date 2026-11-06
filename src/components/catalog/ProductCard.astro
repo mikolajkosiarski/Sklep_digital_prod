@@ -2,6 +2,7 @@
 import type { StoreProduct } from '../../lib/storefront';
 import { formatMoney } from '../../lib/money';
 import TerminalButton from '../ui/TerminalButton.astro';
+import StarRating from '../ui/StarRating.astro';
 
 interface Props {
   product: StoreProduct;
@@ -25,18 +26,37 @@ const Heading = headingLevel === 2 ? 'h2' : 'h3';
       decoding="async"
     />
   </a>
+  {product.badge && <p class="product-card__badge">{product.badge}</p>}
   <div class="product-card__body">
     <Heading class="product-card__title">
       <a href={product.href}>{product.title}</a>
     </Heading>
-    <p class="product-card__meta">
-      {product.kind === 'digital' ? 'Digital' : 'Physical'} · {product.meta}
-    </p>
+    <p class="product-card__meta">Digital · {product.meta}</p>
+    {product.rating && (
+      <StarRating
+        class="product-card__rating"
+        average={product.rating.average}
+        count={product.rating.count}
+      />
+    )}
     <div class="product-card__purchase">
       <p class="product-card__price">
-        <span>{formatMoney(product.priceMinor)}</span>
+        {product.compareAtMinor && (
+          <s class="product-card__regular">
+            <span class="sr-only">Regular price </span>
+            {formatMoney(product.compareAtMinor)}
+          </s>
+        )}
+        <span>
+          {product.compareAtMinor && <span class="sr-only">Sale price </span>}
+          {formatMoney(product.priceMinor)}
+        </span>
       </p>
-      <TerminalButton label="Add to cart" cartKey={product.key} />
+      <TerminalButton
+        href={product.href}
+        label="View details"
+        ariaLabel={`View details: ${product.title}`}
+      />
     </div>
   </div>
 </article>

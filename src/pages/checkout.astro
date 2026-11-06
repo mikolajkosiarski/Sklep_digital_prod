@@ -1,0 +1,218 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
+import TerminalButton from '../components/ui/TerminalButton.astro';
+import OrderTotals from '../components/cart/OrderTotals.astro';
+import { storeProducts } from '../lib/storefront';
+import { formatMoney } from '../lib/money';
+import { url } from '../lib/paths';
+
+const description = 'Demo checkout for Visamore digital collections. No payment is taken.';
+const deliveryOptions = [
+  { value: 'email', label: 'Download link by email', hint: 'Sent to the address above.' },
+  { value: 'account', label: 'Download from your account', hint: 'Files appear under Downloads.' },
+  { value: 'both', label: 'Email link and account download', hint: 'Both of the above.' },
+];
+const paymentOptions = [
+  { value: 'blik', label: 'BLIK', hint: 'Six-digit code from your banking app.' },
+  { value: 'card', label: 'Payment card', hint: 'Card details on the payment provider’s page.' },
+  { value: 'transfer', label: 'Fast bank transfer', hint: 'Pay-by-link from your bank.' },
+];
+---
+
+<BaseLayout
+  title="Checkout — Visamore"
+  {description}
+  section="checkout"
+  noindex
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Checkout — Visamore',
+    description,
+  }}
+>
+  <main id="main-content" class="vm-container checkout-view">
+    <Breadcrumbs items={[{ label: 'Cart', href: '/cart/' }, { label: 'Checkout' }]} />
+    <header class="cart-heading">
+      <div>
+        <h1 class="page-title">Checkout</h1>
+        <p class="checkout-demo">
+          Demo checkout: no order is placed, no payment is taken and nothing you type leaves this
+          browser.
+        </p>
+      </div>
+    </header>
+
+    <section class="cart-empty" data-cart-empty aria-labelledby="checkout-empty-title">
+      <h2 id="checkout-empty-title">Your cart is empty.</h2>
+      <p>Add a collection to your cart before checking out.</p>
+      <div class="cart-empty-actions">
+        <TerminalButton href="/shop/" label="Go to the shop" />
+      </div>
+    </section>
+
+    <form class="checkout-layout" data-cart-filled data-checkout novalidate hidden>
+      <div class="checkout-form">
+        <div class="checkout-errors" role="alert" data-checkout-errors hidden>
+          <p>Please check the highlighted fields:</p>
+          <ul></ul>
+        </div>
+        <fieldset class="checkout-section">
+          <legend>1. Billing details</legend>
+          <div class="checkout-grid">
+            <div class="checkout-field">
+              <label for="first-name">First name</label>
+              <input id="first-name" name="firstName" autocomplete="given-name" required />
+            </div>
+            <div class="checkout-field">
+              <label for="last-name">Last name</label>
+              <input id="last-name" name="lastName" autocomplete="family-name" required />
+            </div>
+            <div class="checkout-field checkout-field--wide">
+              <label for="street">Street and number</label>
+              <input id="street" name="street" autocomplete="street-address" required />
+            </div>
+            <div class="checkout-field">
+              <label for="postcode">Postcode</label>
+              <input id="postcode" name="postcode" autocomplete="postal-code" required />
+            </div>
+            <div class="checkout-field">
+              <label for="city">City</label>
+              <input id="city" name="city" autocomplete="address-level2" required />
+            </div>
+            <div class="checkout-field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+            </div>
+            <div class="checkout-field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                aria-describedby="email-hint"
+              />
+              <p class="checkout-hint" id="email-hint">
+                Your download link is sent here.
+              </p>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="checkout-section">
+          <legend>2. Delivery</legend>
+          <p class="checkout-hint">
+            Digital collections are delivered as downloads, free of charge.
+          </p>
+          {deliveryOptions.map((option, index) => (
+            <label class="checkout-choice">
+              <input
+                type="radio"
+                name="delivery"
+                value={option.value}
+                checked={index === 0}
+                data-delivery-label={option.label}
+              />
+              <span>
+                <strong>{option.label}</strong>
+                <span>{option.hint}</span>
+              </span>
+              <span class="checkout-choice__price">€0.00</span>
+            </label>
+          ))}
+        </fieldset>
+
+        <fieldset class="checkout-section">
+          <legend>3. Payment method</legend>
+          {paymentOptions.map((option, index) => (
+            <label class="checkout-choice">
+              <input type="radio" name="payment" value={option.value} checked={index === 0} />
+              <span>
+                <strong>{option.label}</strong>
+                <span>{option.hint}</span>
+              </span>
+            </label>
+          ))}
+        </fieldset>
+
+        <fieldset class="checkout-section">
+          <legend>4. Invoice and consent</legend>
+          <label class="checkout-check">
+            <input
+              type="checkbox"
+              name="invoice"
+              data-invoice-toggle
+              aria-controls="invoice-fields"
+            />
+            <span>I need an invoice for a company</span>
+          </label>
+          <div
+            class="checkout-grid checkout-invoice"
+            id="invoice-fields"
+            data-invoice-fields
+            hidden
+          >
+            <div class="checkout-field">
+              <label for="company">Company name</label>
+              <input id="company" name="company" autocomplete="organization" />
+            </div>
+            <div class="checkout-field">
+              <label for="tax-id">NIP (tax ID)</label>
+              <input
+                id="tax-id"
+                name="taxId"
+                inputmode="numeric"
+                pattern="[0-9]{10}"
+                aria-describedby="tax-id-hint"
+              />
+              <p class="checkout-hint" id="tax-id-hint">
+                10 digits, without dashes.
+              </p>
+            </div>
+          </div>
+          <label class="checkout-check">
+            <input type="checkbox" name="terms" required />
+            <span>
+              I accept the <a href={url('/terms/')}>terms</a> and the{' '}
+              <a href={url('/license/')}>Standard license</a>.
+            </span>
+          </label>
+          <label class="checkout-check">
+            <input type="checkbox" name="digitalConsent" required />
+            <span>
+              I ask for the files to be delivered straight away and understand that I then lose the
+              right to withdraw (<a href={url('/returns/')}>returns</a>).
+            </span>
+          </label>
+        </fieldset>
+      </div>
+
+      <aside class="checkout-summary" aria-labelledby="checkout-summary-title">
+        <h2 id="checkout-summary-title">Your order</h2>
+        <ul class="checkout-items">
+          {storeProducts.map((product) => (
+            <li data-summary-row={product.key} hidden>
+              <span>{product.title}</span>
+              <span data-line-total>{formatMoney(product.priceMinor)}</span>
+            </li>
+          ))}
+        </ul>
+        <OrderTotals deliveryLabel="Delivery" />
+        <p class="checkout-delivery">
+          Delivery: <span data-checkout-delivery>Download link by email</span>
+        </p>
+        <TerminalButton type="submit" label="Buy and pay" class="cart-summary__cta" />
+        <p class="cart-summary__note">Demo: you will see a confirmation in your account.</p>
+      </aside>
+    </form>
+    <noscript>
+      <p>Enable JavaScript to use the demo checkout.</p>
+    </noscript>
+  </main>
+</BaseLayout>
+<script>
+  import '../scripts/checkout';
+</script>

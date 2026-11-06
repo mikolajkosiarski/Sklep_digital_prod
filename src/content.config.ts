@@ -56,24 +56,51 @@ const productId = z.string().regex(/^[1-9]\d*$/);
 
 const products = defineCollection({
   loader: glob({ base: './src/content/products', pattern: '*.md' }),
-  schema: z.object({
-    priceMinor: z.number().int().positive(),
-    designCount: z.number().int().positive(),
-    resolution: z.string().min(1),
-    resolutionDetail: z.string().min(1),
-    dpi: z.number().int().positive().optional(),
-    motifs: z.array(z.string().min(1)).min(1),
-    packaging: z.string().min(1),
-    gallery: z.array(z.object({ file: listingFilename, alt: z.string().min(1) })).min(1),
-    relatedIds: z.array(productId),
-    video: z
-      .object({
-        src: z.string().regex(/^assets\/video\/[a-zA-Z0-9][a-zA-Z0-9_-]*\.mp4$/),
-        poster: listingFilename,
-        description: z.string().min(1),
-      })
-      .optional(),
-  }),
+  schema: z
+    .object({
+      priceMinor: z.number().int().positive(),
+      // Regular price during a genuine promotion; the card and page show it struck through.
+      compareAtMinor: z.number().int().positive().optional(),
+      designCount: z.number().int().positive(),
+      resolution: z.string().min(1),
+      resolutionDetail: z.string().min(1),
+      dpi: z.number().int().positive().optional(),
+      motifs: z.array(z.string().min(1)).min(1),
+      packaging: z.string().min(1),
+      gallery: z.array(z.object({ file: listingFilename, alt: z.string().min(1) })).min(1),
+      relatedIds: z.array(productId),
+      video: z
+        .object({
+          src: z.string().regex(/^assets\/video\/[a-zA-Z0-9][a-zA-Z0-9_-]*\.mp4$/),
+          poster: listingFilename,
+          description: z.string().min(1),
+        })
+        .optional(),
+      // Etsy summary for this listing, copied by the shop owner. Never computed from
+      // the selected quotes below, so the average reflects every review.
+      rating: z
+        .object({
+          average: z.number().min(1).max(5),
+          count: z.number().int().positive(),
+          checkedOn: z.iso.date(),
+        })
+        .optional(),
+      // Quotes chosen by the shop owner, shown as "Selected reviews".
+      reviews: z
+        .array(
+          z.object({
+            author: z.string().min(1),
+            rating: z.number().int().min(1).max(5),
+            date: z.iso.date(),
+            text: z.string().min(1),
+          }),
+        )
+        .default([]),
+    })
+    .refine(
+      (offer) => offer.compareAtMinor === undefined || offer.compareAtMinor > offer.priceMinor,
+      'compareAtMinor must be higher than priceMinor',
+    ),
 });
 
 export const collections = { journal, information, products };

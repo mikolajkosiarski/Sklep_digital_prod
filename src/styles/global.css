@@ -5,6 +5,7 @@
 @import './components/typography.css' layer(components);
 @import './components/surface.css' layer(components);
 @import './components/navigation.css' layer(components);
+@import './components/wayfinding.css' layer(components);
 @import './components/buttons.css' layer(components);
 @import './components/hero.css' layer(components);
 @import './components/collections.css' layer(components);
@@ -14,7 +15,7 @@
 @import './components/community.css' layer(components);
 @import './components/catalog.css' layer(components);
 @import './components/editorial.css' layer(components);
-@import './components/catalog-browser.css' layer(components);
+@import './components/ecommerce.css' layer(components);
 @import 'tailwindcss/utilities.css' layer(utilities) source(none);
 
 @source '../';

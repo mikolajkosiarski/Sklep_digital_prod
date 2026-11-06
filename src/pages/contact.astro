@@ -2,7 +2,7 @@
 import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactSection from '../components/contact/ContactSection.astro';
-import { url } from '../lib/paths';
+import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
 
 const entry = await getEntry('information', 'contact');
 if (!entry) throw new Error('Missing contact information content.');
@@ -22,14 +22,7 @@ const { title, description, status } = entry.data;
   }}
 >
   <main id="main-content" class="vm-container contact-page">
-    <nav class="contact-breadcrumb" aria-label="Breadcrumb">
-      <ol>
-        <li>
-          <a href={url('/')}>Home</a>
-        </li>
-        <li aria-current="page">Contact</li>
-      </ol>
-    </nav>
+    <Breadcrumbs items={[{ label: 'Contact' }]} />
     <header class="contact-page-header">
       <h1 class="page-title">Contact.</h1>
       <p>{description}</p>

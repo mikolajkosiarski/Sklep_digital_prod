@@ -10,8 +10,7 @@
   max-width: 33rem;
   margin: 1.25rem 0 0;
 }
-.editorial-section .terminal-button,
-.physical-feature .terminal-button {
+.editorial-section .terminal-button {
   width: 13rem;
   max-width: 100%;
   margin-top: 1.75rem;
@@ -71,57 +70,27 @@
   color: var(--color-muted);
   margin: 0;
 }
-.physical-feature {
-  margin-top: 7rem;
-}
-.physical-feature-image {
-  display: block;
-  max-width: 25rem;
-  margin-inline: auto;
-}
-.physical-feature .concept-label {
-  margin-top: 1.5rem;
-}
-.physical-feature .terminal-button {
-  margin-top: 1rem;
-}
-.design-note {
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--color-line);
-}
-.design-note h3 {
-  font: 500 1rem/1.7 var(--font-mono);
-  margin: 0 0 1rem;
-}
-.design-note p {
-  font: var(--text-copy) / 1.95 var(--font-mono);
-  color: var(--color-muted);
-  max-width: 30rem;
-  margin: 0;
-}
-.design-note a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 2.75rem;
-  margin-top: 1rem;
-  font: var(--text-caption) var(--font-mono);
-}
-.design-note a:hover {
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
-}
 @variant md {
   .editorial-section {
     margin-top: 7rem;
     padding-top: 4rem;
   }
-  .physical-feature {
-    margin-top: 9rem;
-  }
-  .physical-feature-image {
-    max-width: 27rem;
-  }
 }
-.physical-notes .design-notes-grid {
-  margin-top: 2rem;
+.home-about {
+  margin-top: 6rem;
+}
+.home-about .terminal-button {
+  margin-top: 1.75rem;
+}
+.home-about__visual img {
+  display: block;
+  width: 100%;
+  max-width: 24rem;
+  height: auto;
+  margin-inline: auto;
+}
+@variant md {
+  .home-about {
+    margin-top: 8rem;
+  }
 }

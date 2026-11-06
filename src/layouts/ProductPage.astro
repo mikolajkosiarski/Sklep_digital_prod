@@ -1,15 +1,26 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import TerminalButton from '../components/ui/TerminalButton.astro';
+import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
+import StarRating from '../components/ui/StarRating.astro';
 import ProductGallery from '../components/product/ProductGallery.astro';
 import ProductPrice from '../components/product/ProductPrice.astro';
-import ProductFiles from '../components/product/ProductFiles.astro';
+import ProductPurchase from '../components/product/ProductPurchase.astro';
+import ProductTabs from '../components/product/ProductTabs.astro';
 import ProductFilm from '../components/product/ProductFilm.astro';
 import RelatedProducts from '../components/product/RelatedProducts.astro';
-import { coverFile, hasSales, sales, salesSourceNote, type DigitalProduct } from '../lib/catalog';
+import {
+  coverFile,
+  hasSales,
+  productCode,
+  productPath,
+  sales,
+  salesSourceNote,
+  styleLabels,
+  type DigitalProduct,
+} from '../lib/catalog';
 import type { DigitalOffer } from '../lib/offers';
 import { getProductGallery, getSocialImage } from '../lib/product-media';
-import { absoluteUrl, url } from '../lib/paths';
+import { absoluteUrl } from '../lib/paths';
 import '../styles/components/product-detail.css';
 
 interface Props {
@@ -19,15 +30,25 @@ interface Props {
 const { product, offer } = Astro.props;
 const images = await getProductGallery(product);
 const socialImage = await getSocialImage(coverFile(product));
+const code = productCode(product.id);
 const title = `${product.title} · ${offer.designCount} designs`;
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: title,
+  sku: code,
   description: product.description,
   image: absoluteUrl(socialImage, Astro.site),
+  url: absoluteUrl(productPath(product), Astro.site),
   brand: { '@type': 'Brand', name: 'Visamore' },
   category: 'Digital design collections',
+  ...(offer.rating && {
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: offer.rating.average,
+      reviewCount: offer.rating.count,
+    },
+  }),
   // Reference prices do not represent an available checkout offer.
 };
 ---
@@ -35,25 +56,43 @@ const schema = {
 <BaseLayout
   title={`${title} — Visamore`}
   description={product.description}
-  section="digital"
+  section="shop"
   schema={schema}
   ogImage={socialImage}
   ogAlt={title}
 >
   <main id="main-content" class="vm-container product-page">
-    <nav class="product-back" aria-label="Back to catalogue">
-      <a href={url('/digital/')}>All digital collections</a>
-    </nav>
-    <article aria-labelledby="product-title">
+    <Breadcrumbs items={[{ label: 'Shop', href: '/shop/' }, { label: product.title }]} />
+    <article class="product-article" aria-labelledby="product-title">
       <div class="product-hero">
         <header class="product-heading">
           <h1 id="product-title" class="page-title">
             {product.title}
           </h1>
+          <p class="product-code">
+            <span>{code}</span>
+            <span aria-hidden="true">·</span>
+            <span>{product.styles.map((style) => styleLabels[style]).join(', ')}</span>
+          </p>
+          {offer.rating ? (
+            <a class="product-rating-link" href="#panel-reviews">
+              <StarRating average={offer.rating.average} count={offer.rating.count} />
+            </a>
+          ) : (
+            offer.reviews.length > 0 && (
+              <a class="product-text-link" href="#panel-reviews">
+                {offer.reviews.length} selected {offer.reviews.length === 1 ? 'review' : 'reviews'}
+              </a>
+            )
+          )}
+          <ProductPrice productId={product.id} />
+          <p class="product-stock">
+            <span class="product-stock__dot" aria-hidden="true"></span>
+            Available · digital download
+          </p>
           <p class="product-format">
             {offer.designCount} designs · {product.formatLabel}
           </p>
-          <ProductPrice productId={product.id} />
         </header>
         <div class="product-visual">
           <ProductGallery
@@ -63,21 +102,11 @@ const schema = {
           />
         </div>
         <div class="product-summary">
-          <div class="product-prose">
-            <slot />
-          </div>
-          <div class="product-actions">
-            <TerminalButton label="Add to cart" cartKey={`digital:${product.id}`} />
-            <a class="product-text-link" href="#included">
-              Files &amp; formats
-            </a>
-            {offer.video && (
-              <a class="product-text-link" href="#film">
-                Watch listing film
-              </a>
-            )}
-          </div>
-          <p class="product-availability">Store preview. Orders and downloads are not open yet.</p>
+          <p class="product-lead">{product.description}</p>
+          <ProductPurchase productKey={`digital:${product.id}`} code={code} title={product.title} />
+          <p class="product-availability">
+            Store preview: checkout is a demo and no payment is taken.
+          </p>
           {hasSales(product) && (
             <div class="product-sales">
               <p>
@@ -88,7 +117,9 @@ const schema = {
           )}
         </div>
       </div>
-      <ProductFiles product={product} offer={offer} />
+      <ProductTabs product={product} offer={offer} code={code}>
+        <slot />
+      </ProductTabs>
       {offer.video && <ProductFilm video={offer.video} title={product.title} />}
     </article>
     <RelatedProducts ids={offer.relatedIds} />

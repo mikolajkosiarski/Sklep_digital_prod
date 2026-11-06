@@ -1,0 +1,284 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
+import TerminalButton from '../components/ui/TerminalButton.astro';
+import Icon from '../components/ui/Icon.astro';
+import account from '../data/demo-account.json';
+import { getStoreProduct, storeProducts } from '../lib/storefront';
+import { formatMoney } from '../lib/money';
+import { url } from '../lib/paths';
+
+const description =
+  'Demo customer account for the Visamore store preview: orders, downloads and addresses.';
+const { customer, address } = account;
+const orders = account.orders.map((order) => {
+  const items = order.items.map((id) => getStoreProduct(`digital:${id}`));
+  return { ...order, items, totalMinor: items.reduce((sum, item) => sum + item.priceMinor, 0) };
+});
+const downloads = [
+  ...new Map(orders.flatMap(({ items }) => items).map((p) => [p.key, p])).values(),
+];
+const date = (value: string) =>
+  new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }).format(
+    new Date(`${value}T12:00:00Z`),
+  );
+const sections = [
+  { id: 'dashboard', label: 'Dashboard' },
+  { id: 'orders', label: 'My orders' },
+  { id: 'downloads', label: 'Downloads' },
+  { id: 'addresses', label: 'Addresses' },
+  { id: 'settings', label: 'Account settings' },
+];
+// Titles for an order placed in the demo checkout, looked up by product key.
+const titles = Object.fromEntries(storeProducts.map((product) => [product.key, product.title]));
+---
+
+<BaseLayout
+  title="Your account — Visamore"
+  {description}
+  section="account"
+  noindex
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Your account — Visamore',
+    description,
+  }}
+>
+  <main id="main-content" class="vm-container account-view">
+    <Breadcrumbs items={[{ label: 'Account' }]} />
+    <header class="cart-heading">
+      <div>
+        <h1 class="page-title">Your account</h1>
+        <p>Demo account with sample data. Sign-in is not available in this store preview.</p>
+      </div>
+    </header>
+
+    <div class="account-success" role="status" data-order-success hidden>
+      <Icon name="check-circle" />
+      <div>
+        <p class="account-success__title">Thank you. Your demo order is confirmed.</p>
+        <p>
+          Order <strong data-order-number></strong>, total <strong data-order-total></strong>. No
+          payment was taken.
+        </p>
+      </div>
+    </div>
+
+    <div class="account-layout">
+      <nav class="account-nav" aria-label="Account sections">
+        <ul>
+          {sections.map(({ id, label }, index) => (
+            <li>
+              <a href={`#${id}`} aria-current={index === 0 ? 'true' : undefined}>
+                {label}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href={url('/')} data-sign-out>
+              Sign out
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="account-panels">
+        <section class="account-panel" id="dashboard" aria-labelledby="dashboard-title">
+          <h2 id="dashboard-title">Welcome back, {customer.firstName}.</h2>
+          <dl class="account-stats">
+            <div>
+              <dt>Orders</dt>
+              <dd data-order-count>{orders.length}</dd>
+            </div>
+            <div>
+              <dt>Collections to download</dt>
+              <dd>{downloads.length}</dd>
+            </div>
+            <div>
+              <dt>Member since</dt>
+              <dd>{date(customer.memberSince)}</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="account-panel" id="orders" aria-labelledby="orders-title">
+          <h2 id="orders-title">My orders</h2>
+          <div class="table-responsive" role="region" aria-label="Order history table" tabindex="0">
+            <table class="account-table">
+              <thead>
+                <tr>
+                  <th scope="col">Order</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">
+                    <span class="sr-only">Details</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody data-order-rows>
+                <template data-order-template>
+                  <tr>
+                    <th scope="row" data-cell="number"></th>
+                    <td data-cell="date" data-label="Date"></td>
+                    <td data-cell="total" data-label="Total"></td>
+                    <td data-label="Status">
+                      <span class="account-status" data-status="processing">
+                        Processing
+                      </span>
+                    </td>
+                    <td>
+                      <details class="account-details">
+                        <summary>Details</summary>
+                        <ul data-cell="items"></ul>
+                      </details>
+                    </td>
+                  </tr>
+                </template>
+                {orders.map((order) => (
+                  <tr>
+                    <th scope="row">{order.number}</th>
+                    <td data-label="Date">
+                      <time datetime={order.date}>{date(order.date)}</time>
+                    </td>
+                    <td data-label="Total">{formatMoney(order.totalMinor)}</td>
+                    <td data-label="Status">
+                      <span class="account-status" data-status={order.status.toLowerCase()}>
+                        {order.status}
+                      </span>
+                    </td>
+                    <td>
+                      <details class="account-details">
+                        <summary>
+                          Details<span class="sr-only"> for order {order.number}</span>
+                        </summary>
+                        <ul>
+                          {order.items.map((item) => (
+                            <li>
+                              <a href={item.href}>{item.title}</a> · {formatMoney(item.priceMinor)}
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="account-panel" id="downloads" aria-labelledby="downloads-title">
+          <h2 id="downloads-title">Downloads</h2>
+          <ul class="account-downloads">
+            {downloads.map((item) => (
+              <li>
+                <a href={item.href}>{item.title}</a>
+                <span class="account-downloads__meta">{item.meta}</span>
+                <button type="button" class="account-button" disabled>
+                  <Icon name="download" />
+                  Download<span class="sr-only"> {item.title}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+          <p class="account-note">Demo: files are not available for download in this preview.</p>
+        </section>
+
+        <section class="account-panel" id="addresses" aria-labelledby="addresses-title">
+          <h2 id="addresses-title">Addresses</h2>
+          <div class="account-address" data-address>
+            <h3>Default billing address</h3>
+            <address data-address-view>
+              <span data-field="name">{address.name}</span>
+              <br />
+              <span data-field="street">{address.street}</span>
+              <br />
+              <span data-field="postcode">{address.postcode}</span>{' '}
+              <span data-field="city">{address.city}</span>
+              <br />
+              <span data-field="country">{address.country}</span>
+              <br />
+              <span data-field="phone">{address.phone}</span>
+            </address>
+            <button
+              type="button"
+              class="account-button"
+              data-address-edit
+              aria-expanded="false"
+              aria-controls="address-form"
+            >
+              <Icon name="pencil" />
+              Edit address
+            </button>
+            <form class="account-form" id="address-form" data-address-form hidden>
+              {(
+                [
+                  ['name', 'Full name', 'name'],
+                  ['street', 'Street and number', 'street-address'],
+                  ['postcode', 'Postcode', 'postal-code'],
+                  ['city', 'City', 'address-level2'],
+                  ['country', 'Country', 'country-name'],
+                  ['phone', 'Phone', 'tel'],
+                ] as const
+              ).map(([name, label, autocomplete]) => (
+                <div class="checkout-field">
+                  <label for={`address-${name}`}>{label}</label>
+                  <input
+                    id={`address-${name}`}
+                    name={name}
+                    value={address[name]}
+                    autocomplete={autocomplete}
+                    required
+                  />
+                </div>
+              ))}
+              <div class="account-form__actions">
+                <TerminalButton type="submit" label="Save address" />
+                <button type="button" class="shop-reset" data-address-cancel>
+                  Cancel
+                </button>
+              </div>
+            </form>
+            <p class="account-note" role="status" data-address-status></p>
+          </div>
+        </section>
+
+        <section class="account-panel" id="settings" aria-labelledby="settings-title">
+          <h2 id="settings-title">Account settings</h2>
+          <form class="account-form" data-settings-form>
+            <div class="checkout-field">
+              <label for="settings-email">Email</label>
+              <input
+                id="settings-email"
+                name="email"
+                type="email"
+                value={customer.email}
+                autocomplete="email"
+                required
+              />
+            </div>
+            <label class="checkout-check">
+              <input type="checkbox" name="newsletter" />
+              <span>Email me about new collections</span>
+            </label>
+            <div class="account-form__actions">
+              <TerminalButton type="submit" label="Save settings" />
+            </div>
+            <p class="account-note" role="status" data-settings-status></p>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+<script
+  is:inline
+  type="application/json"
+  id="account-titles"
+  set:html={JSON.stringify(titles).replace(/</g, '\\u003c')}
+/>
+<script>
+  import '../scripts/account';
+</script>

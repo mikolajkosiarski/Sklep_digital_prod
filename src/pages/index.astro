@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/home/Hero.astro';
 import FeaturedCollections from '../components/home/FeaturedCollections.astro';
-import PhysicalFeature from '../components/home/PhysicalFeature.astro';
+import HomeAbout from '../components/home/HomeAbout.astro';
 import JournalSection from '../components/journal/JournalSection.astro';
 import ContactSection from '../components/contact/ContactSection.astro';
 import Reviews from '../components/community/Reviews.astro';
@@ -10,15 +10,15 @@ import Social from '../components/community/Social.astro';
 ---
 
 <BaseLayout
-  title="Visamore — digital collections & apparel studies"
-  description="Gothic, tribal and cybersigilism graphics, early apparel concepts and practical notes on files, composition and textures."
+  title="Visamore — digital tattoo artwork & Procreate brushes"
+  description="Gothic, tribal and cybersigilism PNG collections and Procreate brushes, with practical notes on files, composition and textures."
   home
 >
   <main id="main-content">
     <Hero />
     <FeaturedCollections />
     <Reviews />
-    <PhysicalFeature />
+    <HomeAbout />
     <JournalSection />
     <ContactSection />
     <Social />

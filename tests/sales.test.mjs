@@ -40,8 +40,7 @@ test('The six catalog collections retain their evidenced counts without adding a
       ['25', 17],
     ],
   );
-  assert.equal(catalog.physical.length, 5);
-  assert.equal(new Set(catalog.physical.map(({ slug }) => slug)).size, 5);
+  assert(!('physical' in catalog), 'The shop sells digital collections only.');
   for (const id of ['30', '54', '110', '20']) {
     assert(Object.hasOwn(counts, id), `Keep the original evidence for listing ${id}.`);
     assert(!catalog.digital.some((product) => product.id === id));

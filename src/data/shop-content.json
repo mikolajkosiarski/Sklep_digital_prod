@@ -3,6 +3,7 @@
     {
       "id": "100",
       "title": "Cybersigilism",
+      "styles": ["cybersigilism"],
       "description": "100 gothic cybersigilism designs, from fine thorn ornaments to intricate dark-art forms.",
       "formatLabel": "PNG + Procreate brushes",
       "files": "100 transparent PNG + 100 white-background PNG",
@@ -12,6 +13,7 @@
     {
       "id": "121",
       "title": "Gothic & tribal",
+      "styles": ["gothic", "tribal"],
       "description": "121 gothic, tribal and cybersigilism designs for tattoo concepts, clothing and print.",
       "formatLabel": "Transparent + white PNG",
       "files": "121 transparent PNG + 121 white-background PNG",
@@ -21,6 +23,7 @@
     {
       "id": "300",
       "title": "Gothic & neotribal",
+      "styles": ["gothic", "tribal"],
       "description": "300 designs exploring gothic, neotribal and anime-inspired forms, with a Procreate brushset.",
       "formatLabel": "PNG + Procreate brushes",
       "files": "300 transparent PNG + 300 white-background PNG",
@@ -30,6 +33,7 @@
     {
       "id": "200",
       "title": "Frames & gothic arches",
+      "styles": ["gothic", "ornamental"],
       "description": "200 ornate frames, gothic arches, cathedral-inspired windows and decorative corners for prints, collages and design work.",
       "formatLabel": "PNG + Procreate brushes",
       "files": "200 transparent PNG + 200 white-background PNG",
@@ -41,6 +45,7 @@
     {
       "id": "55",
       "title": "Ornamental dotwork",
+      "styles": ["ornamental"],
       "description": "55 gothic and tribal tattoo designs with fine dotwork, looping ornaments and abstract cybersigilism forms.",
       "formatLabel": "Transparent + white PNG",
       "files": "55 transparent PNG + 55 white-background PNG",
@@ -51,74 +56,13 @@
     {
       "id": "25",
       "title": "Gothic coquette",
+      "styles": ["gothic", "coquette"],
       "description": "25 cute and eerie creature designs: winged kittens, horned animals and tiny monsters with bows and thorn-like details.",
       "formatLabel": "Transparent + white PNG",
       "files": "25 transparent PNG + 25 white-background PNG",
       "brushes": false,
       "delivery": "All 50 high-resolution PNG files are supplied in one ZIP archive.",
       "coverAlt": "Original Etsy cover for the 25-design Gothic Coquette collection"
-    }
-  ],
-  "physical": [
-    {
-      "slug": "bat-skeleton",
-      "title": "Bat skeleton",
-      "description": "A black T-shirt concept with a distressed white bat skeleton and outstretched wings.",
-      "group": "gothic",
-      "image": "assets/gallery/bat-listing.jpg",
-      "webImage": "assets/gallery/bat-listing",
-      "alt": "Bat skeleton T-shirt concept in its original ornamental listing frame",
-      "imageWidth": 2048,
-      "imageHeight": 2048,
-      "priceMinor": 3000
-    },
-    {
-      "slug": "crown-wings",
-      "title": "Crown & cross",
-      "description": "A black T-shirt concept combining a distressed white crown, cross, blade and hanging wings.",
-      "group": "gothic",
-      "image": "assets/gallery/crown-wings-listing.jpg",
-      "webImage": "assets/gallery/crown-wings-listing",
-      "alt": "Crown & cross T-shirt concept in its original ornamental listing frame",
-      "imageWidth": 2048,
-      "imageHeight": 2048,
-      "priceMinor": 3000
-    },
-    {
-      "slug": "angel-wings",
-      "title": "Angel wings",
-      "description": "A black T-shirt concept with distressed white angel wings, ornamental side pillars and a small central cross.",
-      "group": "gothic",
-      "image": "assets/gallery/angel-wings-listing.jpg",
-      "webImage": "assets/gallery/angel-wings-listing",
-      "alt": "Angel wings T-shirt concept in its original ornamental listing frame",
-      "imageWidth": 2048,
-      "imageHeight": 2048,
-      "priceMinor": 3000
-    },
-    {
-      "slug": "open-mouth",
-      "title": "Open mouth",
-      "description": "A black T-shirt concept with a distressed white open-mouth graphic and a vertical cross at its centre.",
-      "group": "gothic",
-      "image": "assets/gallery/open-mouth-listing.jpg",
-      "webImage": "assets/gallery/open-mouth-listing",
-      "alt": "Open mouth T-shirt concept in its original ornamental listing frame",
-      "imageWidth": 2048,
-      "imageHeight": 2048,
-      "priceMinor": 3000
-    },
-    {
-      "slug": "mercy",
-      "title": "Mercy",
-      "description": "A black T-shirt concept with distressed white praying hands, chain details and Gothic MERCY lettering.",
-      "group": "gothic",
-      "image": "assets/gallery/mercy-listing.jpg",
-      "webImage": "assets/gallery/mercy-listing",
-      "alt": "Mercy T-shirt concept in its original ornamental listing frame",
-      "imageWidth": 2048,
-      "imageHeight": 2048,
-      "priceMinor": 3000
     }
   ]
 }

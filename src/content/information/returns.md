@@ -31,12 +31,6 @@ Withdrawal because you changed your mind and a complaint about a product that do
 
 Before launch, this section must explain how to report missing, damaged, incorrect or incompatible content, the available statutory remedies, and the complaint-handling procedure. It must also distinguish faults from requirements clearly disclosed before purchase.
 
-## Physical products
-
-Physical pieces are currently concepts. Final return instructions must match the actual products, seller and delivery model.
-
-Producing an item after an order is placed does not, by itself, establish that it is a personalised item excluded from withdrawal. Any exception for goods made to a customer's specification must be assessed against the actual offer.
-
 ## Contact and next steps
 
 The [contact page](../contact/) will hold the verified support details. To help resolve a future issue, useful information may include the order reference, affected product and a description of the problem. This is not intended to impose extra conditions on statutory rights.

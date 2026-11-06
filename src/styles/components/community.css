@@ -77,11 +77,6 @@
 .review-stars [data-empty] {
   color: #999;
 }
-.reviews-note {
-  font: var(--text-caption) / 1.8 var(--font-mono);
-  color: var(--color-muted);
-  margin: 2rem 0 0;
-}
 .reviews-section + .journal-section {
   margin-top: 7rem;
 }

@@ -4,6 +4,7 @@ import JournalCard from './JournalCard.astro';
 import JournalVisual from './JournalVisual.astro';
 import JournalPagination from './JournalPagination.astro';
 import { JOURNAL_PAGE_SIZE, type JournalEntry } from './entries';
+import Breadcrumbs from '../ui/Breadcrumbs.astro';
 import { url } from '../../lib/paths';
 
 interface Props {
@@ -40,6 +41,13 @@ const schema = {
     data-page={page}
     data-page-size={JOURNAL_PAGE_SIZE}
   >
+    <Breadcrumbs
+      items={
+        page === 1
+          ? [{ label: 'Journal' }]
+          : [{ label: 'Journal', href: '/journal/' }, { label: `Page ${page}` }]
+      }
+    />
     <header class="journal-index-header">
       <h1 class="page-title">Journal.</h1>
       <p class="journal-intro">

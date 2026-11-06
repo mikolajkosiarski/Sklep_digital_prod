@@ -1,6 +1,6 @@
 # Visamore
 
-Responsywny serwis marki Visamore: **Astro 7, Tailwind CSS 4 i TypeScript**. Wspólne komponenty obsługują stronę główną, katalogi Digital i Physical, strony produktów, Journal oraz strony informacyjne.
+Responsywny serwis marki Visamore: **Astro 7, Tailwind CSS 4 i TypeScript**. Sklep z cyfrowymi kolekcjami (PNG i pędzle Procreate): strona główna, sklep z filtrami, strony produktów, koszyk, demo kasy, demo konta klienta, Journal oraz strony informacyjne.
 
 ## Uruchomienie
 
@@ -31,7 +31,7 @@ src/
   content/       opisy produktów, artykuły i informacje w Markdown
   data/          katalog, nawigacja, autor, statystyki i opinie
   lib/           modele, walidacja danych, ceny i adresy URL
-  scripts/       menu, katalog, galeria, koszyk, formularz
+  scripts/       menu, sklep, galeria, koszyk, kasa, konto, formularz
   styles/        tokeny, Tailwind i style według komponentów
   assets/        zdjęcia ofertowe optymalizowane przez Astro
 public/          grafiki, lokalne fonty z licencjami, tekstury i film
@@ -49,25 +49,30 @@ Edytuj pliki w `src/`. `node_modules/`, `.astro/` i `dist/` są generowane lokal
 ## Wspólne elementy
 
 - `src/layouts/BaseLayout.astro` składa dokument HTML, metadane, tło, header, footer i obsługę koszyka.
-- `src/components/layout/Header.astro` i `Footer.astro` są wspólne dla wszystkich stron. Na telefonie układ to Menu / logo / Cart.
-- `src/components/catalog/ProductCard.astro` jest jedynym szablonem kart Digital, Physical i produktów powiązanych. Wybrany styl **Full print** ma obraz na pełną szerokość oraz opis, cenę i zakup poniżej. Style są w `src/styles/components/product-card.css`.
+- `src/components/layout/Header.astro` i `Footer.astro` są wspólne dla wszystkich stron. Menu: Shop, Journal, About, Help, Account i Cart z licznikiem. Na telefonie układ to Menu / logo / Cart.
+- `src/components/ui/Breadcrumbs.astro` to jedne okruszki dla wszystkich stron (lista `<ol>`, „Home” na początku, `aria-current`, dane BreadcrumbList). `src/components/ui/Pagination.astro` obsługuje paginację sklepu i Journala. Style obu są w `src/styles/components/wayfinding.css`.
+- `src/components/catalog/ProductCard.astro` jest jedynym szablonem kart w sklepie, na głównej i w produktach powiązanych. Styl **Full print**: obraz na pełną szerokość, etykieta (Bestseller przy co najmniej 100 sprzedażach na Etsy albo Sale przy promocji), tytuł `h3`, ocena, cena (z przekreśloną ceną regularną przy promocji) i przycisk „View details”. Style bazowe są w `src/styles/components/product-card.css`.
 - `src/components/ui/TerminalButton.astro` obsługuje link lub przycisk. Wygląd **Terminal relic** to tekst i obracany pikselowy plus, bez wypełnienia i obrysu. Fokus oraz ograniczenie animacji są w `src/styles/components/buttons.css`.
-- `src/lib/storefront.ts` normalizuje dane obu katalogów dla tych samych kart i koszyka.
+- `src/lib/storefront.ts` normalizuje dane kolekcji dla kart, sklepu i koszyka.
+- `src/components/ui/Icon.astro` zawiera cztery własne pikselowe ikony SVG (kosz w koszyku, pobieranie, edycja, potwierdzenie) w stylu plusa z przycisków. Projekt nie używa Bootstrapa ani Bootstrap Icons.
 
-Główna prezentuje cztery kolekcje Digital w rzędzie na dużym ekranie i dwie na tablecie. Na telefonie karty Digital i Physical tworzą przewijany w poziomie pas z przyciąganiem, w którym kolejna karta częściowo wystaje (`src/lib/layout-classes.ts`). W wąskich kartach cena i przycisk zajmują osobne wiersze. Tło wylinki zachowuje chłodne szarości i krycie 30%; źródło wzoru to `public/textures/serpent.svg`, a parametry tła są w `src/styles/components/surface.css`.
+Główna prezentuje cztery kolekcje Digital w rzędzie na dużym ekranie i dwie na tablecie. Na telefonie karty tworzą przewijany w poziomie pas z przyciąganiem, w którym kolejna karta częściowo wystaje (`src/lib/layout-classes.ts`). W wąskich kartach cena i przycisk zajmują osobne wiersze. Tło wylinki zachowuje chłodne szarości i krycie 30%; źródło wzoru to `public/textures/serpent.svg`, a parametry tła są w `src/styles/components/surface.css`.
 
 ## Edycja treści
 
-| Element                                              | Miejsce edycji                      |
-| ---------------------------------------------------- | ----------------------------------- |
-| Digital: opis, cena, parametry, galeria, film        | `src/content/products/<id>.md`      |
-| Tytuły i krótkie opisy katalogowe, okładki, Physical | `src/data/shop-content.json`        |
-| Blog                                                 | `src/content/journal/<slug>.md`     |
-| Autor artykułów                                      | `src/data/journal-authors.ts`       |
-| Pomoc, kontakt, dokumenty                            | `src/content/information/*.md`      |
-| Opinie Etsy i profile społecznościowe                | `src/data/community-content.json`   |
-| Statystyki sprzedaży Etsy                            | `src/data/etsy-sales-all-time.json` |
-| Nawigacja                                            | `src/data/navigation.ts`            |
+| Element                                                   | Miejsce edycji                      |
+| --------------------------------------------------------- | ----------------------------------- |
+| Digital: opis, cena, parametry, galeria, film             | `src/content/products/<id>.md`      |
+| Tytuły, krótkie opisy, style (filtry), okładki            | `src/data/shop-content.json`        |
+| Ocena z Etsy, wybrane opinie, promocja (`compareAtMinor`) | `src/content/products/<id>.md`      |
+| Dane kontaktowe i nazwa podmiotu (placeholdery)           | `src/data/contact-details.json`     |
+| Przykładowe konto i zamówienia (demo)                     | `src/data/demo-account.json`        |
+| Blog                                                      | `src/content/journal/<slug>.md`     |
+| Autor artykułów                                           | `src/data/journal-authors.ts`       |
+| Pomoc, kontakt, dokumenty                                 | `src/content/information/*.md`      |
+| Opinie Etsy i profile społecznościowe                     | `src/data/community-content.json`   |
+| Statystyki sprzedaży Etsy                                 | `src/data/etsy-sales-all-time.json` |
+| Nawigacja                                                 | `src/data/navigation.ts`            |
 
 Digital korzysta z jednego szablonu `src/layouts/ProductPage.astro`; opisy Markdown są przekazywane przez slot. Journal korzysta z `JournalPost.astro`, wspólnej karty artykułu i archiwum z paginacją. Kontakt ma osobną trasę, ale formularz i sekcja na głównej są wspólne. Kolekcje treści są walidowane w `src/content.config.ts`.
 
@@ -75,21 +80,37 @@ Instrukcje: [produkty](docs/product-editing.md), [Journal](docs/journal-editing.
 
 ## Obecny zakres
 
-Build generuje **34 strony treści** oraz przekierowania starych adresów `.html`:
+Build generuje **30 stron treści** oraz przekierowania starych adresów (`.html`, `/digital/…` → `/shop/…`, wycofane `/physical/…` → `/shop/`):
 
 - strona główna;
-- Digital: katalog i sześć produktów;
-- Physical: katalog i pięć koncepcji koszulek;
+- sklep `/shop/` i sześć produktów `/shop/<id>/`;
+- koszyk, demo kasy `/checkout/` i demo konta `/account/`;
 - Journal: archiwum, druga strona archiwum i osiem artykułów;
-- About i koszyk;
+- About;
 - Contact, Help, Delivery, Terms, Privacy, License i Returns;
 - strona 404.
 
-Koszyk działa lokalnie: Digital można dodać raz, Physical do 99 sztuk. Zapisuje wyłącznie identyfikatory i ilości; ceny i nazwy odczytuje z katalogu. Sumy są liczone w eurocentach. Robocze ceny Digital pochodzą z Etsy, Physical kosztuje €30 za sztukę.
+Koszyk działa lokalnie: każdą kolekcję można dodać raz (jedna licencja na zamówienie). Zapisuje wyłącznie identyfikatory i ilości; ceny i nazwy odczytuje z katalogu. Sumy są liczone w eurocentach. Kod `VISAMORE10` to oznaczony kod demonstracyjny (−10%). Ceny pochodzą z Etsy.
+
+Kasa i konto są wyraźnie oznaczonymi demonstracjami: formularz kasy nie wysyła danych, a po poprawnym wypełnieniu zapisuje w `sessionStorage` tylko numer zamówienia, produkty i sumę, czyści koszyk i pokazuje potwierdzenie w panelu konta. Konto pokazuje przykładowego klienta z `src/data/demo-account.json`.
+
+### Moduł sklepu (CW5): pliki z instrukcji i trasy Astro
+
+| Instrukcja        | Trasa / plik w projekcie                                                                                   |
+| ----------------- | ---------------------------------------------------------------------------------------------------------- |
+| `index.html`      | `/` → `src/pages/index.astro`; sekcja `#sklep` w `src/components/home/FeaturedCollections.astro`           |
+| `sklep.html`      | `/shop/` → `src/pages/shop/index.astro`, `src/components/catalog/ShopCatalog.astro`, `src/scripts/shop.ts` |
+| `produkt.html`    | `/shop/<id>/` → `src/layouts/ProductPage.astro`, `ProductPurchase.astro`, `ProductTabs.astro`              |
+| `koszyk.html`     | `/cart/` → `src/components/cart/CartView.astro`, `CartLine.astro`, `src/scripts/cart.ts`                   |
+| `zamowienie.html` | `/checkout/` → `src/pages/checkout.astro`, `src/scripts/checkout.ts`                                       |
+| `konto.html`      | `/account/` → `src/pages/account.astro`, `src/scripts/account.ts`                                          |
+| `style.css`       | `src/styles/global.css`; blok `/* MODUŁ E-COMMERCE */` w `src/styles/components/ecommerce.css`             |
+
+Odstępstwa uzgodnione z charakterem sklepu: zamiast Bootstrapa jest Astro + Tailwind (komponenty `badge`, `table-responsive`, `nav-pills`, zakładki i paginacja są własnymi komponentami, a zamiast Bootstrap Icons są własne ikony SVG); menu zostało tekstowe („Account”, „Cart (n)” z prawdziwym licznikiem zamiast ikon i statycznej cyfry); dostawa w kasie jest cyfrowa (link e-mailem, pobranie z konta) zamiast kuriera i paczkomatu; wariantem produktu jest licencja (Standard albo Extended na wycenę), a liczba sztuk jest ograniczona do 1.
 
 Kontakt i komentarze walidują oraz pokazują tekst lokalnie. Nie wysyłają wiadomości ani nie publikują komentarzy. Opinie na głównej przepisano z czterech dostarczonych zrzutów Etsy; źródła są zachowane w `docs/sources/etsy-reviews/`. Statystyki oznaczają transakcje sprzedaży za cały czas, stan na 23 października 2026; wznowienia ofert są zapisane oddzielnie.
 
-Płatności, zamówienia, konta i zabezpieczone pobieranie plików są kolejnym etapem. Warunki sprzedaży i pozostałe dokumenty wymagają potwierdzenia danych sprzedawcy oraz dopasowania do przyszłej obsługi zamówień. Profile społecznościowe czekają na właściwe adresy; sekcja „Elsewhere” pojawia się automatycznie, gdy w `src/data/community-content.json` jest choć jeden adres profilu. Lista danych do uzupełnienia: [uruchomienie sklepu](docs/store-launch-information.md).
+Prawdziwe płatności, zamówienia, logowanie i zabezpieczone pobieranie plików są kolejnym etapem (backend poza zakresem frontendu). Warunki sprzedaży i pozostałe dokumenty wymagają potwierdzenia danych sprzedawcy oraz dopasowania do przyszłej obsługi zamówień. Profile społecznościowe czekają na właściwe adresy; sekcja „Elsewhere” pojawia się automatycznie, gdy w `src/data/community-content.json` jest choć jeden adres profilu. Lista danych do uzupełnienia: [uruchomienie sklepu](docs/store-launch-information.md).
 
 ## Sprawdzanie zmian
 

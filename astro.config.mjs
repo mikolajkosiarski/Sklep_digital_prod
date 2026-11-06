@@ -6,18 +6,29 @@ import catalog from './src/data/shop-content.json' with { type: 'json' };
 
 const deploymentBase = (process.env.BASE_PATH || '/').replace(/\/+$/, '');
 
-// Keep bookmarked prototype addresses working while the site uses clean routes.
+// Keep bookmarked addresses working while the site uses clean routes. The
+// catalogue moved from /digital/ to /shop/, and the apparel concepts that
+// used to live under /physical/ were retired in favour of the digital shop.
+const retiredPhysical = ['bat-skeleton', 'crown-wings', 'angel-wings', 'open-mouth', 'mercy'];
 const redirects = {
   '/hero-frames.html': '/',
-  '/shop.html': '/digital/',
-  '/physical.html': '/physical/',
+  '/shop.html': '/shop/',
+  '/digital/': '/shop/',
+  '/physical.html': '/shop/',
+  '/physical/': '/shop/',
   '/journal.html': '/journal/',
   '/about.html': '/about/',
   ...Object.fromEntries(
-    catalog.digital.map(({ id }) => [`/digital-${id}.html`, `/digital/${id}/`]),
+    catalog.digital.flatMap(({ id }) => [
+      [`/digital-${id}.html`, `/shop/${id}/`],
+      [`/digital/${id}/`, `/shop/${id}/`],
+    ]),
   ),
   ...Object.fromEntries(
-    catalog.physical.map(({ slug }) => [`/physical-${slug}.html`, `/physical/${slug}/`]),
+    retiredPhysical.flatMap((slug) => [
+      [`/physical-${slug}.html`, '/shop/'],
+      [`/physical/${slug}/`, '/shop/'],
+    ]),
   ),
   ...Object.fromEntries(
     ['png-or-brushset', 'working-with-digital-ornaments', 'a-study-in-worn-textures'].map(

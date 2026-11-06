@@ -1,11 +1,13 @@
 ---
 import TerminalButton from '../ui/TerminalButton.astro';
+import Breadcrumbs from '../ui/Breadcrumbs.astro';
 import CartLine from './CartLine.astro';
+import OrderTotals from './OrderTotals.astro';
 import { storeProducts } from '../../lib/storefront';
-import { url } from '../../lib/paths';
 ---
 
 <main id="main-content" class="vm-container cart-view">
+  <Breadcrumbs items={[{ label: 'Cart' }]} />
   <header class="cart-heading">
     <div>
       <h1 class="page-title">Your cart</h1>
@@ -14,170 +16,71 @@ import { url } from '../../lib/paths';
       </p>
     </div>
     <div class="cart-continue">
-      <TerminalButton href={url('/')} label="Continue shopping" />
+      <TerminalButton href="/shop/" label="Continue shopping" />
     </div>
   </header>
   <section class="cart-empty" data-cart-empty aria-labelledby="empty-cart-title">
     <h2 id="empty-cart-title">Your cart is empty.</h2>
-    <p>Explore the digital collections or apparel concepts.</p>
+    <p>Browse the digital collections and add one to your cart.</p>
     <div class="cart-empty-actions">
-      <TerminalButton href={url('/digital/')} label="Digital collections" />
-      <TerminalButton href={url('/physical/')} label="Physical collection" />
+      <TerminalButton href="/shop/" label="Go to the shop" />
     </div>
   </section>
   <div class="cart-layout" data-cart-filled hidden>
     <section class="cart-items" aria-labelledby="cart-items-title">
-      <h2 class="cart-section-title" id="cart-items-title">
-        Selected pieces
+      <h2 class="sr-only" id="cart-items-title">
+        Products in your cart
       </h2>
-      <div class="cart-lines">
-        {storeProducts.map((product) => (
-          <CartLine product={product} />
-        ))}
+      <!-- The wrapper scrolls sideways if the table is wider than the screen. -->
+      <div class="table-responsive" role="region" aria-label="Cart table" tabindex="0">
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Total</th>
+              <th scope="col">
+                <span class="sr-only">Remove</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {storeProducts.map((product) => (
+              <CartLine product={product} />
+            ))}
+          </tbody>
+        </table>
       </div>
+      <form class="cart-promo" data-cart-promo>
+        <label for="promo-code">Promo code</label>
+        <div class="cart-promo__field">
+          <input
+            id="promo-code"
+            name="code"
+            type="text"
+            autocomplete="off"
+            spellcheck="false"
+            aria-describedby="promo-hint promo-status"
+          />
+          <button class="cart-promo__apply" type="submit">
+            Apply
+          </button>
+        </div>
+        <p class="cart-promo__hint" id="promo-hint">
+          Demo code: VISAMORE10 takes 10% off.
+        </p>
+        <p class="cart-promo__status" id="promo-status" role="status" data-cart-promo-status></p>
+      </form>
     </section>
     <aside class="cart-summary" aria-labelledby="cart-summary-title">
       <h2 id="cart-summary-title">Order summary</h2>
-      <dl>
-        <div>
-          <dt>Items</dt>
-          <dd data-cart-count>0</dd>
-        </div>
-        <div class="cart-subtotal">
-          <dt>Subtotal</dt>
-          <dd data-cart-total>€0.00</dd>
-        </div>
-      </dl>
-      <p>Checkout is being prepared. Your selection is saved in this browser.</p>
+      <OrderTotals />
+      <TerminalButton href="/checkout/" label="Proceed to checkout" class="cart-summary__cta" />
+      <p class="cart-summary__note">Your selection is saved in this browser.</p>
     </aside>
   </div>
   <noscript>
     <p>Enable JavaScript to add and review products in this cart.</p>
   </noscript>
 </main>
-<style>
-  @reference '../../styles/global.css';
-  .cart-view {
-    padding-top: 2rem;
-    font-size: 1rem;
-  }
-  .cart-heading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem 2rem;
-    margin-bottom: 3rem;
-  }
-  .cart-heading p {
-    margin: 0.5rem 0 0;
-    font-size: 0.875rem;
-    color: var(--color-muted);
-  }
-  .cart-continue {
-    min-width: 0;
-  }
-  .cart-layout {
-    display: grid;
-    gap: 2.5rem;
-    align-items: start;
-  }
-  .cart-items,
-  .cart-lines {
-    min-width: 0;
-  }
-  .cart-section-title {
-    font: 500 1rem/1.5 var(--font-mono);
-    margin: 0;
-    padding: 0 0 1rem;
-    border-bottom: 1px solid var(--color-ink);
-  }
-  .cart-summary {
-    min-width: 0;
-    padding: 1.5rem;
-    border: 1px solid var(--color-line);
-    background: var(--color-paper);
-  }
-  .cart-summary h2 {
-    font: 500 1.125rem/1.5 var(--font-mono);
-    margin: 0 0 1.5rem;
-  }
-  .cart-summary dl {
-    margin: 0;
-  }
-  .cart-summary dl > div {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-  .cart-summary dd {
-    margin: 0;
-    font-variant-numeric: tabular-nums;
-  }
-  .cart-summary .cart-subtotal {
-    border-top: 1px solid var(--color-line);
-    padding-top: 1rem;
-    margin-top: 1rem;
-  }
-  .cart-subtotal dd {
-    font: 500 1.5rem/1.4 var(--font-mono);
-  }
-  .cart-summary p {
-    margin: 1.5rem 0 0;
-    font-size: 0.875rem;
-    line-height: 1.8;
-    color: var(--color-muted);
-  }
-  .cart-empty {
-    padding: clamp(1.5rem, 5vw, 4rem);
-    border: 1px solid var(--color-line);
-    background: var(--color-paper);
-  }
-  .cart-empty h2 {
-    font: 500 clamp(1.25rem, 2vw, 1.5rem)/1.5 var(--font-mono);
-    margin: 0;
-  }
-  .cart-empty p {
-    margin: 0.75rem 0 1.5rem;
-    color: var(--color-muted);
-    max-width: 42ch;
-  }
-  .cart-empty-actions {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.75rem 2.5rem;
-  }
-  .cart-layout {
-    @variant lg {
-      grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.44fr);
-      gap: 3.5rem;
-    }
-  }
-  .cart-summary {
-    @variant lg {
-      position: sticky;
-      top: 2rem;
-    }
-  }
-  .cart-heading {
-    @variant max-sm {
-      align-items: flex-start;
-      margin-bottom: 2rem;
-      gap: 0.75rem;
-    }
-  }
-  .cart-continue {
-    @variant max-sm {
-      flex-basis: 100%;
-    }
-  }
-  .cart-empty-actions {
-    @variant max-sm {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 0.5rem;
-    }
-  }
-</style>

@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
+import ShopCatalog from '../../components/catalog/ShopCatalog.astro';
+import DigitalGuide from '../../components/catalog/DigitalGuide.astro';
+import { collectionSchema, digitalProducts, productPath, salesSourceNote } from '../../lib/catalog';
+---
+
+<BaseLayout
+  title="Shop — Visamore"
+  description="Shop Visamore digital collections: gothic, tribal and cybersigilism PNG artwork and Procreate brushes, with filters by style, price, format and size."
+  section="shop"
+  schema={collectionSchema('Visamore shop', digitalProducts, productPath, Astro.site)}
+>
+  <main id="main-content" class="vm-container">
+    <Breadcrumbs items={[{ label: 'Shop' }]} />
+    <header class="catalog-header">
+      <h1 class="page-title">Shop.</h1>
+      <p class="page-intro">PNG artwork and Procreate brushes for your next composition.</p>
+    </header>
+    <ShopCatalog />
+    <p class="catalog-footnote">{salesSourceNote}</p>
+    <DigitalGuide />
+  </main>
+</BaseLayout>

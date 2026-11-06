@@ -5,16 +5,17 @@ import ProductCard from '../catalog/ProductCard.astro';
 interface Props {
   ids: string[];
 }
-const products = Astro.props.ids.map((id) => getStoreProduct(`digital:${id}`));
+// Three or four related collections, in the order set in the product file.
+const products = Astro.props.ids.slice(0, 4).map((id) => getStoreProduct(`digital:${id}`));
 ---
 
 <section class="product-related" aria-labelledby="related-title">
   <header>
     <h2 id="related-title" class="section-heading">
-      More collections
+      You may also like
     </h2>
-    <a class="product-text-link" href={url('/digital/')}>
-      Browse all digital
+    <a class="product-text-link" href={url('/shop/')}>
+      Browse the shop
     </a>
   </header>
   <div class="product-grid">
