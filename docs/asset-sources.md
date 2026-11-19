@@ -15,3 +15,4 @@ Zasoby są podglądami używanymi przez serwis. Projekt nie zawiera pełnych pł
 
 - Paczki 110 i 54 (dodane 19 listopada 2026): okładki `etsy-110-cover.webp` i `etsy-54-cover.webp` oraz zdjęcia `110-listing-1…3.webp` i `54-listing-1…3.webp` to oryginalne grafiki ofert Etsy, wgrane przez właściciela w kwestionariuszu treści. Pomniejszono je do maks. 1600 px, bez retuszu.
 - `110-design-sig*.webp` i `54-design-sig*.webp` to ulubione wzory wybrane przez właściciela (9 z paczki 110 i 6 z paczki 54). Powstały z podglądów laboratorium przymierzalni (768 px): kontur z kanału alfa w kolorze `#282828` na tle `#f7f7f7`, kwadrat 1000 px. Pełnych plików 4096 px nie ma w repozytorium.
+- `public/assets/video/pack-110-preview.mp4` i `pack-54-preview.mp4` to nagrania ekranu z Procreate (15 i 13 s, 1280 × 1280 px, bez dźwięku) z folderów `oferta_110_designs` i `oferta_54_designs` właściciela. Plakaty `110-video-poster.webp` i `54-video-poster.webp` to klatki z tych nagrań.
