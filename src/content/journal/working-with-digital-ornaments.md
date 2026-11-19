@@ -6,7 +6,10 @@ published: '2026-11-05'
 author: 'mikolaj'
 tags: ['Ornaments', 'Composition', 'Spacing']
 readTime: '2 min read'
-art: 'ornaments'
+art:
+  layout: 'single'
+  design: '110-sig0100'
+  alt: 'A gothic cross between two detailed feathered wings, from the Dark Art pack'
 order: 2
 figure:
   image: 'assets/digital/pack-121-3.png'

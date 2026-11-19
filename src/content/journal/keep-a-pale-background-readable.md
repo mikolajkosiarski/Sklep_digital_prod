@@ -6,7 +6,10 @@ published: '2026-11-05'
 author: 'mikolaj'
 tags: ['Texture', 'Contrast', 'Typography']
 readTime: '2 min read'
-art: 'textures'
+art:
+  layout: 'texture'
+  design: '110-sig0027'
+  alt: 'A skeletal figure with wide dark bat wings, from the Dark Art pack'
 order: 6
 figure:
   image: 'textures/serpent.svg'

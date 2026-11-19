@@ -6,7 +6,10 @@ published: '2026-11-05'
 author: 'mikolaj'
 tags: ['Scale', 'PNG', 'Files']
 readTime: '2 min read'
-art: 'formats'
+art:
+  layout: 'single'
+  design: '54-sig0044'
+  alt: '“Obsessed” written in fine flourished script lettering, from the Dark Romance pack'
 order: 5
 figure:
   image: 'assets/digital/pack-300-3.png'

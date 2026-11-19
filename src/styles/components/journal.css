@@ -297,7 +297,7 @@
   margin: 0 auto 2.5rem;
 }
 .article-figure .journal-visual {
-  aspect-ratio: 2.6;
+  aspect-ratio: 1.5;
 }
 .article-body {
   background: var(--color-paper);
@@ -672,6 +672,9 @@
   .article-figure {
     margin-bottom: 4rem;
   }
+  .article-figure .journal-visual {
+    aspect-ratio: 2.6;
+  }
   .article-related {
     margin-top: 8rem;
   }
@@ -737,53 +740,48 @@
 }
 .brush-stamps {
   position: absolute;
-  inset: 7% 12% 25%;
+  inset: 8% 6% 24%;
 }
 .brush-stamps img {
-  width: 75%;
-  height: 50%;
-  left: 12%;
-  opacity: 0.7;
+  width: 46%;
+  height: 62%;
+  opacity: 0.75;
 }
 .brush-stamps img:nth-child(1) {
   top: 0;
-  transform: rotate(-20deg);
+  left: 0;
+  transform: rotate(-14deg);
 }
 .brush-stamps img:nth-child(2) {
-  top: 26%;
-  transform: rotate(6deg);
+  top: 19%;
+  left: 27%;
+  transform: rotate(4deg) scale(0.85);
 }
 .brush-stamps img:nth-child(3) {
-  top: 51%;
-  transform: rotate(23deg);
+  top: 38%;
+  left: 54%;
+  transform: rotate(18deg) scale(0.7);
 }
-.journal-visual--ornaments {
-  background: radial-gradient(ellipse, #ececec, transparent 75%);
+.journal-visual img {
+  mix-blend-mode: multiply;
 }
-.journal-visual--ornaments img {
-  width: 130%;
-  max-width: none;
-  height: 140%;
-  left: -15%;
-  top: -18%;
-  opacity: 0.65;
-  transform: rotate(-16deg);
+.journal-visual--single {
+  background: radial-gradient(ellipse, #f7f7f7 40%, #ececec);
 }
-.journal-visual--textures {
+.single-design,
+.texture-design {
+  inset: -4% 0;
+  width: 100%;
+  height: 108%;
+}
+.journal-visual--texture {
   background: #f0f0f0;
 }
 .texture-piece {
   position: absolute;
   inset: 0;
   background-image: url('/textures/serpent.svg');
-  background-size: 72%;
-  opacity: 0.5;
+  background-size: 36%;
+  opacity: 0.55;
   filter: grayscale(1);
-}
-.texture-piece:nth-child(2) {
-  left: 50%;
-  background-image: url('/textures/camo-chalk-digital.svg');
-  background-size: 150%;
-  border-left: 1px solid #bcbcbc;
-  opacity: 0.7;
 }

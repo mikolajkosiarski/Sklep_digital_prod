@@ -6,7 +6,10 @@ published: '2026-11-05'
 author: 'mikolaj'
 tags: ['Composition', 'Spacing', 'Typography']
 readTime: '2 min read'
-art: 'ornaments'
+art:
+  layout: 'single'
+  design: '54-sig0033'
+  alt: 'A spiky radiating eye with a heart-shaped pupil and a falling tear, from the Dark Romance pack'
 order: 8
 figure:
   image: 'assets/digital/pack-121-3.png'

@@ -6,7 +6,10 @@ published: '2026-11-05'
 author: 'mikolaj'
 tags: ['Texture', 'Contrast', 'Spacing']
 readTime: '2 min read'
-art: 'textures'
+art:
+  layout: 'texture'
+  design: '54-sig0029'
+  alt: 'Stippled lips with a single dripping drop, from the Dark Romance pack'
 order: 3
 figure:
   image: 'textures/serpent.svg'
