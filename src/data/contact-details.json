@@ -1,7 +1,7 @@
 {
-  "note": "Fill in before publishing. Empty values render as visible 'to be added' placeholders on the home page, the contact page and in the footer.",
-  "business": "",
-  "email": "",
+  "note": "Seller details shown on the home page, the contact page and in the footer. The phone number is intentionally not published. An empty address renders as a visible 'to be added' placeholder: add a postal address for complaints before sales open.",
+  "business": "Mikołaj Kosiarski",
+  "email": "asapstore36@gmail.com",
   "phone": "",
   "address": ""
 }

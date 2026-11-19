@@ -1,7 +1,8 @@
 ---
 import details from '../../data/contact-details.json';
 
-// Missing details stay visible as placeholders so they are not forgotten.
+// Missing details stay visible as placeholders so they are not forgotten. The
+// phone number is optional: the owner chose not to publish one.
 const rows = [
   { label: 'Email', value: details.email, href: details.email && `mailto:${details.email}` },
   {
@@ -11,7 +12,7 @@ const rows = [
   },
   { label: 'Address', value: details.address },
   { label: 'Business', value: details.business },
-];
+].filter(({ label, value }) => label !== 'Phone' || value);
 ---
 
 <address class="contact-details">

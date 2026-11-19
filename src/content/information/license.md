@@ -4,7 +4,7 @@ description: The Standard license included with every Visamore collection, and t
 group: policies
 status: draft
 order: 3
-updated: '2026-11-06'
+updated: '2026-11-19'
 ---
 
 ## Scope of this page
@@ -15,8 +15,12 @@ This is a plain-language draft of the licenses planned for this store. It does n
 
 Every collection comes with the Standard license, at no extra cost.
 
-- You may use the designs on products you make and sell, for example prints and clothing.
-- You may not resell, share or give away the files themselves, or offer them as a digital download in any form, including inside another asset pack or template.
+- **Tattoos.** You may tattoo the designs on clients, as they are or adapted.
+- **Products.** You may use the designs on products you make and sell, for example prints, clothing, stickers and merch, including through print-on-demand services such as Printful or Redbubble. There is no limit on the number of products.
+- **Who may use it.** One purchase covers one person, studio or small team.
+- **Credit.** Attribution is not required.
+- **Duration and territory.** The license is perpetual and worldwide.
+- **The files themselves.** You may not resell, share or give away the files, or offer them as a digital download in any form, including inside another asset pack, template or brushset.
 
 ## Extended license
 
@@ -24,6 +28,6 @@ An Extended license is needed to use the designs inside apps, digital products o
 
 It is priced individually. Choose Extended on the product page, or write to us through the [contact page](../contact/?topic=license) with the collection and how you plan to use it.
 
-## Still to confirm
+## Rights holder
 
-Before sales open, the final license will also cover: tattoo work and print-on-demand services, any quantity limits, the number of people who may use one purchase, attribution, and the rights holder, duration and territory of the license.
+All designs are original artwork by Mikołaj Kosiarski, who keeps the copyright. A license grants the right to use the designs as described above; it does not transfer ownership of the artwork.
