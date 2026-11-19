@@ -49,6 +49,15 @@ const jsonLd = JSON.stringify(data).replace(/</g, '\\u003c');
     <!-- Marks scripting before first paint so the mobile menu starts closed. -->
     <script is:inline>
       document.documentElement.classList.add('js');
+      // Applies the reader's contrast choice before paint; otherwise follows the system.
+      try {
+        const choice = localStorage.getItem('visamore-contrast');
+        const high =
+          choice === 'high' || (!choice && matchMedia('(prefers-contrast: more)').matches);
+        if (high || choice === 'standard') {
+          document.documentElement.dataset.contrast = high ? 'high' : 'standard';
+        }
+      } catch {}
     </script>
     <title>{title}</title>
     <link rel="icon" href={asset('favicon.svg')} type="image/svg+xml" />

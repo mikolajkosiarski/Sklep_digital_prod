@@ -16,6 +16,7 @@
 @import './components/catalog.css' layer(components);
 @import './components/editorial.css' layer(components);
 @import './components/ecommerce.css' layer(components);
+@import './components/contrast.css' layer(components);
 @import 'tailwindcss/utilities.css' layer(utilities) source(none);
 
 @source '../';
@@ -28,6 +29,8 @@
   --breakpoint-lg: 62rem;
   --breakpoint-xl: 75rem;
   --font-mono: Plex, 'Courier New', monospace;
+  --font-reading: 'Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  --text-reading: 1.0625rem;
   --text-caption: 0.875rem;
   --text-copy: 0.9375rem;
   --font-display: 'Pinyon Script', cursive;

@@ -5,7 +5,7 @@
 - Zdjęcia Digital do optymalizacji są w `src/assets/listings/`. Kopie zdjęć galerii, których strona już nie używała w `public/`, zachowano w osobnym archiwum projektu.
 - `public/assets/frames/parts/128/` zawiera narożniki ramy używane w hero jako WebP 480 i 960 px. Wycięto je z oryginalnego PNG ramy 128 według `viewBox` z `docs/sources/assets/frames/parts.json`, bez retuszu; dawne SVG osadzały ten sam PNG 4096 px i ważyły po 260 kB.
 - `public/assets/frames/brd0125_nb_4096x4096.png` pozostaje używaną ilustracją Journal.
-- Wybrana typografia to IBM Plex Mono i Pinyon Script. Licencje SIL OFL są obok fontów: `public/assets/fonts/plex-OFL.txt` oraz `public/assets/fonts/pinyon-script/OFL.txt`.
+- Wybrana typografia to IBM Plex Mono, IBM Plex Sans i Pinyon Script. Plex Sans (wagi 400, 400 italic i 500, podzbiory latin i latin-ext) pochodzi z pakietu `@fontsource/ibm-plex-sans` 5.3.0 i składa dłuższy tekst dziennika; Plex Mono zostaje w tytułach, etykietach i interfejsie. Licencje SIL OFL są obok fontów: `public/assets/fonts/plex-OFL.txt`, `public/assets/fonts/plex-sans/OFL.txt` oraz `public/assets/fonts/pinyon-script/OFL.txt`.
 - `public/textures/` zawiera używane wektorowe tekstury tła i ilustracji artykułów. Wylinka to `serpent.svg`; układ warstw jest w `src/styles/components/surface.css`.
 - Zrzuty stanowiące źródło opinii są w `docs/sources/etsy-reviews/`. Strona renderuje tekst opinii, bez osadzania zrzutów.
 
