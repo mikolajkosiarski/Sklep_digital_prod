@@ -2,9 +2,9 @@
   "digital": [
     {
       "id": "100",
-      "title": "Cybersigilism",
+      "title": "Cybersigilism Gothic Sketches",
       "styles": ["cybersigilism"],
-      "description": "100 gothic cybersigilism designs, from fine thorn ornaments to intricate dark-art forms.",
+      "description": "100 cybersigilism sketches inspired by gothic architecture, tribal forms and ritual symbols.",
       "formatLabel": "PNG + Procreate brushes",
       "files": "100 transparent PNG + 100 white-background PNG",
       "brushes": true,
@@ -12,9 +12,9 @@
     },
     {
       "id": "121",
-      "title": "Gothic & tribal",
-      "styles": ["gothic", "tribal"],
-      "description": "121 gothic, tribal and cybersigilism designs for tattoo concepts, clothing and print.",
+      "title": "Gothic Tribal & Cybersigilism",
+      "styles": ["gothic", "tribal", "cybersigilism"],
+      "description": "121 blackwork sketches mixing gothic tribal, neotribal, cybersigilism and ritual abstract linework.",
       "formatLabel": "Transparent + white PNG",
       "files": "121 transparent PNG + 121 white-background PNG",
       "brushes": false,
@@ -22,9 +22,9 @@
     },
     {
       "id": "300",
-      "title": "Gothic & neotribal",
-      "styles": ["gothic", "tribal"],
-      "description": "300 designs exploring gothic, neotribal and anime-inspired forms, with a Procreate brushset.",
+      "title": "Ultimate Cybersigilism Pack",
+      "styles": ["cybersigilism", "tribal", "gothic"],
+      "description": "300 cybersigilism assets: neotribal lines, cyber hearts and thorns, gothic crosses and swords.",
       "formatLabel": "PNG + Procreate brushes",
       "files": "300 transparent PNG + 300 white-background PNG",
       "brushes": true,
@@ -32,9 +32,9 @@
     },
     {
       "id": "200",
-      "title": "Frames & gothic arches",
+      "title": "Gothic Frames & Arches",
       "styles": ["gothic", "ornamental"],
-      "description": "200 ornate frames, gothic arches, cathedral-inspired windows and decorative corners for prints, collages and design work.",
+      "description": "200 gothic frames, ornate arches, corner ornaments and vintage embellishments.",
       "formatLabel": "PNG + Procreate brushes",
       "files": "200 transparent PNG + 200 white-background PNG",
       "brushes": true,
@@ -44,9 +44,9 @@
     },
     {
       "id": "55",
-      "title": "Ornamental dotwork",
-      "styles": ["ornamental"],
-      "description": "55 gothic and tribal tattoo designs with fine dotwork, looping ornaments and abstract cybersigilism forms.",
+      "title": "Cybersigilism Dotwork Flash",
+      "styles": ["ornamental", "cybersigilism"],
+      "description": "55 ornamental dotwork designs blending cybersigil, gothic tribal and abstract sketchwork.",
       "formatLabel": "Transparent + white PNG",
       "files": "55 transparent PNG + 55 white-background PNG",
       "brushes": false,
@@ -55,14 +55,38 @@
     },
     {
       "id": "25",
-      "title": "Gothic coquette",
+      "title": "Gothic Coquette Flash",
       "styles": ["gothic", "coquette"],
-      "description": "25 cute and eerie creature designs: winged kittens, horned animals and tiny monsters with bows and thorn-like details.",
+      "description": "25 sweet and spooky sketches: kittens with bat wings, insects with horns and tiny monsters.",
       "formatLabel": "Transparent + white PNG",
       "files": "25 transparent PNG + 25 white-background PNG",
       "brushes": false,
       "delivery": "All 50 high-resolution PNG files are supplied in one ZIP archive.",
       "coverAlt": "Original Etsy cover for the 25-design Gothic Coquette collection"
+    },
+    {
+      "id": "110",
+      "title": "Dark Art Tattoo Flash",
+      "styles": ["gothic"],
+      "description": "110 goth grunge assets: ignorant doodles, dark nature, femme fatale portraits and gothic objects.",
+      "formatLabel": "PNG + Procreate brushes",
+      "files": "110 transparent PNG + 110 white-background PNG",
+      "brushes": true,
+      "delivery": "Files are accessed through the Google Drive link in the delivery PDF.",
+      "cover": "etsy-110-cover.webp",
+      "coverAlt": "Original Visamore listing cover: Goth grunge flash bundle, 110 PNG and a Procreate brushset"
+    },
+    {
+      "id": "54",
+      "title": "Dark Romance Tattoo Flash",
+      "styles": ["coquette", "gothic"],
+      "description": "54 coquette grunge designs: romantic animals, dark feminine portraits and gothic lettering.",
+      "formatLabel": "PNG + Procreate brushes",
+      "files": "54 transparent PNG + 54 white-background PNG",
+      "brushes": true,
+      "delivery": "Files are accessed through the Google Drive link in the delivery PDF.",
+      "cover": "etsy-54-cover.webp",
+      "coverAlt": "Original Visamore listing cover: Goth grunge flash, 50+ designs with hi-res PNG and a Procreate brushset"
     }
   ]
 }

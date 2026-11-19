@@ -30,7 +30,8 @@ import TerminalButton from '../ui/TerminalButton.astro';
           {digitalProducts.map((product) => (
             <tr>
               <th scope="row">
-                <a href={url(productPath(product))}>{product.designCount} designs</a>
+                <a href={url(productPath(product))}>{product.title}</a>{' '}
+                <span class="guide-count">· {product.designCount} designs</span>
               </th>
               <td>PNG</td>
               <td>{product.brushes ? 'Included' : 'Not included'}</td>

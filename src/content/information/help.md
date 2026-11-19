@@ -27,7 +27,7 @@ The images shown on the website are previews. They are not the complete download
 
 ## Can I use the artwork commercially?
 
-Yes, on products you make. Every collection comes with the Standard license: you may use the designs on products you make and sell, such as prints and clothing, but you may not resell or share the files themselves. Using the designs inside apps or other companies' digital products needs an Extended license, priced individually.
+Yes. Every collection comes with the Standard license: you may tattoo the designs on clients and use them on products you make and sell, such as prints and clothing, including print-on-demand, with no quantity limit. You may not resell or share the files themselves. Using the designs inside apps or other companies' digital products needs an Extended license, priced individually.
 
 The [license page](../license/) explains both. It is still a draft, and an existing Etsy purchase follows the terms provided with that order.
 

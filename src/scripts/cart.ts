@@ -66,7 +66,7 @@ if (data?.textContent) {
       button.dataset.inCart = String(quantity > 0);
       button.setAttribute(
         'aria-label',
-        full ? `${product.title} is in your cart` : `Add ${product.title} to cart`,
+        full ? `In cart: ${product.title}` : `Add to cart: ${product.title}`,
       );
     });
     document.querySelectorAll<HTMLElement>('[data-cart-empty]').forEach((node) => {

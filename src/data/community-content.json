@@ -57,19 +57,19 @@
   "socialProfiles": [
     {
       "platform": "Instagram",
-      "handle": null,
-      "url": null
+      "handle": "@v1sam0r3",
+      "url": "https://www.instagram.com/v1sam0r3/"
     },
     {
       "platform": "Pinterest",
-      "handle": null,
-      "url": null
+      "handle": "v1sam0r3",
+      "url": "https://www.pinterest.com/v1sam0r3/"
     },
     {
       "platform": "TikTok",
-      "handle": null,
-      "url": null
+      "handle": "@9mmbased",
+      "url": "https://www.tiktok.com/@9mmbased"
     }
   ],
-  "editorNote": "Four Etsy reviews transcribed verbatim from screenshots supplied by the owner on 2026-11-05. Original screenshots retained under docs/sources/etsy-reviews. No source URLs supplied. Social profiles remain unconnected as previously requested."
+  "editorNote": "Four Etsy reviews transcribed verbatim from screenshots supplied by the owner on 2026-11-05. Original screenshots retained under docs/sources/etsy-reviews. No source URLs supplied. Social profile links supplied by the owner in the content questionnaire on 2026-11-19."
 }

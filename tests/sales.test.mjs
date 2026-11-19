@@ -27,7 +27,7 @@ test('The dated Etsy snapshot reports transactions, not listing renewals', () =>
   assert.equal(note, 'All-time Etsy sales transactions per listing, as of 23 Oct 2026.');
 });
 
-test('The six catalog collections retain their evidenced counts without adding archived listings', () => {
+test('The eight catalog collections retain their evidenced counts without adding archived listings', () => {
   const { counts } = readSalesSnapshot(evidence);
   assert.deepEqual(
     catalog.digital.map(({ id }) => [id, counts[id]]),
@@ -38,10 +38,12 @@ test('The six catalog collections retain their evidenced counts without adding a
       ['200', 17],
       ['55', 44],
       ['25', 17],
+      ['110', 40],
+      ['54', 14],
     ],
   );
   assert(!('physical' in catalog), 'The shop sells digital collections only.');
-  for (const id of ['30', '54', '110', '20']) {
+  for (const id of ['30', '20']) {
     assert(Object.hasOwn(counts, id), `Keep the original evidence for listing ${id}.`);
     assert(!catalog.digital.some((product) => product.id === id));
   }
