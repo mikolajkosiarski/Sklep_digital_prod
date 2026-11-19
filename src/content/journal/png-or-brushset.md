@@ -6,7 +6,10 @@ published: '2026-11-05'
 author: 'mikolaj'
 tags: ['PNG', 'Procreate', 'Files']
 readTime: '3 min read'
-art: 'formats'
+art:
+  layout: 'formats'
+  design: '110-sig0093'
+  alt: 'An ornate gothic cross with a small skull at its centre, from the Dark Art pack'
 order: 1
 figure:
   image: 'assets/digital/pack-100-3.png'

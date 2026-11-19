@@ -15,7 +15,7 @@ const { title, description, category, published, readTime, art } = entry.data;
 
 <article class="journal-card">
   <a href={url(`/journal/${entry.id}/`)}>
-    <JournalVisual kind={art} />
+    <JournalVisual art={art} />
     <div class="journal-card-copy">
       <span class="journal-card-meta">
         <span>{category}</span>

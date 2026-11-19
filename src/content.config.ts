@@ -12,7 +12,22 @@ const journal = defineCollection({
     author: z.literal('mikolaj'),
     tags: z.array(z.string().min(1)).min(1),
     readTime: z.string().min(1),
-    art: z.enum(['formats', 'ornaments', 'textures']),
+    // Cover artwork: one of the owner's chosen designs, shown in a layout that
+    // suits the note (two file formats, a single design, or design on texture).
+    art: z.object({
+      layout: z.enum(['formats', 'single', 'texture']),
+      design: z.enum([
+        '110-sig0027',
+        '110-sig0093',
+        '110-sig0099',
+        '110-sig0100',
+        '54-sig0029',
+        '54-sig0033',
+        '54-sig0044',
+        '54-sig0054',
+      ]),
+      alt: z.string().min(1),
+    }),
     order: z.number().int().positive(),
     figure: z.object({
       image: z.enum([

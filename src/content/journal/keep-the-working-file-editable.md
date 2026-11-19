@@ -6,7 +6,10 @@ published: '2026-11-05'
 author: 'mikolaj'
 tags: ['Files', 'Layers', 'PNG']
 readTime: '2 min read'
-art: 'formats'
+art:
+  layout: 'single'
+  design: '110-sig0099'
+  alt: 'A galloping horse drawn in rough distressed strokes, from the Dark Art pack'
 order: 7
 figure:
   image: 'assets/digital/pack-100-3.png'

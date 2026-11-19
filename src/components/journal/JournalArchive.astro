@@ -128,7 +128,7 @@ const schema = {
                 {featured.map((entry) => (
                   <li>
                     <a href={url(`/journal/${entry.id}/`)}>
-                      <JournalVisual kind={entry.data.art} />
+                      <JournalVisual art={entry.data.art} />
                       <span>{entry.data.title}</span>
                     </a>
                   </li>

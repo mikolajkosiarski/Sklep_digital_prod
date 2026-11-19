@@ -1,0 +1,86 @@
+/* High contrast. The footer switch sets data-contrast on <html> before first paint
+   (see BaseLayout). Without a stored choice it follows the system setting. */
+@media (prefers-contrast: more) {
+  :root:not([data-contrast='standard']) {
+    --color-paper: #fff;
+    --color-ink: #000;
+    --color-muted: #1a1a1a;
+    --color-line: #595959;
+  }
+  :root:not([data-contrast='standard']) .material-background > div {
+    display: none;
+  }
+}
+:root[data-contrast='high'] {
+  --color-paper: #fff;
+  --color-ink: #000;
+  --color-muted: #1a1a1a;
+  --color-line: #595959;
+}
+[data-contrast='high'] .material-background > div {
+  display: none;
+}
+[data-contrast='high'] ::selection {
+  background: #000;
+  color: #fff;
+}
+[data-contrast='high'] :is(.journal-search-field, .journal-comment-form :is(input, textarea)) {
+  border-color: #000;
+}
+[data-contrast='high'] :is(.journal-tags a, .journal-count) {
+  background: #fff;
+  border: 1px solid #000;
+}
+[data-contrast='high'] .article-body,
+[data-contrast='high'] .journal-comment--preview {
+  background: #fff;
+}
+[data-contrast='high'] :is(a:focus-visible, button:focus-visible, summary:focus-visible) {
+  outline-width: 3px;
+}
+[data-contrast='high'] .journal-visual,
+[data-contrast='high'] .journal-detail-figure img {
+  outline: 1px solid var(--color-line);
+}
+
+/* Windows high contrast and other forced colour modes. */
+@media (forced-colors: active) {
+  .material-background > div {
+    display: none;
+  }
+  .contrast-toggle::before {
+    forced-color-adjust: none;
+    border-color: CanvasText;
+  }
+  .contrast-toggle[aria-pressed='true']::before {
+    background: CanvasText;
+  }
+}
+
+/* Footer switch. The square shows the state; aria-pressed announces it. */
+.contrast-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: 2.75rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-ink);
+  font: inherit;
+}
+.contrast-toggle::before {
+  content: '';
+  width: 0.875rem;
+  height: 0.875rem;
+  border: 1.5px solid currentColor;
+  background: transparent;
+}
+.contrast-toggle[aria-pressed='true']::before {
+  background: currentColor;
+  box-shadow: inset 0 0 0 2px var(--color-paper);
+}
+.contrast-toggle:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}

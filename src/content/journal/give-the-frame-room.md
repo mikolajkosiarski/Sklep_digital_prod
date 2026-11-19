@@ -6,7 +6,10 @@ published: '2026-11-05'
 author: 'mikolaj'
 tags: ['Frames', 'Ornaments', 'Composition']
 readTime: '2 min read'
-art: 'ornaments'
+art:
+  layout: 'single'
+  design: '54-sig0054'
+  alt: 'Lips inside an ornate baroque frame with a butterfly and “Kiss Me” lettering, from the Dark Romance pack'
 order: 4
 figure:
   image: 'assets/frames/brd0125_nb_4096x4096.png'

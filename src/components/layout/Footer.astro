@@ -53,9 +53,34 @@ const groups = [
       © {new Date().getFullYear()} Visamore ·{' '}
       {details.business || <span class="footer-placeholder">business details to be added</span>}
     </span>
-    <a href="#top">Back to top</a>
+    <span class="footer-actions">
+      <button type="button" class="contrast-toggle" aria-pressed="false" data-contrast-toggle>
+        High contrast
+      </button>
+      <a href="#top">Back to top</a>
+    </span>
   </div>
 </footer>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-contrast-toggle]');
+  if (toggle) {
+    const root = document.documentElement;
+    const sync = () =>
+      toggle.setAttribute('aria-pressed', String(root.dataset.contrast === 'high'));
+    sync();
+    toggle.addEventListener('click', () => {
+      const next = root.dataset.contrast === 'high' ? 'standard' : 'high';
+      root.dataset.contrast = next;
+      try {
+        localStorage.setItem('visamore-contrast', next);
+      } catch {
+        // Storage can be unavailable; the choice then lasts for this page only.
+      }
+      sync();
+    });
+  }
+</script>
 
 <style>
   @reference '../../styles/global.css';
@@ -101,6 +126,12 @@ const groups = [
     border-top: 1px solid var(--color-line);
     margin-top: 2rem;
     padding-top: 1rem;
+  }
+  .footer-actions {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 2rem;
   }
   .footer-grid {
     @variant md {

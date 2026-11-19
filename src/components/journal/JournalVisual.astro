@@ -1,63 +1,54 @@
 ---
-import { decorImage } from '../../lib/decor-images';
+import { asset } from '../../lib/paths';
 import type { JournalEntry } from './entries';
 
 interface Props {
-  kind: JournalEntry['data']['art'];
-  label?: string;
+  art: JournalEntry['data']['art'];
+  /** Set on article headers, where the cover is described; cards stay decorative. */
+  labelled?: boolean;
 }
 
-const { kind, label } = Astro.props;
+const { art, labelled = false } = Astro.props;
+const { layout, design, alt } = art;
+// Each chosen design has 560 and 1000 px greyscale WebP copies in public/assets/journal.
+const image = {
+  src: asset(`assets/journal/${design}-1000.webp`),
+  srcset: `${asset(`assets/journal/${design}-560.webp`)} 560w, ${asset(`assets/journal/${design}-1000.webp`)} 1000w`,
+  width: 1000,
+  height: 1000,
+  alt: '',
+  loading: 'lazy' as const,
+  decoding: 'async' as const,
+};
 ---
 
 <div
-  class:list={['journal-visual', `journal-visual--${kind}`]}
-  role={label ? 'img' : undefined}
-  aria-label={label}
-  aria-hidden={label ? undefined : 'true'}
+  class:list={['journal-visual', `journal-visual--${layout}`]}
+  role={labelled ? 'img' : undefined}
+  aria-label={labelled ? alt : undefined}
+  aria-hidden={labelled ? undefined : 'true'}
 >
-  {kind === 'formats' ? (
+  {layout === 'formats' ? (
     <>
       <div class="format-panel">
-        <img
-          {...decorImage('assets/digital/pack-100-3.png')}
-          sizes="(min-width: 768px) 320px, 45vw"
-          width="4096"
-          height="2048"
-          alt=""
-          loading="lazy"
-        />
+        <img {...image} sizes="(min-width: 768px) 320px, 45vw" />
         <span>.png</span>
       </div>
       <div class="format-panel">
         <div class="brush-stamps">
           {[1, 2, 3].map(() => (
-            <img
-              {...decorImage('assets/digital/pack-100-3.png')}
-              sizes="(min-width: 768px) 160px, 25vw"
-              width="4096"
-              height="2048"
-              alt=""
-              loading="lazy"
-            />
+            <img {...image} sizes="(min-width: 768px) 160px, 25vw" />
           ))}
         </div>
         <span>.brushset</span>
       </div>
     </>
-  ) : kind === 'ornaments' ? (
-    <img
-      {...decorImage('assets/digital/pack-121-3.png')}
-      sizes="(min-width: 768px) 480px, 90vw"
-      width="4096"
-      height="4096"
-      alt=""
-      loading="lazy"
-    />
-  ) : (
+  ) : layout === 'texture' ? (
     <>
       <span class="texture-piece" />
-      <span class="texture-piece" />
+      <img class="texture-design" {...image} sizes="(min-width: 768px) 480px, 90vw" />
     </>
+  ) : (
+    <img class="single-design" {...image} sizes="(min-width: 768px) 480px, 90vw" />
   )}
 </div>
