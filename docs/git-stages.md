@@ -13,4 +13,4 @@ Historia została uporządkowana lokalnie 5 listopada 2026 na podstawie istniej�
 
 Tagi `etap-1-cw3`, `etap-2-cw4`, `etap-3-sklep`, `etap-4-podstrony`, `etap-5-opinie` i `etap-6-github-pages` wskazują odpowiadające etapy. Finalny kod jest na gałęzi `main`. Wcześniejsze etapy można oglądać w osobnym katalogu przez `git worktree add <folder> <tag>` bez cofania uruchomionej wersji.
 
-Zależności, wygenerowane pliki i lokalne archiwa nie są śledzone. Pierwsze pięć etapów porządkuje istniejącą wersję. Szósty dodaje workflow publikacji GitHub Pages; ustawienia i adres strony są opisane w README. Testy i build nie zastępują formalnego audytu Lighthouse ani zewnętrznej walidacji Schema.org.
+Zależności, wygenerowane pliki i lokalne archiwa nie są śledzone. Pierwsze pięć etapów porządkuje istniejącą wersję. Szósty dodaje workflow publikacji GitHub Pages; ustawienia i adres strony są opisane w README. Audyt Lighthouse i walidację Schema.org opisuje [docs/lighthouse.md](lighthouse.md).

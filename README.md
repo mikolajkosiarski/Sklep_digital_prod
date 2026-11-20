@@ -76,7 +76,7 @@ Główna prezentuje cztery kolekcje Digital w rzędzie na dużym ekranie i dwie 
 
 Digital korzysta z jednego szablonu `src/layouts/ProductPage.astro`; opisy Markdown są przekazywane przez slot. Journal korzysta z `JournalPost.astro`, wspólnej karty artykułu i archiwum z paginacją. Kontakt ma osobną trasę, ale formularz i sekcja na głównej są wspólne. Kolekcje treści są walidowane w `src/content.config.ts`.
 
-Instrukcje: [produkty](docs/product-editing.md), [Journal](docs/journal-editing.md), [kontakt](docs/contact-editing.md), [opinie](docs/etsy-reviews.md), [źródła zasobów](docs/asset-sources.md).
+Instrukcje: [produkty](docs/product-editing.md), [Journal](docs/journal-editing.md), [kontakt](docs/contact-editing.md), [opinie](docs/etsy-reviews.md), [źródła zasobów](docs/asset-sources.md), [Lighthouse i Schema.org](docs/lighthouse.md).
 
 ## Obecny zakres
 
@@ -122,7 +122,7 @@ npm run build
 
 Build sprawdza typy Astro, generuje strony i kontroluje lokalne linki, grafiki, identyfikatory sekcji oraz JSON-LD. Testy obejmują koszyk, źródłowe statystyki i renderer Markdown. Markdown odrzuca surowy HTML i niebezpieczne schematy adresów; nie zastępuje to zabezpieczeń przyszłego backendu.
 
-Po zmianach układu sprawdź w przeglądarce szerokości 360–390, 768 i co najmniej 1200 px, menu oraz obsługę klawiaturą. Formalny audyt Lighthouse i zewnętrzna walidacja Schema.org pozostają osobnymi punktami odbioru.
+Po zmianach układu sprawdź w przeglądarce szerokości 360–390, 768 i co najmniej 1200 px, menu oraz obsługę klawiaturą. Raporty Lighthouse (telefon i komputer, 9 stron) oraz walidacja Schema.org z 20 listopada 2026 są opisane w [docs/lighthouse.md](docs/lighthouse.md), a pełne raporty HTML leżą w `docs/lighthouse/2026-11-20/`.
 
 ## Historia etapów
 

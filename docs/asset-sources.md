@@ -12,8 +12,9 @@
 
 Zasoby są podglądami używanymi przez serwis. Projekt nie zawiera pełnych płatnych paczek przeznaczonych do pobierania przez klientów.
 
-- `public/assets/digital/angel-sig0011-640.webp` i `-1280.webp` (sekcja „About Visamore” na głównej) to wzór `sig0011` z paczki 110 Dark Art Tattoos (`110_designs_bundle_v1/transparent_bg/sig0011_t_4096x4096.png`). Biały oryginał przycięto do konturu i przebarwiono na kolor tekstu strony `#282828` z zachowaniem przezroczystości. W repozytorium jest tylko podgląd do 1280 px, bez pliku źródłowego 4096 px.
+- `public/assets/digital/angel-sig0011-640.webp`, `-900.webp` i `-1280.webp` (sekcja „About Visamore” na głównej) to wzór `sig0011` z paczki 110 Dark Art Tattoos (`110_designs_bundle_v1/transparent_bg/sig0011_t_4096x4096.png`). Biały oryginał przycięto do konturu i przebarwiono na kolor tekstu strony `#282828` z zachowaniem przezroczystości. W repozytorium jest tylko podgląd do 1280 px, bez pliku źródłowego 4096 px.
 
 - Paczki 110 i 54 (dodane 19 listopada 2026): okładki `etsy-110-cover.webp` i `etsy-54-cover.webp` oraz zdjęcia `110-listing-1…3.webp` i `54-listing-1…3.webp` to oryginalne grafiki ofert Etsy, wgrane przez właściciela w kwestionariuszu treści. Pomniejszono je do maks. 1600 px, bez retuszu.
 - `110-design-sig*.webp` i `54-design-sig*.webp` to ulubione wzory wybrane przez właściciela (9 z paczki 110 i 6 z paczki 54). Powstały z podglądów laboratorium przymierzalni (768 px): kontur z kanału alfa w kolorze `#282828` na tle `#f7f7f7`, kwadrat 1000 px. Pełnych plików 4096 px nie ma w repozytorium.
 - `public/assets/video/pack-110-preview.mp4` i `pack-54-preview.mp4` to nagrania ekranu z Procreate (15 i 13 s, 1280 × 1280 px, bez dźwięku) z folderów `oferta_110_designs` i `oferta_54_designs` właściciela. Plakaty `110-video-poster.webp` i `54-video-poster.webp` to klatki z tych nagrań.
+- `public/assets/visamore-tag-480.webp` i `-960.webp` to zmniejszone kopie logo `visamore-tag.png` (1752 px) dla nagłówka i hero. PNG zostaje jako logo w danych strukturalnych.
