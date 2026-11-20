@@ -16,7 +16,7 @@ Digital packs contain files, rather than a physical item. This website currently
 The product descriptions reflect the existing collection packaging:
 
 - The 100-, 200- and 300-design packs use a delivery PDF containing an access link.
-- The 25-, 55- and 121-design packs contain their PNG files in ZIP archives.
+- The 25- and 55-design packs contain their PNG files in ZIP archives. The 121-design pack adds a Procreate brushset to its two PNG ZIP archives.
 
 This describes the existing packs, not a promise about the future store's delivery method. The [file guide](../help/) explains the available formats.
 

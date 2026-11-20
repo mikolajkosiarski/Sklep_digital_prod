@@ -38,7 +38,7 @@ A transparent PNG lets the underlying background show around the artwork. Choose
 
 ## Check the contents of the pack
 
-The Visamore 100-, 200- and 300-design collections include PNG files and a Procreate brushset. The 25-, 55- and 121-design collections contain transparent and white-background PNG files without a brushset. Choose according to the files you need; a larger design count does not tell you which formats are included.
+The Visamore 100-, 121-, 200- and 300-design collections include PNG files and a Procreate brushset. The 25- and 55-design collections contain transparent and white-background PNG files without a brushset. Choose according to the files you need; a larger design count does not tell you which formats are included.
 
 ## Import into Procreate
 

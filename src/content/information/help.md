@@ -15,7 +15,7 @@ Not yet. This website is a preview of the future Visamore store. You can explore
 
 PNG files are images you can place in an application that supports the format. A `.brushset` contains brushes for Procreate. They are different ways of working with a design.
 
-The 100-, 200- and 300-design packs include a Procreate brushset. The 25-, 55- and 121-design packs contain PNG files without a brushset. Check the **Files** and **Procreate** details on each product page.
+The 100-, 121-, 200- and 300-design packs include a Procreate brushset. The 25- and 55-design packs contain PNG files without a brushset. Check the **Files** and **Procreate** details on each product page.
 
 [Read the PNG and brushset guide](../journal/png-or-brushset/) for background transparency and import instructions.
 
