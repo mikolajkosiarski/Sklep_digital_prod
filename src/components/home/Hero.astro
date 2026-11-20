@@ -30,7 +30,9 @@ import TerminalButton from '../ui/TerminalButton.astro';
         <h1 class="frame-logo-heading" id="framed-title">
           <img
             class="frame-logo"
-            src={asset('assets/visamore-tag.png')}
+            src={asset('assets/visamore-tag-960.webp')}
+            srcset={`${asset('assets/visamore-tag-480.webp')} 480w, ${asset('assets/visamore-tag-960.webp')} 960w, ${asset('assets/visamore-tag.png')} 1752w`}
+            sizes="(min-width: 48rem) 32rem, 75vw"
             width="1752"
             height="192"
             alt="Visamore"

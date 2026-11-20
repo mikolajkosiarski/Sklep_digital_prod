@@ -200,6 +200,7 @@ const schema = {
     if (directory) {
       const wide = window.matchMedia('(min-width: 62rem)');
       directory.open = wide.matches;
+      directory.dataset.ready = '';
       wide.addEventListener('change', () => {
         directory.open = wide.matches;
       });

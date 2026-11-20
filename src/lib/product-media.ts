@@ -15,9 +15,9 @@ export async function prepareListingImage(image: OfferImage) {
   const optimized = await getImage({
     src: source,
     width,
-    widths: [...new Set([160, 480, 800, 1200, width].filter((size) => size <= width))],
+    widths: [...new Set([160, 480, 720, 960, 1200, width].filter((size) => size <= width))],
     format: 'webp',
-    quality: 82,
+    quality: 76,
   });
   return {
     src: optimized.src,

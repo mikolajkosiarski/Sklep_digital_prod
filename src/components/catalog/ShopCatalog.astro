@@ -133,7 +133,10 @@ const PAGE_SIZE = 9;
           data-designs={product.designCount}
           data-title={product.title}
         >
-          <ProductCard product={product} />
+          <ProductCard
+            product={product}
+            priority={index === 0 ? 'high' : index < 2 ? 'eager' : undefined}
+          />
         </div>
       ))}
     </div>

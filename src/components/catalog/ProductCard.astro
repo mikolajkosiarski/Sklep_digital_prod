@@ -7,8 +7,10 @@ import StarRating from '../ui/StarRating.astro';
 interface Props {
   product: StoreProduct;
   headingLevel?: 2 | 3;
+  /** Cards in the first visible row load eagerly; the first one is fetched first. */
+  priority?: 'high' | 'eager';
 }
-const { product, headingLevel = 3 } = Astro.props;
+const { product, headingLevel = 3, priority } = Astro.props;
 const Heading = headingLevel === 2 ? 'h2' : 'h3';
 ---
 
@@ -22,7 +24,8 @@ const Heading = headingLevel === 2 ? 'h2' : 'h3';
       alt={product.image.alt}
       width={product.image.width}
       height={product.image.height}
-      loading="lazy"
+      loading={priority ? 'eager' : 'lazy'}
+      fetchpriority={priority === 'high' ? 'high' : undefined}
       decoding="async"
     />
   </a>

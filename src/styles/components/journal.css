@@ -161,6 +161,13 @@
 .journal-directory-content {
   padding: 1.5rem 0;
 }
+/* The directory is open in the HTML for readers without scripts. On narrow
+   screens the script folds it; hiding it until then avoids a layout shift. */
+@variant max-lg {
+  :root.js .journal-directory:not([data-ready]) > .journal-directory-content {
+    display: none;
+  }
+}
 .journal-sidebar h2 {
   font: 500 1rem/1.6 var(--font-mono);
   margin-bottom: 1rem;

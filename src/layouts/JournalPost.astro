@@ -22,6 +22,16 @@ const { entry, related, previous, next } = Astro.props;
 const { title, description, category, published, author, tags, readTime, art, figure, sources } =
   entry.data;
 const identity = journalAuthors[author];
+/** UTC offset of Europe/Warsaw at midnight on the given day, e.g. +01:00. */
+function warsawOffset(day: string): string {
+  const name = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Warsaw',
+    timeZoneName: 'longOffset',
+  })
+    .formatToParts(new Date(`${day}T00:00:00Z`))
+    .find((part) => part.type === 'timeZoneName')?.value;
+  return name?.replace('GMT', '') || '+01:00';
+}
 // Social previews use a raster image; SVG textures remain in the article.
 const socialImage = figure.image.endsWith('.svg') ? 'assets/digital/pack-121-3.png' : figure.image;
 const socialAlt = figure.image.endsWith('.svg') ? 'A branching ornament by Visamore' : figure.alt;
@@ -30,9 +40,14 @@ const schema = {
   '@type': 'Article',
   headline: title,
   description,
-  datePublished: published,
+  // Notes are dated in Warsaw (CET in winter, CEST in summer); Google expects a time zone.
+  datePublished: `${published}T00:00:00${warsawOffset(published)}`,
   inLanguage: 'en',
-  author: { '@type': 'Person', name: identity.name },
+  author: {
+    '@type': 'Person',
+    name: identity.name,
+    ...(Astro.site ? { url: new URL(url('/about/'), Astro.site).href } : {}),
+  },
   publisher: { '@type': 'Organization', name: 'Visamore' },
   image: Astro.site ? new URL(asset(socialImage), Astro.site).href : asset(socialImage),
   keywords: tags.join(', '),

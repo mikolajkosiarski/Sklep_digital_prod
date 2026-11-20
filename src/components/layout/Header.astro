@@ -19,7 +19,14 @@ const { current } = Astro.props;
       Menu
     </button>
     <a class="vm-brand" href={url('/')} aria-label="Visamore — home">
-      <img src={asset('assets/visamore-tag.png')} width="1752" height="192" alt="Visamore" />
+      <img
+        src={asset('assets/visamore-tag-480.webp')}
+        srcset={`${asset('assets/visamore-tag-480.webp')} 480w, ${asset('assets/visamore-tag-960.webp')} 960w, ${asset('assets/visamore-tag.png')} 1752w`}
+        sizes="12.5rem"
+        width="1752"
+        height="192"
+        alt="Visamore"
+      />
     </a>
     <div class="vm-nav-controls">
       <a
